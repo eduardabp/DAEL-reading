@@ -18,8 +18,9 @@
         .tab-btn { font-family: ui-sans-serif, system-ui, sans-serif !important; }
         .tab-btn[aria-selected="true"] { background-color: #111827; color: #60a5fa; border-bottom: 2px solid #60a5fa; }
 
-        /* --- READING BARRIERS --- */
+        /* --- READING BARRIERS (CONTENT AREA) --- */
         .inaccessible-mode .reading-content { font-family: "Times New Roman", Times, serif !important; }
+        
         .promo-banner {
             width: 100%; height: 60px;
             background-color: #ef4444; color: white;
@@ -29,31 +30,66 @@
         }
         .promo-text { white-space: nowrap; animation: slide 4s linear infinite; }
         @keyframes slide { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .inaccessible-mode .promo-banner { animation: flash 1s step-end infinite; margin-bottom: 24px; }
+        
+        .inaccessible-mode .promo-banner { 
+            animation: flash 1s step-end infinite; 
+            margin-bottom: 24px; 
+        }
         @keyframes flash { 50% { background-color: #facc15; color: black; } }
 
-        .inaccessible-mode #txt-instructions { text-align: justify; line-height: 0.95 !important; letter-spacing: -0.04em !important; font-size: 14px; }
-        .inaccessible-mode #txt-instr-title { font-size: 14px !important; margin-bottom: 2px !important; text-transform: none !important; }
-        .inaccessible-mode .cog-label { font-size: 12px !important; text-transform: uppercase !important; font-weight: 900 !important; }
+        .inaccessible-mode #txt-instructions {
+            text-align: justify;
+            line-height: 0.95 !important;
+            letter-spacing: -0.04em !important;
+            font-size: 14px;
+        }
+
+        .inaccessible-mode #txt-instr-title {
+            font-size: 14px !important;
+            margin-bottom: 2px !important;
+            text-transform: none !important;
+        }
+        
+        .inaccessible-mode .cog-label { 
+            font-size: 12px !important; 
+            text-transform: uppercase !important; 
+            font-weight: 900 !important; 
+        }
 
         /* --- ACCESSIBLE MODE --- */
         .accessible-mode .reading-content { font-family: ui-sans-serif, system-ui, sans-serif !important; }
-        .accessible-mode .promo-banner { background-color: #1e40af; animation: none; margin-bottom: 0; }
+        .accessible-mode .promo-banner { background-color: #1e40af; animation: none; }
         .accessible-mode .promo-text { animation-play-state: paused; }
         .accessible-mode.playing .promo-text { animation-play-state: running; }
-        .accessible-mode #txt-instructions { text-align: left; line-height: 1.8; font-size: 14px; }
-        .accessible-mode .cog-label { font-size: 14px !important; text-transform: none !important; font-weight: 600; letter-spacing: 0.01em; }
+
+        .accessible-mode #txt-instructions {
+            text-align: left;
+            line-height: 1.8;
+            font-size: 14px; 
+        }
+        .accessible-mode .cog-label { 
+            font-size: 14px !important; 
+            text-transform: none !important; 
+            font-weight: 600; 
+            letter-spacing: 0.01em; 
+        }
         .accessible-mode .form-gap { gap: 1.5rem !important; }
 
+        /* FIXED FUNCTIONAL SQUARE BUTTON STYLING */
         .control-btn {
             display: flex; align-items: center; justify-content: center;
             width: 36px; height: 36px; border: 2px solid #1e40af;
-            border-radius: 8px; background: white; color: #1e40af;
-            margin-top: 4px; margin-bottom: 24px; transition: all 0.2s;
+            border-radius: 8px; 
+            background: white; color: #1e40af;
+            margin-top: 4px; 
+            transition: all 0.2s;
             cursor: pointer; font-size: 1.1rem;
         }
         .control-btn:hover { background: #f3f4f6; }
+
         .instr-list br { content: ""; display: block; margin: 0.75rem 0; }
+
+        /* Error and Success UI */
         .input-error { border: 2px solid #ef4444 !important; }
         .error-msg { color: #ef4444; font-size: 12px; font-weight: bold; margin-top: 4px; display: block; }
     </style>
@@ -90,6 +126,7 @@
 
         <main class="p-6 md:p-10">
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
+                
                 <div class="lg:col-span-2 reading-content flex flex-col form-gap" id="exercise-column">
                     <div id="form-container" class="contents">
                         <div class="flex flex-col">
@@ -162,77 +199,34 @@
                     bad: "The application process requires that users successfully identify and input the correct alphanumeric string found within the promotional messaging prior to confirmation. Please ensure the identity field contains the legal nomenclature matching your documentation. Applications missing the database-synced promotional code will be processed without the benefit of a secondary discount application.",
                     good: "To apply for your 50% discount:<br>1. In the 'Full Name' field, enter your name as it appears on your ID.<br>2. Enter the discount code (REDUCE2026) at the 'Promotional Code field' and activate the 'Submit Application' button."
                 },
-                testSteps: ["Read the 'Instructions' block and identify the required pieces of information.", "Look for the promotional code.", "Try to complete the form without entering any data to see how the system handles errors.", "Complete the form using the found information.", "Switch to the accessible version and compare clarity."],
+                testSteps: [
+                    "Read the 'Instructions' block and identify the required pieces of information.",
+                    "Look for the promotional code.",
+                    "Try to complete the form without entering any data to see how the system handles errors.",
+                    "Complete the form using the found information.",
+                    "Switch to the accessible version and compare clarity."
+                ],
                 critiques: {
                     bad: { title: "What is wrong?", items: [
-                        { f: "1. Distracting Movement", c: "Constant movement without a pause mechanism creates a sensory distraction that makes it difficult for users with ADHD or Autism to focus." },
-                        { f: "2. Passive & Dense Language", c: "Using complex prose and jargon ('legal nomenclature') increases cognitive load unnecessarily." },
-                        { f: "3. Vague Labels", c: "Labels like 'Name', 'CODE' and the button 'OK' lack clear context for the action." },
-                        { f: "4. Poor Error Handling", c: "Vague error messages like 'Fail to submit' do not identify which field needs attention and do not allow for user error." }
+                        { f: "1. Distracting Movement", c: "Constant flashing and scrolling content without a stop mechanism creates a 'sensory hijack' for users with ADHD or Autism, making it difficult to focus on the form." },
+                        { f: "2. Passive & Dense Language", c: "Using complex prose and jargon increases cognitive load unnecessarily, especially for users with learning disabilities." },
+                        { f: "3. Vague Labels", c: "Labels like 'Name', 'CODE' and the button 'OK' are not descriptive enough. They don't provide clear context for the expected action." },
+                        { f: "4. No Error Tolerance", c: "The form does not allow for minor user errors or provide helpful guidance for correction." },
+                        { f: "5. Poor Feedback", c: "Vague error messages and a silent 'reset' upon success leave users confused about the status of their request." }
                     ]},
                     good: { title: "Remediations", items: [
                         { f: "1. Control Mechanisms", c: "Always provide a mechanism to stop or pause movement (WCAG 2.2.2)." },
-                        { f: "2. Plain Language", c: "Use short, active sentences and vertical breaks to aid processing." },
-                        { f: "3. Descriptive Labels", c: "Labels and action buttons should be clear (e.g., 'Submit Application') and required fields explicitly marked." },
-                        { f: "4. Error Prevention", c: "Mark errors specifically at the field level with visible indicators and helpful guidance (WCAG 3.3.1)." }
+                        { f: "2. Plain Language", c: "Write in short, active sentences with vertical breaks between steps to ensure understanding." },
+                        { f: "3. Descriptive Labels", c: "Use clear, specific labels and explicitly mark required fields." },
+                        { f: "4. Error Identification", c: "Mark errors specifically at the field level with visible indicators and helpful guidance (WCAG 3.3.1)." },
+                        { f: "5. Clear Status Feedback", c: "Provide clear, persistent confirmation for successful submissions (role='status')." }
                     ]}
                 },
                 userTitle: "Who is impacted?", userList: [
-                    "**ADHD / Autism:** Moving content acts as a major distraction, often causing users to lose their place or abandon the task.",
-                    "**Dyslexia:** Tight line spacing and serif fonts make word shapes harder to distinguish, leading to rapid fatigue.",
-                    "**Cognitive Impairment:** Vague error messages and complex jargon create significant barriers for users processing dense information."
+                    "**ADHD / Autism:** Moving and flashing content acts as a major distraction, often causing users to lose their place.",
+                    "**Dyslexia:** Tight line spacing and all-caps labels make word shapes harder to distinguish.",
+                    "**Cognitive Impairment:** Vague error messages like 'Fail to submit' cause significant confusion and frustration."
                 ]
-            },
-            fr: {
-                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Labo Empathie", title: "Expérience de Lecture",
-                name: { bad: "Nom", good: "Nom complet (requis)" }, code: { bad: "CODE", good: "Code promotionnel (requis)" }, 
-                btn: { bad: "OK", good: "Soumettre ma demande" }, promo: "POSTULEZ ! -50% CODE : REDUCE2026",
-                instrTitle: "Instructions", guideTitle: "Guide étape par étape", pauseAria: "Pause", playAria: "Lecture",
-                tabTest: "Comment tester", tabUser: "Impact", tabIssues: "Problèmes", tabRemediations: "Remediations",
-                successMsg: "Votre demande a été soumise avec succès", failMsg: "Échec de l'envoi du formulaire",
-                errReqName: "Le nom complet est requis", errReqCode: "Le code est requis", errInvalidCode: "Code invalide",
-                instr: {
-                    bad: "Le processus requiert que l'utilisateur identifie et saisisse la chaîne alphanumérique correcte avant confirmation.",
-                    good: "Pour obtenir votre remise de 50% :<br>1. Dans le champ 'Nom complet', saisissez votre nom tel qu'il figure sur votre pièce d'identité.<br>2. Saisissez le code promo (REDUCE2026) et activez le bouton."
-                },
-                testSteps: ["Lisez les instructions.", "Cherchez le code.", "Testez les erreurs.", "Comparez les modes."],
-                critiques: {
-                    bad: { title: "Problèmes", items: [{ f: "1. Mouvement", c: "Le mouvement distrait l'utilisateur." }, { f: "2. Libellés", c: "Les libellés comme 'Nom' ou 'OK' manquent de clarté." }] },
-                    good: { title: "Remediations", items: [{ f: "1. Contrôle", c: "Ajoutez un bouton pause." }, { f: "2. Clarté", c: "Utilisez des libellés descriptifs." }] }
-                },
-                userTitle: "Qui est impacté ?", userList: ["**TDAH / Autisme :** Le mouvement distrait.", "**Dyslexie :** Le texte serré fatigue la lecture."]
-            },
-            nl: {
-                inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", labTitle: "Toegankelijkheid Lab", title: "Leeservaring",
-                name: { bad: "Naam", good: "Volledige Naam (verplicht)" }, code: { bad: "CODE", good: "Promotiecode (verplicht)" }, 
-                btn: { bad: "OK", good: "Aanvraag Verzenden" }, promo: "NU AANMELDEN! 50% KORTING: REDUCE2026",
-                instrTitle: "Instructies", guideTitle: "Stappenplan", pauseAria: "Pauze", playAria: "Start",
-                tabTest: "Hoe te testen", tabUser: "Impact", tabIssues: "Problemen", tabRemediations: "Remediations",
-                successMsg: "Uw aanvraag is succesvol verzonden", failMsg: "Formulier verzenden mislukt",
-                errReqName: "Volledige naam is verplicht", errReqCode: "Code is verplicht", errInvalidCode: "Ongeldige code",
-                instr: { bad: "De succesvolle afronding van dit protocol is afhankelijk van de wettelijke nomenclatuur.", good: "Voor 50% korting:<br>1. Vul uw volledige naam in.<br>2. Voer de code (REDUCE2026) in." },
-                testSteps: ["Lees instructies.", "Zoek code.", "Test fouten.", "Vergelijk."],
-                critiques: {
-                    bad: { title: "Wat is mis?", items: [{ f: "1. Beweging", c: "Beweging leidt af." }, { f: "2. Onduidelijke labels", c: "Vage labels hinderen." }] },
-                    good: { title: "Remediations", items: [{ f: "1. Controle", c: "Zorg voor een pauzeknop." }, { f: "2. Taal", c: "Gebruik korte zinnen." }] }
-                },
-                userTitle: "Wie?", userList: ["**ADHD :** Beweging leidt af.", "**Dyslexie :** Tekstvorm is onduidelijk."]
-            },
-            de: {
-                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Empathie-Labor", title: "Leseerfahrung",
-                name: { bad: "Name", good: "Vollständiger Name (erforderlich)" }, code: { bad: "CODE", good: "Aktionscode (erforderlich)" }, 
-                btn: { bad: "OK", good: "Antrag Absenden" }, promo: "JETZT BEWERBEN! 50% RABATT: REDUCE2026",
-                instrTitle: "Anleitung", guideTitle: "Anleitung", pauseAria: "Pause", playAria: "Start",
-                tabTest: "Anleitung", tabUser: "Betroffene", tabIssues: "Probleme", tabRemediations: "Remediations",
-                successMsg: "Ihr Antrag wurde erfolgreich übermittelt", failMsg: "Senden fehlgeschlagen",
-                errReqName: "Vollständiger Name ist erforderlich", errReqCode: "Code ist erforderlich", errInvalidCode: "Ungültiger Code",
-                instr: { bad: "Der erfolgreiche Abschluss ist von der rechtlichen Nomenklatur abhängig.", good: "Für 50% Rabatt:<br>1. Name eingeben.<br>2. Code (REDUCE2026) eingeben." },
-                testSteps: ["Anleitung lesen.", "Code suchen.", "Fehler prüfen.", "Modus wechseln."],
-                critiques: {
-                    bad: { title: "Probleme", items: [{ f: "1. Ablenkung", c: "Blinkende Inhalte stören." }, { f: "2. Labels", c: "Vage Labels." }] },
-                    good: { title: "Remediations", items: [{ f: "1. Pause", c: "Pause-Button bereitstellen." }, { f: "2. Sprache", c: "Klare Anweisungen." }] }
-                },
-                userTitle: "Wer?", userList: ["**ADHD :** Bewegung lenkt ab.", "**Legasthenie :** Schriftbild unklar."]
             }
         };
 
@@ -244,6 +238,7 @@
             const body = document.getElementById('bodyTag');
             const btn = document.getElementById('pauseBtn');
             const t = translations[currentLang] || translations['en'];
+            
             if (isPlaying) {
                 body.classList.add('playing');
                 btn.innerHTML = "⏸";
@@ -264,15 +259,17 @@
             document.getElementById('txt-accessible').innerText = t.accessible;
             document.getElementById('txt-lab-title').innerText = t.labTitle;
             document.getElementById('txt-title').innerText = t.title;
+            
             document.getElementById('txt-label-name').innerText = isAcc ? t.name.good : t.name.bad;
             document.getElementById('txt-label-code').innerText = isAcc ? t.code.good : t.code.bad;
             document.getElementById('txt-btn').innerText = isAcc ? t.btn.good : t.btn.bad;
-            document.getElementById('vague-error').innerText = t.failMsg;
+            
             document.getElementById('txt-promo').innerText = t.promo;
             document.getElementById('txt-instr-title').innerText = t.instrTitle;
             document.getElementById('txt-instructions').innerHTML = isAcc ? t.instr.good : t.instr.bad;
             document.getElementById('txt-guide-title').innerText = t.guideTitle;
             document.getElementById('txt-test-steps').innerHTML = (t.testSteps || []).map(s => `<li>${s}</li>`).join('');
+
             document.getElementById('tab-test').innerText = t.tabTest;
             document.getElementById('tab-user').innerText = t.tabUser;
             document.getElementById('tab-feedback').innerText = isAcc ? t.tabRemediations : t.tabIssues;
@@ -281,6 +278,7 @@
                 <h3 class="text-blue-400 font-bold uppercase mb-4 text-xs">${t.userTitle}</h3>
                 <ul class="list-disc pl-5 space-y-3">${(t.userList||[]).map(li => `<li>${li.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</li>`).join('')}</ul>
             `;
+
             updateMode();
             document.querySelectorAll('.lang-btn').forEach(b => {
                 b.classList.remove('bg-blue-600', 'text-white', 'bg-gray-200', 'text-gray-700');
@@ -321,7 +319,10 @@
                     isValid = false;
                 }
                 if (isValid) {
-                    document.getElementById('form-container').innerHTML = `<div class="bg-green-100 text-green-800 p-8 rounded-2xl border-2 border-green-200 text-center font-bold text-lg" role="status">${t.successMsg}</div>`;
+                    document.getElementById('form-container').innerHTML = `
+                        <div class="bg-green-100 text-green-800 p-8 rounded-2xl border-2 border-green-200 text-center font-bold text-lg" role="status">
+                            ${t.successMsg}
+                        </div>`;
                 }
             } else {
                 if (!nameVal || !codeVal || codeVal !== 'REDUCE2026') {

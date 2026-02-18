@@ -105,7 +105,7 @@
 
                     <div class="space-y-4">
                         <div>
-                            <label id="txt-label-name" class="cog-label text-xs block mb-1">Name</label>
+                            <label id="txt-label-name" class="cog-label text-xs block mb-1">Full Name</label>
                             <input type="text" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm lab-ui-font">
                         </div>
 
@@ -145,13 +145,13 @@
     <script>
         const translations = {
             en: {
-                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Reading Experience",
+                inaccessible: "Inaccessible", accessible: "Accessible", title: "Reading Experience",
                 name: { bad: "Name", good: "Full Name" }, code: "Promotional Code", btn: { bad: "OK", good: "Submit Application" }, promo: "APPLY NOW! 50% OFF PROMO CODE: REDUCE2026",
                 instrTitle: "Instructions", guideTitle: "Step-by-step guide", pause: "Pause", play: "Play",
                 tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "How to remediate",
                 instr: {
                     bad: "The successful completion of this protocol is contingent upon the applicant providing their legal nomenclature within the identity field. Furthermore, it is a mandatory requirement to input the specific alphanumeric promotional designator observed in the primary signaling banner. Failure to include this string will result in the forfeiture of the 50% discount and a processing state without promotional benefit. This offer is non-refundable and requires internal database synchronization.",
-                    good: "To apply for your non-refundable 50% discount: 1. Enter your Full Name in the first field. 2. Look at the blue banner for the Promo Code (REDUCE2026). 3. Enter the code to sync with our database and click 'Submit Application'. Applications without the correct code will not receive the discount."
+                    good: "To apply for your non-refundable 50% discount: 1. Enter your Full Name as it appears on your ID. 2. Enter the discount code (REDUCE2026) at the Promotional Code field and select 'Submit Application'. Applications without the correct code will not receive the discount."
                 },
                 testSteps: [
                     "Try to read the form and identify all instructions provided.",
@@ -181,13 +181,13 @@
                 ]
             },
             fr: {
-                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Expérience de Lecture",
+                inaccessible: "Inaccessible", accessible: "Accessible", title: "Expérience de Lecture",
                 name: { bad: "Nom", good: "Nom complet" }, code: "Code promotionnel", btn: { bad: "OK", good: "Soumettre ma demande" }, promo: "POSTULEZ ! -50% CODE : REDUCE2026",
                 instrTitle: "Instructions", guideTitle: "Guide étape par étape", pause: "Pause", play: "Lecture",
                 tabTest: "Comment tester", tabUser: "Impact", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 instr: {
                     bad: "L'achèvement de ce protocole est subordonné à la fourniture par le postulant de sa nomenclature légale dans le champ d'identité. De plus, il est impératif de saisir l'identifiant promotionnel alphanumérique observé dans la bannière. L'absence de cette chaîne entraînera la déchéance de la remise de 50%. Cette offre est non remboursable et nécessite une synchronisation.",
-                    good: "Pour obtenir votre remise non remboursable de 50% : 1. Entrez votre Nom complet. 2. Trouvez le code promo dans la bannière (REDUCE2026). 3. Entrez le code pour synchroniser avec notre base et cliquez sur 'Soumettre ma demande'."
+                    good: "Pour obtenir votre remise de 50% (non remboursable) : 1. Saisissez votre Nom complet tel qu'il figure sur votre pièce d'identité. 2. Saisissez le code promo (REDUCE2026) dans le champ Code promotionnel et activez 'Soumettre ma demande'."
                 },
                 testSteps: ["Lisez le formulaire.", "Zoomez à 200%.", "Observez l'animation.", "Cherchez le code promo.", "Passez en mode accessible."],
                 critiques: {
@@ -197,13 +197,13 @@
                 userTitle: "Qui est impacté ?", userList: ["**TDAH / Autisme**", "**Dyslexie**"]
             },
             nl: {
-                inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", labTitle: "Digital Accessibility Empathy Lab", title: "Leeservaring",
+                inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", title: "Leeservaring",
                 name: { bad: "Naam", good: "Volledige Naam" }, code: "Promotiecode", btn: { bad: "OK", good: "Aanvraag Verzenden" }, promo: "NU AANMELDEN! 50% KORTING: REDUCE2026",
                 instrTitle: "Instructies", guideTitle: "Stappenplan", pause: "Pauze", play: "Start",
                 tabTest: "Hoe te testen", tabUser: "Impact", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 instr: {
                     bad: "De succesvolle afronding van dit protocol is afhankelijk van het verstrekken van de wettelijke nomenclatuur door de aanvrager. Bovendien is het verplicht om de alfanumerieke promotionele aanduiding in te voeren. Het niet opnemen van deze reeks zal leiden tot het verlies van de 50% korting.",
-                    good: "Voor uw niet-restitueerbare korting van 50%: 1. Vul uw volledige naam in. 2. Gebruik de promotiecode uit de banner (REDUCE2026). 3. Klik op 'Aanvraag Verzenden' om te synchroniseren."
+                    good: "Voor 50% korting: 1. Vul uw Volledige Naam in zoals deze op uw ID staat. 2. Voer de kortingscode (REDUCE2026) in bij het veld Promotiecode en activeer 'Aanvraag Verzenden'."
                 },
                 testSteps: ["Lees het formulier.", "Zoom naar 200%.", "Schakel over naar toegankelijk."],
                 critiques: {
@@ -213,15 +213,15 @@
                 userTitle: "Wie?", userList: ["**ADHD / Autisme**", "**Dyslexie**"]
             },
             de: {
-                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Digital Accessibility Empathy Lab", title: "Leseerfahrung",
+                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", title: "Leseerfahrung",
                 name: { bad: "Name", good: "Vollständiger Name" }, code: "Aktionscode", btn: { bad: "OK", good: "Antrag Absenden" }, promo: "JETZT BEWERBEN! 50% RABATT: REDUCE2026",
                 instrTitle: "Anleitung", guideTitle: "Anleitung", pause: "Pause", play: "Start",
                 tabTest: "Anleitung", tabUser: "Betroffene", tabIssues: "Probleme", tabRemediations: "Lösungen",
                 instr: {
                     bad: "Der erfolgreiche Abschluss dieses Protokolls ist davon abhängig, dass der Bewerber seine rechtliche Nomenklatur angibt. Des Weiteren ist es zwingend erforderlich, das alphanumerische Aktionskennzeichen einzugeben. Das Fehlen führt zum Verfall des Rabatts von 50%.",
-                    good: "Für Ihren nicht erstattungsfähigen Rabatt von 50%: 1. Geben Sie Ihren vollständigen Namen ein. 2. Suchen Sie den Aktionscode im Banner (REDUCE2026). 3. Klicken Sie auf 'Antrag Absenden'."
+                    good: "Für 50% Rabatt: 1. Geben Sie Ihren vollständigen Namen ein, wie er auf Ihrem Ausweis steht. 2. Geben Sie den Aktionscode (REDUCE2026) im Feld Aktionscode ein und wählen Sie 'Antrag Absenden'."
                 },
-                testSteps: ["Anleitung lesen.", "Zoom 200%.", "In den barrierefreien Modus wechseln."],
+                testSteps: ["Anleitung lesen.", "Zoom 200%.", "Animation prüfen.", "Aktionscode finden.", "Zu Barrierefrei wechseln."],
                 critiques: {
                     bad: { title: "Probleme", items: [{ f: "Ablenkung", c: "Kein Pause-Button für Animationen." }] },
                     good: { title: "Lösungen", items: [{ f: "Einfache Sprache", c: "Klare Anweisungen." }] }

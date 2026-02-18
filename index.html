@@ -26,13 +26,14 @@
             background-color: #ef4444; color: white;
             display: flex; align-items: center; justify-content: center;
             font-weight: 900; overflow: hidden; position: relative;
-            border-radius: 8px;
+            border-top-left-radius: 8px; border-top-right-radius: 8px;
         }
         .promo-text { white-space: nowrap; animation: slide 4s linear infinite; }
         @keyframes slide { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         
         .inaccessible-mode .promo-banner { 
             animation: flash 1s step-end infinite; 
+            border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
             margin-bottom: 24px; 
         }
         @keyframes flash { 50% { background-color: #facc15; color: black; } }
@@ -58,7 +59,7 @@
 
         /* --- ACCESSIBLE MODE --- */
         .accessible-mode .reading-content { font-family: ui-sans-serif, system-ui, sans-serif !important; }
-        .accessible-mode .promo-banner { background-color: #1e40af; animation: none; }
+        .accessible-mode .promo-banner { background-color: #1e40af; animation: none; margin-bottom: 0; }
         .accessible-mode .promo-text { animation-play-state: paused; }
         .accessible-mode.playing .promo-text { animation-play-state: running; }
 
@@ -75,19 +76,21 @@
         }
         .accessible-mode .form-gap { gap: 1.5rem !important; }
 
-        /* Control Button Styling - Right side with 4px gap */
+        /* Control Button */
         .control-btn {
             display: flex; align-items: center; justify-content: center;
             width: 36px; height: 36px; border: 2px solid #1e40af;
-            border-radius: 8px; 
-            background: white; color: #1e40af;
-            margin-top: 4px; /* RESTORED 4PX GAP */
-            transition: all 0.2s;
-            cursor: pointer; font-size: 1.1rem;
+            border-radius: 8px; background: white; color: #1e40af;
+            margin-top: 4px; margin-bottom: 24px; 
+            transition: all 0.2s; cursor: pointer; font-size: 1.1rem;
         }
         .control-btn:hover { background: #f3f4f6; }
 
         .instr-list br { content: ""; display: block; margin: 0.75rem 0; }
+
+        /* Error States */
+        .input-error { border: 2px solid #ef4444 !important; }
+        .error-msg { color: #ef4444; font-size: 12px; font-weight: bold; margin-top: 4px; display: block; }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font" id="bodyTag">
@@ -104,7 +107,7 @@
                     <div class="flex items-center gap-4">
                         <span id="txt-inaccessible" class="text-xs font-black uppercase tracking-widest text-red-600">Inaccessible</span>
                         <label class="switch">
-                            <input type="checkbox" id="modeToggle" onchange="toggleMode()" role="switch">
+                            <input type="checkbox" id="modeToggle" onchange="handleModeToggle()" role="switch">
                             <span class="slider"></span>
                         </label>
                         <span id="txt-accessible" class="text-xs font-black uppercase tracking-widest text-green-700">Accessible</span>
@@ -123,32 +126,38 @@
         <main class="p-6 md:p-10">
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
                 
-                <div class="lg:col-span-2 reading-content flex flex-col form-gap">
-                    <div class="flex flex-col">
-                        <div class="promo-banner" id="banner">
-                            <span class="promo-text" id="txt-promo">APPLY NOW! 50% OFF PROMO CODE: REDUCE2026</span>
-                        </div>
-                        <div id="controls-container" class="flex justify-end"></div>
-                    </div>
-
-                    <div class="bg-blue-50 p-5 rounded-xl border border-blue-100 mt-4">
-                        <h2 id="txt-instr-title" class="font-bold mb-3 uppercase text-lg text-blue-900 lab-ui-font">Instructions</h2>
-                        <p id="txt-instructions" class="instr-list"></p>
-                    </div>
-
-                    <div class="space-y-4 mt-6">
-                        <div>
-                            <label id="txt-label-name" class="cog-label block mb-1">Name</label>
-                            <input type="text" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm lab-ui-font">
+                <div class="lg:col-span-2 reading-content flex flex-col form-gap" id="exercise-column">
+                    <div id="form-container" class="contents">
+                        <div class="flex flex-col">
+                            <div class="promo-banner" id="banner">
+                                <span class="promo-text" id="txt-promo">APPLY NOW! 50% OFF PROMO CODE: REDUCE2026</span>
+                            </div>
+                            <div id="controls-container" class="flex justify-end"></div>
                         </div>
 
-                        <div>
-                            <label id="txt-label-code" class="cog-label block mb-1">CODE</label>
-                            <input type="text" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm lab-ui-font">
-                        </div>
-                    </div>
+                        <div id="vague-error" class="hidden bg-red-100 text-red-700 p-3 rounded-lg text-sm font-bold mb-4">Fail to submit form</div>
 
-                    <button id="txt-btn" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg text-sm tracking-wide transition-colors lab-ui-font mt-6">OK</button>
+                        <div class="bg-blue-50 p-5 rounded-xl border border-blue-100 mt-4">
+                            <h2 id="txt-instr-title" class="font-bold mb-3 uppercase text-lg text-blue-900 lab-ui-font">Instructions</h2>
+                            <p id="txt-instructions" class="instr-list"></p>
+                        </div>
+
+                        <div class="space-y-4 mt-6">
+                            <div>
+                                <label id="txt-label-name" class="cog-label block mb-1">Name</label>
+                                <input type="text" id="inp-name" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm lab-ui-font">
+                                <span id="err-name" class="error-msg hidden"></span>
+                            </div>
+
+                            <div>
+                                <label id="txt-label-code" class="cog-label block mb-1">CODE</label>
+                                <input type="text" id="inp-code" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm lab-ui-font">
+                                <span id="err-code" class="error-msg hidden"></span>
+                            </div>
+                        </div>
+
+                        <button id="txt-btn" onclick="validateForm()" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg text-sm tracking-wide transition-colors lab-ui-font mt-6">OK</button>
+                    </div>
                 </div>
 
                 <div class="lg:col-span-3">
@@ -179,57 +188,46 @@
         const translations = {
             en: {
                 inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Reading Experience",
-                name: { bad: "Name", good: "Full Name" }, code: { bad: "CODE", good: "Promotional Code" }, btn: { bad: "OK", good: "Submit Application" }, promo: "APPLY NOW! 50% OFF PROMO CODE: REDUCE2026",
+                name: { bad: "Name", good: "Full Name (required)" }, 
+                code: { bad: "CODE", good: "Promotional Code (required)" }, 
+                btn: { bad: "OK", good: "Submit Application" }, promo: "APPLY NOW! 50% OFF PROMO CODE: REDUCE2026",
                 instrTitle: "Instructions", guideTitle: "Step-by-step guide", pauseAria: "Pause animation", playAria: "Play animation",
                 tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "Remediations",
+                successMsg: "Your request was successfully submitted",
+                errReqName: "Full Name is required", errReqCode: "Promotional code is required", errInvalidCode: "Invalid promotional code",
                 instr: {
                     bad: "The application process requires that users successfully identify and input the correct alphanumeric string found within the promotional messaging prior to confirmation. Please ensure the identity field contains the legal nomenclature matching your documentation. Applications missing the database-synced promotional code will be processed without the benefit of a secondary discount application.",
                     good: "To apply for your 50% discount:<br>1. In the 'Full Name' field, enter your name as it appears on your ID.<br>2. Enter the discount code (REDUCE2026) at the 'Promotional Code field' and activate the 'Submit Application' button."
                 },
                 testSteps: [
                     "Read the 'Instructions' block and identify the required pieces of information.",
-                    "Identify the promotional code inside the moving banner at the top.",
+                    "Look for the promotional code inside the moving banner at the top.",
+                    "Try to complete the form without entering any data to see how the system handles errors.",
                     "Complete the form using the found information.",
-                    "Switch to the accessible version and compare the clarity of instructions and the ability to stop the movement."
+                    "Switch to the accessible version and compare the clarity of instructions and error identification."
                 ],
                 critiques: {
                     bad: { title: "What is wrong?", items: [
                         { f: "1. Distracting Movement", c: "Constant flashing and scrolling content without a stop mechanism creates a 'sensory hijack' for users with ADHD or Autism." },
-                        { f: "2. Passive & Dense Language", c: "Using complex prose increases cognitive load unnecessarily." },
-                        { f: "3. Vague Labels", c: "Labels like 'Name', 'CODE' and the button 'OK' are not descriptive enough and lack clear context." },
-                        { f: "4. No Error Tolerance", c: "The form does not allow for minor user errors or provide helpful guidance for correction." },
-                        { f: "5. Typographic Barriers", c: "Tight line spacing and Serif fonts cause 'visual merging' for dyslexic readers." }
+                        { f: "2. Passive & Dense Language", c: "Complex prose increases cognitive load unnecessarily." },
+                        { f: "3. Vague Labels & Buttons", c: "Labels like 'Name', 'CODE' and 'OK' lack clarity and context." },
+                        { f: "4. Poor Error Handling", c: "The 'Fail to submit form' message is vague and does not identify which field needs attention." },
+                        { f: "5. Lack of Success Feedback", c: "In the inaccessible version, the form simply resets, leaving users unsure if their data was actually sent." }
                     ]},
                     good: { title: "Remediations", items: [
                         { f: "1. Control Mechanisms", c: "Always provide a mechanism to stop or pause movement (WCAG 2.2.2)." },
                         { f: "2. Plain Language", c: "Use short, active sentences and vertical breaks between steps to ensure understanding." },
-                        { f: "3. Descriptive Labels", c: "Use clear and specific labels (e.g., 'Full Name' and 'Submit Application') to provide clear context." },
-                        { f: "4. Error Prevention", c: "Design forms to be tolerant of user error and provide clear instructions for correction." },
-                        { f: "5. Accessible Typography", c: "Use Sans-Serif fonts with generous line height and avoid all-caps for long text to aid character recognition." }
+                        { f: "3. Descriptive Labels", c: "Use clear labels like 'Full Name' and identify required fields explicitly." },
+                        { f: "4. Clear Error Identification", c: "Mark errors specifically at the field level with visible indicators and helpful text (WCAG 3.3.1)." },
+                        { f: "5. Persistent Success Messages", c: "Provide clear, permanent confirmation that a task has been completed successfully." }
                     ]}
                 },
                 userTitle: "Who is impacted?", userList: [
-                    "**ADHD / Autism:** Moving and flashing content acts as a major distraction, often causing task abandonment.",
-                    "**Dyslexia:** Cramped text and serif fonts make word shapes harder to distinguish, leading to rapid reading fatigue.",
-                    "**Cognitive Impairment:** Complex terminology and passive structures create a barrier for users who struggle with processing dense info.",
-                    "**Non-Native Speakers:** Plain language and clear labels make instructions easier to translate and understand."
+                    "**ADHD / Autism:** Benefit from reduced visual noise and the ability to stop motion.",
+                    "**Dyslexia:** Benefit from clean fonts, generous spacing, and clear error messages.",
+                    "**Cognitive Impairment:** Vague error messages like 'Fail to submit' cause significant confusion and frustration.",
+                    "**Screen Reader Users:** Explicit error identification is required to navigate form failures effectively."
                 ]
-            },
-            fr: {
-                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Expérience de Lecture",
-                name: { bad: "Nom", good: "Nom complet" }, code: { bad: "CODE", good: "Code promotionnel" }, btn: { bad: "OK", good: "Soumettre ma demande" }, promo: "POSTULEZ ! -50% CODE : REDUCE2026",
-                instrTitle: "Instructions", guideTitle: "Guide étape par étape", pauseAria: "Pause", playAria: "Lecture",
-                tabTest: "Comment tester", tabUser: "Impact", tabIssues: "Problèmes", tabRemediations: "Remediations",
-                instr: {
-                    bad: "Le processus requiert que l'utilisateur identifie et saisisse la chaîne alphanumérique correcte avant confirmation. Assurez-vous que le champ d'identité contient la nomenclature légale.",
-                    good: "Pour obtenir votre remise de 50% :<br>1. Dans le champ 'Nom complet', saisissez votre nom tel qu'il figure sur votre pièce d'identité.<br>2. Saisissez le code promo (REDUCE2026) dans le champ 'Code promotionnel' et activez le bouton 'Soumettre ma demande'."
-                },
-                testSteps: ["Lisez le formulaire.", "Cherchez le code promo.", "Remplissez les champs.", "Comparez avec la version accessible."],
-                critiques: {
-                    bad: { title: "Quel est le problème ?", items: [{ f: "1. Mouvement", c: "Le mouvement distrait les utilisateurs." }, { f: "2. Libellés vagues", c: "Les libellés comme 'Nom' manquent de clarté." }] },
-                    good: { title: "Remediations", items: [{ f: "1. Contrôle", c: "Ajoutez un bouton pause." }, { f: "2. Langage clair", c: "Utilisez des phrases simples." }] }
-                },
-                userTitle: "Impact ?", userList: ["**TDAH / Autisme**", "**Dyslexie**"]
             }
         };
 
@@ -274,8 +272,8 @@
             document.getElementById('txt-test-steps').innerHTML = (t.testSteps || []).map(s => `<li>${s}</li>`).join('');
 
             document.getElementById('tab-test').innerText = t.tabTest;
-            document.getElementById('tab-user').innerText = (t.tabUser || "Impacted users");
-            document.getElementById('tab-feedback').innerText = isAcc ? (t.tabRemediations || "Remediations") : (t.tabIssues || "Issues");
+            document.getElementById('tab-user').innerText = t.tabUser;
+            document.getElementById('tab-feedback').innerText = isAcc ? t.tabRemediations : t.tabIssues;
 
             document.getElementById('txt-user-content').innerHTML = `
                 <h3 class="text-blue-400 font-bold uppercase mb-4 text-xs">${t.userTitle || "Who is impacted?"}</h3>
@@ -290,7 +288,66 @@
             });
         }
 
-        function toggleMode() {
+        function validateForm() {
+            const isAcc = document.getElementById('modeToggle').checked;
+            const nameVal = document.getElementById('inp-name').value.trim();
+            const codeVal = document.getElementById('inp-code').value.trim();
+            const t = translations[currentLang];
+
+            // Reset errors
+            document.getElementById('vague-error').classList.add('hidden');
+            ['name', 'code'].forEach(id => {
+                document.getElementById('inp-' + id).classList.remove('input-error');
+                document.getElementById('err-' + id).classList.add('hidden');
+            });
+
+            let isValid = true;
+
+            if (isAcc) {
+                // Accessible Validation
+                if (!nameVal) {
+                    document.getElementById('inp-name').classList.add('input-error');
+                    document.getElementById('err-name').innerText = t.errReqName;
+                    document.getElementById('err-name').classList.remove('hidden');
+                    isValid = false;
+                }
+                if (!codeVal) {
+                    document.getElementById('inp-code').classList.add('input-error');
+                    document.getElementById('err-code').innerText = t.errReqCode;
+                    document.getElementById('err-code').classList.remove('hidden');
+                    isValid = false;
+                } else if (codeVal !== 'REDUCE2026') {
+                    document.getElementById('inp-code').classList.add('input-error');
+                    document.getElementById('err-code').innerText = t.errInvalidCode;
+                    document.getElementById('err-code').classList.remove('hidden');
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    document.getElementById('form-container').innerHTML = `
+                        <div class="bg-green-100 text-green-800 p-8 rounded-2xl border-2 border-green-200 text-center font-bold text-lg">
+                            ${t.successMsg}
+                        </div>
+                    `;
+                }
+            } else {
+                // Inaccessible Validation
+                if (!nameVal || !codeVal || codeVal !== 'REDUCE2026') {
+                    document.getElementById('vague-error').classList.remove('hidden');
+                } else {
+                    // Success Inaccessible: Page refreshes, form empty, no message
+                    document.getElementById('inp-name').value = '';
+                    document.getElementById('inp-code').value = '';
+                    window.scrollTo(0,0);
+                }
+            }
+        }
+
+        function handleModeToggle() {
+            // Reload exercise column if it was replaced by success message
+            if (!document.getElementById('form-container')) {
+                location.reload(); 
+            }
             setLanguage(currentLang);
         }
 

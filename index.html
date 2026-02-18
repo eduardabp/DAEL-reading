@@ -21,7 +21,6 @@
         /* --- READING BARRIERS (CONTENT AREA) --- */
         .inaccessible-mode .reading-content { font-family: "Times New Roman", Times, serif !important; }
         
-        /* Realistic Distractor: Promo Banner */
         .promo-banner {
             width: 100%; height: 60px;
             background-color: #ef4444; color: white;
@@ -35,7 +34,6 @@
         .inaccessible-mode .promo-banner { animation: flash 1s step-end infinite; }
         @keyframes flash { 50% { background-color: #facc15; color: black; } }
 
-        /* Typographic Barriers */
         .inaccessible-mode #txt-instructions {
             text-align: justify;
             line-height: 0.95 !important;
@@ -149,7 +147,7 @@
                 tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "How to remediate",
                 instr: {
                     bad: "The successful completion of this protocol is contingent upon the applicant providing their legal nomenclature within the identity field. Furthermore, it is a mandatory requirement to input the specific alphanumeric promotional designator observed in the primary signaling banner. Failure to include this string will result in the forfeiture of the 50% discount and a processing state without promotional benefit.",
-                    good: "To apply for your discount: 1. Enter your Full Name. 2. Look at the flashing banner for the Promo Code (REDUCE2026). 3. Enter the code and click 'Submit Application'."
+                    good: "To apply for your 50% discount: 1. Enter your Full Name in the first field. 2. Look at the blue banner for the Promo Code (REDUCE2026). 3. Enter the code and click 'Submit Application'. Applications without the correct code cannot be processed."
                 },
                 testSteps: [
                     "Try to read the form and identify all instructions provided.",
@@ -167,7 +165,7 @@
                     ]},
                     good: { title: "How to remediate", items: [
                         { f: "1. Control Mechanisms", c: "A 'Pause' button gives users control over distracting movement (WCAG 2.2.2)." },
-                        { f: "2. Plain Language", c: "Use short, active sentences and bullet points to ensure that instructions are understood at any reading level." },
+                        { f: "2. Plain Language", c: "Bullet points and active voice ensure that users with cognitive disabilities can easily follow the steps." },
                         { f: "3. Legible Design", c: "Sans-Serif fonts and 1.75 line height create 'breathable' text that helps with scanning and word recognition." }
                     ]}
                 },
@@ -185,8 +183,8 @@
                 instrTitle: "Instructions", guideTitle: "Guide étape par étape", pause: "Pause", play: "Lecture",
                 tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 instr: {
-                    bad: "L'achèvement de ce protocole est subordonné à la fourniture par le postulant de sa nomenclature légale dans le champ d'identité. De plus, il est impératif de saisir l'identifiant promotionnel alphanumérique observé dans la bannière. L'absence de cette chaîne entraînera la déchéance de la remise.",
-                    good: "Pour postuler : 1. Entrez votre nom complet. 2. Trouvez le code promo dans la bannière (REDUCE2026). 3. Entrez le code et cliquez sur 'Soumettre ma demande'."
+                    bad: "L'achèvement de ce protocole est subordonné à la fourniture par le postulant de sa nomenclature légale dans le champ d'identité. De plus, il est impératif de saisir l'identifiant promotionnel alphanumérique observé dans la bannière. L'absence de cette chaîne entraînera la déchéance de la remise de 50%.",
+                    good: "Pour obtenir votre remise de 50% : 1. Entrez votre nom complet. 2. Trouvez le code promo dans la bannière bleue (REDUCE2026). 3. Entrez le code et cliquez sur 'Soumettre ma demande'. Toute demande sans code ne pourra être traitée."
                 },
                 testSteps: [
                     "Essayez de lire le formulaire et d'identifier toutes les instructions.",
@@ -218,8 +216,8 @@
                 instrTitle: "Instructies", guideTitle: "Stappenplan", pause: "Pauze", play: "Start",
                 tabTest: "Hoe te testen", tabUser: "Impact", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 instr: {
-                    bad: "De succesvolle afronding van dit protocol is afhankelijk van het verstrekken van de wettelijke nomenclatuur door de aanvrager. Bovendien is het verplicht om de alfanumerieke promotionele aanduiding in te voeren.",
-                    good: "Aanmelden: 1. Voer uw volledige naam in. 2. Gebruik de promotiecode uit de banner (REDUCE2026). 3. Klik op 'Aanvraag Verzenden'."
+                    bad: "De succesvolle afronding van dit protocol is afhankelijk van het verstrekken van de wettelijke nomenclatuur door de aanvrager. Bovendien is het verplicht om de alfanumerieke promotionele aanduiding in te voeren. Het niet opnemen van deze reeks zal leiden tot het verlies van de 50% korting.",
+                    good: "Voor 50% korting: 1. Voer uw volledige naam in. 2. Gebruik de promotiecode uit de blauwe banner (REDUCE2026). 3. Klik op 'Aanvraag Verzenden'. Aanvragen zonder code worden niet verwerkt."
                 },
                 testSteps: ["Lees het formulier.", "Zoom naar 200%.", "Bekijk de animatie.", "Zoek de code.", "Switch naar toegankelijk."],
                 critiques: {
@@ -232,7 +230,7 @@
                         { f: "2. Helder taalgebruik", c: "Gebruik korte zinnen en vermijd jargon." }
                     ]}
                 },
-                userTitle: "Wie heeft hier last van?", userList: ["**ADHD / Autisme**", "**Dyslexie**", "**Cognitieve beperking**"]
+                userTitle: "Wie?", userList: ["**ADHD / Autisme**", "**Dyslexie**", "**Cognitieve beperking**"]
             },
             de: {
                 inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Empathie-Labor", title: "Leseerfahrung",
@@ -241,8 +239,8 @@
                 instrTitle: "Anleitung", guideTitle: "Anleitung", pause: "Pause", play: "Start",
                 tabTest: "Anleitung", tabUser: "Betroffene", tabIssues: "Probleme", tabRemediations: "Lösungen",
                 instr: {
-                    bad: "Der erfolgreiche Abschluss dieses Protokolls ist davon abhängig, dass der Bewerber seine rechtliche Nomenklatur angibt. Des Weiteren ist es zwingend erforderlich, das Aktionskennzeichen einzugeben.",
-                    good: "Bewerben: 1. Namen eingeben. 2. Aktionscode eingeben (REDUCE2026). 3. Auf 'Antrag Absenden' klicken."
+                    bad: "Der erfolgreiche Abschluss dieses Protokolls ist davon abhängig, dass der Bewerber seine rechtliche Nomenklatur angibt. Des Weiteren ist es zwingend erforderlich, das alphanumerische Aktionskennzeichen einzugeben. Das Fehlen führt zum Verfall des Rabatts von 50%.",
+                    good: "Für 50% Rabatt: 1. Geben Sie Ihren vollständigen Namen ein. 2. Suchen Sie den Aktionscode im blauen Banner (REDUCE2026). 3. Klicken Sie auf 'Antrag Absenden'. Anträge ohne Code werden nicht bearbeitet."
                 },
                 testSteps: ["Anleitung lesen.", "Zoom 200%.", "Animation prüfen.", "Aktionscode finden.", "Zu Barrierefrei wechseln."],
                 critiques: {
@@ -294,6 +292,10 @@
             document.getElementById('txt-guide-title').innerText = t.guideTitle;
             document.getElementById('txt-test-steps').innerHTML = t.testSteps.map(s => `<li>${s}</li>`).join('');
             document.getElementById('pauseBtn').innerText = isPlaying ? t.pause : t.play;
+
+            document.getElementById('tab-test').innerText = t.tabTest;
+            document.getElementById('tab-user').innerText = t.tabUser;
+            document.getElementById('tab-feedback').innerText = isAcc ? t.tabRemediations : t.tabIssues;
             
             document.getElementById('txt-user-content').innerHTML = `
                 <h3 class="text-blue-400 font-bold uppercase mb-4 text-xs">${t.userTitle}</h3>
@@ -321,7 +323,6 @@
             if (isAcc && isPlaying) document.getElementById('bodyTag').classList.add('playing');
             
             document.getElementById('pauseBtn').classList.toggle('hidden', !isAcc);
-            document.getElementById('tab-feedback').innerText = isAcc ? t.tabRemediations : t.tabIssues;
             document.getElementById('txt-feedback-title').innerText = crit.title;
             document.getElementById('critiqueContent').innerHTML = (crit.items || []).map(i => `<div><span class="text-blue-400 font-bold block mb-1 uppercase text-[11px]">${i.f}</span><p class="text-white opacity-90">${i.c}</p></div>`).join('');
         }

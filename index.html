@@ -26,13 +26,14 @@
             background-color: #ef4444; color: white;
             display: flex; align-items: center; justify-content: center;
             font-weight: 900; overflow: hidden; position: relative;
-            border-radius: 8px;
+            border-top-left-radius: 8px; border-top-right-radius: 8px;
         }
         .promo-text { white-space: nowrap; animation: slide 4s linear infinite; }
         @keyframes slide { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         
         .inaccessible-mode .promo-banner { 
             animation: flash 1s step-end infinite; 
+            border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
             margin-bottom: 24px; 
         }
         @keyframes flash { 50% { background-color: #facc15; color: black; } }
@@ -58,7 +59,7 @@
 
         /* --- ACCESSIBLE MODE --- */
         .accessible-mode .reading-content { font-family: ui-sans-serif, system-ui, sans-serif !important; }
-        .accessible-mode .promo-banner { background-color: #1e40af; animation: none; }
+        .accessible-mode .promo-banner { background-color: #1e40af; animation: none; margin-bottom: 0; }
         .accessible-mode .promo-text { animation-play-state: paused; }
         .accessible-mode.playing .promo-text { animation-play-state: running; }
 
@@ -75,14 +76,15 @@
         }
         .accessible-mode .form-gap { gap: 1.5rem !important; }
 
-        /* Control Button Styling - Repositioned to Right with 4px gap */
+        /* Control Button Styling */
         .control-btn {
             display: flex; align-items: center; justify-content: center;
             width: 36px; height: 36px; border: 2px solid #1e40af;
-            border-radius: 8px; 
+            border-top: none; 
+            border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; 
             background: white; color: #1e40af;
             margin-top: 4px; 
-            transition: all 0.2s;
+            margin-bottom: 24px; transition: all 0.2s;
             cursor: pointer; font-size: 1.1rem;
         }
         .control-btn:hover { background: #f3f4f6; }
@@ -148,7 +150,7 @@
                         </div>
                     </div>
 
-                    <button id="txt-btn" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg uppercase text-sm tracking-wide transition-colors lab-ui-font mt-6">OK</button>
+                    <button id="txt-btn" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg text-sm tracking-wide transition-colors lab-ui-font mt-6">OK</button>
                 </div>
 
                 <div class="lg:col-span-3">
@@ -187,36 +189,34 @@
                     good: "To apply for your 50% discount:<br>1. In the 'Full Name' field, enter your name as it appears on your ID.<br>2. Enter the discount code (REDUCE2026) at the 'Promotional Code field' and activate the 'Submit Application' button."
                 },
                 testSteps: [
-                    "Read the 'Instructions' block and identify the two required pieces of information.",
-                    "Look for the promotional code inside the moving banner at the top.",
-                    "Try to complete the form using the information you found.",
-                    "Switch to the accessible version and observe the clarity of the instructions and the ability to stop the banner movement."
+                    "Read the 'Instructions' block and identify the required information.",
+                    "Identify the promotional code inside the moving banner at the top.",
+                    "Complete the form using the found information.",
+                    "Switch to the accessible version and compare clarity."
                 ],
                 critiques: {
                     bad: { title: "What is wrong?", items: [
-                        { f: "1. Distracting Movement", c: "Constant flashing and scrolling content without a stop mechanism creates a 'sensory hijack' for users with ADHD or Autism, making it difficult to focus on the form." },
-                        { f: "2. Passive & Dense Language", c: "Using complex prose and jargon ('nomenclature') increases cognitive load unnecessarily, especially for users with learning disabilities." },
-                        { f: "3. Vague Labels", c: "Labels like 'Name', 'CODE' and the button 'OK' are not descriptive enough. They don't provide clear context for the expected input or the result of the action." },
-                        { f: "4. No Error Tolerance", c: "The form does not allow for minor user errors or provide helpful guidance on how to fix mistakes." },
-                        { f: "5. Typographic Barriers", c: "Tight line spacing and Serif fonts (Times New Roman) cause 'visual merging' for dyslexic readers." }
+                        { f: "1. Distracting Movement", c: "Constant flashing and scrolling content without a stop mechanism creates a 'sensory hijack' for users with ADHD or Autism." },
+                        { f: "2. Passive & Dense Language", c: "Complex prose increases cognitive load unnecessarily." },
+                        { f: "3. Vague Labels", c: "Labels like 'Name', 'CODE' and the button 'OK' are not descriptive enough." },
+                        { f: "4. No Error Tolerance", c: "The form does not allow for minor user errors or provide correction guidance." }
                     ]},
                     good: { title: "Remediations", items: [
-                        { f: "1. Control Mechanisms", c: "Always provide a mechanism to stop or pause movement (WCAG 2.2.2) to allow users to eliminate distractions." },
-                        { f: "2. Plain Language", c: "Write in short, active sentences and vertical breaks between steps to aid processing for users with cognitive disabilities." },
-                        { f: "3. Descriptive Labels", c: "Labels and action buttons should be clear and specific (e.g., 'Full Name' and 'Submit Application') so users know exactly what to do." },
-                        { f: "4. Error Prevention", c: "Forms should be designed to be tolerant of user error and provide clear instructions for correction." },
-                        { f: "5. Accessible Typography", c: "Use a Sans-Serif font with at least 1.5 line height to aid character recognition." }
+                        { f: "1. Control Mechanisms", c: "Always provide a mechanism to stop or pause movement (WCAG 2.2.2)." },
+                        { f: "2. Plain Language", c: "Use short, active sentences and vertical breaks between steps." },
+                        { f: "3. Descriptive Labels", c: "Use clear and specific labels (e.g., 'Full Name' and 'Submit Application')." },
+                        { f: "4. Error Prevention", c: "Design forms to be tolerant of user error and provide clear correction help." }
                     ]}
                 },
                 userTitle: "Who is impacted?", userList: [
-                    "**ADHD / Autism:** Moving and flashing content acts as a major distraction, often causing users to lose their place or abandon the task entirely.",
-                    "**Dyslexia:** Cramped text, tight line spacing, and serif fonts make word shapes harder to distinguish, leading to rapid reading fatigue.",
-                    "**Cognitive Impairment:** Complex terminology and passive sentence structures create a barrier for users who struggle with processing dense information.",
-                    "**Non-Native Speakers:** Plain language and clear labels make instructions easier to translate and understand for those not fluent in the primary language."
+                    "**ADHD / Autism:** Moving content acts as a major distraction, often causing task abandonment.",
+                    "**Dyslexia:** Cramped text and tight line spacing make word shapes harder to distinguish.",
+                    "**Cognitive Impairment:** Complex terminology creates barriers for users struggling with dense info.",
+                    "**Non-Native Speakers:** Plain language and clear labels make instructions easier to understand."
                 ]
             },
             fr: {
-                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Expérience de Lecture",
+                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Labo d'Empathie Accessibilité", title: "Expérience de Lecture",
                 name: { bad: "Nom", good: "Nom complet" }, code: { bad: "CODE", good: "Code promotionnel" }, btn: { bad: "OK", good: "Soumettre ma demande" }, promo: "POSTULEZ ! -50% CODE : REDUCE2026",
                 instrTitle: "Instructions", guideTitle: "Guide étape par étape", pauseAria: "Pause", playAria: "Lecture",
                 tabTest: "Comment tester", tabUser: "Impact", tabIssues: "Problèmes", tabRemediations: "Remediations",
@@ -224,44 +224,44 @@
                     bad: "Le processus requiert que l'utilisateur identifie et saisisse la chaîne alphanumérique correcte avant confirmation. Assurez-vous que le champ d'identité contient la nomenclature légale.",
                     good: "Pour obtenir votre remise de 50% :<br>1. Dans le champ 'Nom complet', saisissez votre nom tel qu'il figure sur votre pièce d'identité.<br>2. Saisissez le code promo (REDUCE2026) dans le champ 'Code promotionnel' et activez le bouton 'Soumettre ma demande'."
                 },
-                testSteps: ["Lisez le formulaire.", "Zoomez à 200%.", "Observez l'animation.", "Passez en mode accessible."],
+                testSteps: ["Lisez le formulaire.", "Cherchez le code promo.", "Remplissez le formulaire.", "Comparez avec la version accessible."],
                 critiques: {
-                    bad: { title: "Problèmes", items: [{ f: "Mouvement", c: "Absence de bouton pause." }, { f: "Libellés", c: "Libellés vagues." }] },
-                    good: { title: "Remediations", items: [{ f: "Contrôle", c: "Fournissez un bouton 'Pause'." }] }
+                    bad: { title: "Quel est le problème ?", items: [{ f: "1. Mouvement", c: "Le mouvement distrait les utilisateurs." }, { f: "2. Libellés vagues", c: "Les libellés comme 'Nom' ou 'OK' manquent de clarté." }] },
+                    good: { title: "Remediations", items: [{ f: "1. Contrôle", c: "Ajoutez un bouton pause." }, { f: "2. Langage clair", c: "Utilisez des phrases simples." }] }
                 },
-                userTitle: "Qui est impacté ?", userList: ["**TDAH / Autisme**", "**Dyslexie**"]
+                userTitle: "Impact ?", userList: ["**TDAH / Autisme :** Le mouvement distrait.", "**Dyslexie :** Le texte serré est difficile à lire."]
             },
             nl: {
-                inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", labTitle: "Digital Accessibility Empathy Lab", title: "Leeservaring",
+                inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", labTitle: "Toegankelijkheid Lab", title: "Leeservaring",
                 name: { bad: "Naam", good: "Volledige Naam" }, code: { bad: "CODE", good: "Promotiecode" }, btn: { bad: "OK", good: "Aanvraag Verzenden" }, promo: "NU AANMELDEN! 50% KORTING: REDUCE2026",
                 instrTitle: "Instructies", guideTitle: "Stappenplan", pauseAria: "Pauze", playAria: "Start",
                 tabTest: "Hoe te testen", tabUser: "Impact", tabIssues: "Problemen", tabRemediations: "Remediations",
                 instr: {
                     bad: "De succesvolle afronding van dit protocol is afhankelijk van het verstrekken van de wettelijke nomenclatuur door de aanvrager.",
-                    good: "Voor 50% korting:<br>1. Vul in het veld 'Volledige Naam' uw naam in zoals die op uw ID staat.<br>2. Voer de kortingscode (REDUCE2026) in bij het veld 'Promotiecode' en activeer de knop 'Aanvraag Verzenden'."
+                    good: "Voor uw korting van 50%:<br>1. Vul in het veld 'Volledige Naam' uw naam in zoals die op uw ID staat.<br>2. Voer de kortingscode (REDUCE2026) in bij het veld 'Promotiecode' en activeer de knop 'Aanvraag Verzenden'."
                 },
-                testSteps: ["Lees het formulier.", "Zoom naar 200%.", "Switch naar toegankelijk."],
+                testSteps: ["Lees het formulier.", "Zoek de code.", "Vul de velden in.", "Switch naar toegankelijk."],
                 critiques: {
-                    bad: { title: "Wat is er mis?", items: [{ f: "Mouvement", c: "Geen pauzeknop." }] },
-                    good: { title: "Remediations", items: [{ f: "Controle", c: "Zorg voor een pauzeknop." }] }
+                    bad: { title: "Wat is er mis?", items: [{ f: "1. Beweging", c: "Bewegende inhoud leidt af." }, { f: "2. Onduidelijke labels", c: "Vage labels hinderen de gebruiker." }] },
+                    good: { title: "Remediations", items: [{ f: "1. Controle", c: "Zorg voor een pauzeknop." }, { f: "2. Helder taalgebruik", c: "Gebruik korte zinnen." }] }
                 },
-                userTitle: "Wie?", userList: ["**ADHD / Autisme**", "**Dyslexie**"]
+                userTitle: "Wie?", userList: ["**ADHD / Autisme :** Beweging leidt af.", "**Dyslexie :** Tekstvorm is onduidelijk."]
             },
             de: {
-                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Digital Accessibility Empathy Lab", title: "Leseerfahrung",
+                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Empathie-Labor", title: "Leseerfahrung",
                 name: { bad: "Name", good: "Vollständiger Name" }, code: { bad: "CODE", good: "Aktionscode" }, btn: { bad: "OK", good: "Antrag Absenden" }, promo: "JETZT BEWERBEN! 50% RABATT: REDUCE2026",
                 instrTitle: "Anleitung", guideTitle: "Anleitung", pauseAria: "Pause", playAria: "Start",
                 tabTest: "Anleitung", tabUser: "Betroffene", tabIssues: "Probleme", tabRemediations: "Remediations",
                 instr: {
                     bad: "Der erfolgreiche Abschluss dieses Protokolls ist davon abhängig, dass der Bewerber seine rechtliche Nomenklatur angibt.",
-                    good: "Für 50% Rabatt:<br>1. Geben Sie im Feld 'Vollständiger Name' Ihren Namen so ein, wie er auf Ihrem Ausweis steht.<br>2. Geben Sie den Aktionscode (REDUCE2026) im Feld 'Aktionscode' ein und aktivieren Sie die Schaltfläche 'Antrag Absenden'."
+                    good: "Für Ihren 50% Rabatt:<br>1. Geben Sie im Feld 'Vollständiger Name' Ihren Namen so ein, wie er auf Ihrem Ausweis steht.<br>2. Geben Sie den Aktionscode (REDUCE2026) im Feld 'Aktionscode' ein und aktivieren Sie die Schaltfläche 'Antrag Absenden'."
                 },
-                testSteps: ["Anleitung lesen.", "Zoom 200%.", "Zu Barrierefrei wechseln."],
+                testSteps: ["Anleitung lesen.", "Aktionscode suchen.", "Formular ausfüllen.", "Wechseln."],
                 critiques: {
-                    bad: { title: "Probleme", items: [{ f: "Mouvement", c: "Kein Pause-Button." }] },
-                    good: { title: "Remediations", items: [{ f: "Lösung", c: "Pause-Button hinzufügen." }] }
+                    bad: { title: "Probleme", items: [{ f: "1. Ablenkung", c: "Blinkende Inhalte stören." }, { f: "2. Vage Bezeichnungen", c: "Labels sind nicht aussagekräftig." }] },
+                    good: { title: "Remediations", items: [{ f: "1. Kontrolle", c: "Pause-Button bereitstellen." }, { f: "2. Einfache Sprache", c: "Klare Anweisungen." }] }
                 },
-                userTitle: "Wer?", userList: ["**ADHD / Autismus**", "**Legasthenie**"]
+                userTitle: "Wer?", userList: ["**ADHD / Autismus :** Bewegung lenkt ab.", "**Legasthenie :** Schriftbild ist unklar."]
             }
         };
 
@@ -294,9 +294,11 @@
             document.getElementById('txt-accessible').innerText = t.accessible;
             document.getElementById('txt-lab-title').innerText = t.labTitle;
             document.getElementById('txt-title').innerText = t.title;
+            
             document.getElementById('txt-label-name').innerText = isAcc ? t.name.good : t.name.bad;
             document.getElementById('txt-label-code').innerText = isAcc ? t.code.good : t.code.bad;
             document.getElementById('txt-btn').innerText = isAcc ? t.btn.good : t.btn.bad;
+            
             document.getElementById('txt-promo').innerText = t.promo;
             document.getElementById('txt-instr-title').innerText = t.instrTitle;
             document.getElementById('txt-instructions').innerHTML = isAcc ? t.instr.good : t.instr.bad;

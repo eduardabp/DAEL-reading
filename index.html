@@ -21,21 +21,19 @@
         /* --- READING BARRIERS (CONTENT AREA) --- */
         .inaccessible-mode .reading-content { font-family: "Times New Roman", Times, serif !important; }
         
-        /* Banner Animation - Slowed to 4s for realism */
         .promo-banner {
             width: 100%; height: 60px;
             background-color: #ef4444; color: white;
             display: flex; align-items: center; justify-content: center;
             font-weight: 900; overflow: hidden; position: relative;
-            border-radius: 8px; margin-bottom: 24px;
+            border-radius: 8px;
         }
         .promo-text { white-space: nowrap; animation: slide 4s linear infinite; }
         @keyframes slide { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         
-        .inaccessible-mode .promo-banner { animation: flash 1s step-end infinite; }
+        .inaccessible-mode .promo-banner { animation: flash 1s step-end infinite; margin-bottom: 24px; }
         @keyframes flash { 50% { background-color: #facc15; color: black; } }
 
-        /* Reading Barriers - Tight Spacing */
         .inaccessible-mode #txt-instructions {
             text-align: justify;
             line-height: 0.95 !important;
@@ -46,17 +44,26 @@
 
         /* --- ACCESSIBLE MODE --- */
         .accessible-mode .reading-content { font-family: ui-sans-serif, system-ui, sans-serif !important; }
-        .accessible-mode .promo-banner { background-color: #1e40af; animation: none; }
+        .accessible-mode .promo-banner { background-color: #1e40af; animation: none; margin-bottom: 8px; }
         .accessible-mode .promo-text { animation-play-state: paused; }
         .accessible-mode.playing .promo-text { animation-play-state: running; }
 
         .accessible-mode #txt-instructions {
             text-align: left;
-            line-height: 1.75; /* Increased for better readability */
+            line-height: 1.75;
             font-size: 16px;
         }
         .accessible-mode .cog-label { text-transform: none !important; font-weight: 600; letter-spacing: 0.01em; }
-        .accessible-mode .form-gap { gap: 1.5rem !important; } /* Improved spacing */
+        .accessible-mode .form-gap { gap: 1.5rem !important; }
+
+        /* Pause Button Styling */
+        #pauseBtn {
+            display: flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px; border: 2px solid #1f2937;
+            border-radius: 4px; background: white; color: #1f2937;
+            margin-bottom: 16px; transition: background 0.2s;
+        }
+        #pauseBtn:hover { background: #f3f4f6; }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font" id="bodyTag">
@@ -92,13 +99,15 @@
         <main class="p-6 md:p-10">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-16">
                 
-                <div class="lg:col-span-1 space-y-6 reading-content flex flex-col form-gap">
+                <div class="lg:col-span-1 space-y-2 reading-content flex flex-col form-gap">
                     <div class="promo-banner" id="banner">
                         <span class="promo-text" id="txt-promo">APPLY NOW! 50% OFF PROMO CODE: REDUCE2026</span>
-                        <button id="pauseBtn" onclick="toggleAnimation()" class="hidden absolute right-2 bg-white text-black text-[9px] px-2 py-1 rounded font-bold uppercase lab-ui-font">Pause</button>
                     </div>
+                    <button id="pauseBtn" onclick="toggleAnimation()" class="hidden" aria-label="Pause animation">
+                        <span id="pauseBtnIcon">⏸</span>
+                    </button>
 
-                    <div class="bg-blue-50 p-5 rounded-xl border border-blue-100">
+                    <div class="bg-blue-50 p-5 rounded-xl border border-blue-100 mt-4">
                         <h2 id="txt-instr-title" class="font-bold mb-2 uppercase text-[10px] text-blue-800 lab-ui-font">Instructions</h2>
                         <p id="txt-instructions"></p>
                     </div>
@@ -145,13 +154,13 @@
     <script>
         const translations = {
             en: {
-                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Reading Experience",
+                inaccessible: "Inaccessible", accessible: "Accessible", title: "Reading Experience",
                 name: { bad: "Name", good: "Full Name" }, code: "Promotional Code", btn: { bad: "OK", good: "Submit Application" }, promo: "APPLY NOW! 50% OFF PROMO CODE: REDUCE2026",
-                instrTitle: "Instructions", guideTitle: "Step-by-step guide", pause: "Pause", play: "Play",
+                instrTitle: "Instructions", guideTitle: "Step-by-step guide", pauseAria: "Pause animation", playAria: "Play animation",
                 tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "How to remediate",
                 instr: {
                     bad: "The successful completion of this protocol is contingent upon the applicant providing their legal nomenclature within the identity field. Furthermore, it is a mandatory requirement to input the specific alphanumeric promotional designator observed in the primary signaling banner. Failure to include this string will result in the forfeiture of the 50% discount and a processing state without promotional benefit. This offer is non-refundable and requires internal database synchronization.",
-                    good: "To apply for your non-refundable 50% discount: 1. Enter your Full Name as it appears on your ID. 2. Enter the discount code (REDUCE2026) at the Promotional Code field and select 'Submit Application'. Applications without the correct code will not receive the discount."
+                    good: "To apply for your 50% discount: 1. In the 'Full Name' field, enter your name as it appears on your ID. 2. Enter the discount code (REDUCE2026) at the 'Promotional Code field' and activate the 'Submit Application' button."
                 },
                 testSteps: [
                     "Try to read the form and identify all instructions provided.",
@@ -174,57 +183,57 @@
                     ]}
                 },
                 userTitle: "Who is impacted?", userList: [
-                    "**ADHD / Autism:** Distractions can lead to task abandonment.",
-                    "**Dyslexia:** Benefit significantly from clean Sans-Serif fonts and wide line spacing.",
-                    "**Cognitive Impairment:** Plain language is the difference between success and failure.",
-                    "**Non-Native Speakers:** Also benefit from plain language and better formatting."
+                    "**ADHD / Autism:** Benefit from reduced visual noise and the ability to stop motion.",
+                    "**Dyslexia:** Benefit from clean fonts and generous spacing.",
+                    "**Cognitive Impairment:** Benefit from plain language and simplified instructions.",
+                    "**Non-Native Speakers:** Benefit from clear terminology and active sentence structures."
                 ]
             },
             fr: {
                 inaccessible: "Inaccessible", accessible: "Accessible", title: "Expérience de Lecture",
                 name: { bad: "Nom", good: "Nom complet" }, code: "Code promotionnel", btn: { bad: "OK", good: "Soumettre ma demande" }, promo: "POSTULEZ ! -50% CODE : REDUCE2026",
-                instrTitle: "Instructions", guideTitle: "Guide étape par étape", pause: "Pause", play: "Lecture",
+                instrTitle: "Instructions", guideTitle: "Guide étape par étape", pauseAria: "Mettre l'animation en pause", playAria: "Lancer l'animation",
                 tabTest: "Comment tester", tabUser: "Impact", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 instr: {
                     bad: "L'achèvement de ce protocole est subordonné à la fourniture par le postulant de sa nomenclature légale dans le champ d'identité. De plus, il est impératif de saisir l'identifiant promotionnel alphanumérique observé dans la bannière. L'absence de cette chaîne entraînera la déchéance de la remise de 50%. Cette offre est non remboursable et nécessite une synchronisation.",
-                    good: "Pour obtenir votre remise de 50% (non remboursable) : 1. Saisissez votre Nom complet tel qu'il figure sur votre pièce d'identité. 2. Saisissez le code promo (REDUCE2026) dans le champ Code promotionnel et sélectionnez 'Soumettre ma demande'."
+                    good: "Pour obtenir votre remise de 50% : 1. Dans le champ 'Nom complet', saisissez votre nom tel qu'il figure sur votre pièce d'identité. 2. Saisissez le code promo (REDUCE2026) dans le champ 'Code promotionnel' et activez le bouton 'Soumettre ma demande'."
                 },
                 testSteps: ["Lisez le formulaire.", "Zoomez à 200%.", "Observez l'animation.", "Cherchez le code promo.", "Passez en mode accessible."],
                 critiques: {
-                    bad: { title: "Problèmes", items: [{ f: "Animation", c: "L'absence de bouton pause déconcentre l'utilisateur." }] },
-                    good: { title: "Corrections", items: [{ f: "Langage clair", c: "Évitez le jargon technique et privilégiez la simplicité." }] }
+                    bad: { title: "Problèmes", items: [{ f: "1. Animation distrayante", c: "L'absence de bouton pause déconcentre totalement l'utilisateur." }] },
+                    good: { title: "Corrections", items: [{ f: "1. Langage clair", c: "Évitez le jargon technique et privilégiez la simplicité." }] }
                 },
                 userTitle: "Qui est impacté ?", userList: ["**TDAH / Autisme**", "**Dyslexie**"]
             },
             nl: {
                 inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", title: "Leeservaring",
                 name: { bad: "Naam", good: "Volledige Naam" }, code: "Promotiecode", btn: { bad: "OK", good: "Aanvraag Verzenden" }, promo: "NU AANMELDEN! 50% KORTING: REDUCE2026",
-                instrTitle: "Instructies", guideTitle: "Stappenplan", pause: "Pauze", play: "Start",
+                instrTitle: "Instructies", guideTitle: "Stappenplan", pauseAria: "Animatie pauzeren", playAria: "Animatie afspelen",
                 tabTest: "Hoe te testen", tabUser: "Impact", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 instr: {
-                    bad: "De succesvolle afronding van dit protocol is afhankelijk van het verstrekken van de wettelijke nomenclatuur door de aanvrager. Bovendien is het verplicht om de alfanumerieke promotionele aanduiding in te voeren. Het niet opnemen van deze reeks zal leiden tot het verlies van de 50% korting.",
-                    good: "Voor 50% korting: 1. Vul uw Volledige Naam in zoals deze op uw ID staat. 2. Voer de kortingscode (REDUCE2026) in bij het veld Promotiecode en selecteer 'Aanvraag Verzenden'."
+                    bad: "De succesvolle afronding van dit protocol is afhankelijk van het verstrekken van de wettelijke nomenclatuur door de aanvrager. Bovendien is het verplicht om de alfanumerieke promotionele aanduiding in te voeren.",
+                    good: "Voor uw korting van 50%: 1. Vul in het veld 'Volledige Naam' uw naam in zoals die op uw ID staat. 2. Voer de kortingscode (REDUCE2026) in bij het veld 'Promotiecode' en activeer de knop 'Aanvraag Verzenden'."
                 },
                 testSteps: ["Lees het formulier.", "Zoom naar 200%.", "Schakel over naar toegankelijk."],
                 critiques: {
-                    bad: { title: "Wat is er mis?", items: [{ f: "Afleiding", c: "Geen pauzeknop aanwezig." }] },
-                    good: { title: "Oplossingen", items: [{ f: "Helder taalgebruik", c: "Gebruik korte zinnen." }] }
+                    bad: { title: "Wat is er mis?", items: [{ f: "1. Storende beweging", c: "Geen pauzeknop aanwezig." }] },
+                    good: { title: "Oplossingen", items: [{ f: "1. Helder taalgebruik", c: "Gebruik korte zinnen." }] }
                 },
                 userTitle: "Wie?", userList: ["**ADHD / Autisme**", "**Dyslexie**"]
             },
             de: {
                 inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", title: "Leseerfahrung",
                 name: { bad: "Name", good: "Vollständiger Name" }, code: "Aktionscode", btn: { bad: "OK", good: "Antrag Absenden" }, promo: "JETZT BEWERBEN! 50% RABATT: REDUCE2026",
-                instrTitle: "Anleitung", guideTitle: "Anleitung", pause: "Pause", play: "Start",
+                instrTitle: "Anleitung", guideTitle: "Anleitung", pauseAria: "Animation pausieren", playAria: "Animation abspielen",
                 tabTest: "Anleitung", tabUser: "Betroffene", tabIssues: "Probleme", tabRemediations: "Lösungen",
                 instr: {
                     bad: "Der Bewerbungsprozess setzt voraus, dass Nutzer die korrekte alphanumerische Zeichenfolge vor der Bestätigung identifizieren.",
-                    good: "Für 50% Rabatt: 1. Geben Sie Ihren vollständigen Namen ein, wie er auf Ihrem Ausweis steht. 2. Geben Sie den Aktionscode (REDUCE2026) im Feld Aktionscode ein und wählen Sie 'Antrag Absenden'."
+                    good: "Für Ihren 50% Rabatt: 1. Geben Sie im Feld 'Vollständiger Name' Ihren Namen so ein, wie er auf Ihrem Ausweis steht. 2. Geben Sie den Aktionscode (REDUCE2026) im Feld 'Aktionscode' ein und aktivieren Sie die Schaltfläche 'Antrag Absenden'."
                 },
                 testSteps: ["Anleitung lesen.", "Zoom 200%.", "In den barrierefreien Modus wechseln."],
                 critiques: {
-                    bad: { title: "Probleme", items: [{ f: "Ablenkung", c: "Kein Pause-Button für Animationen." }] },
-                    good: { title: "Lösungen", items: [{ f: "Einfache Sprache", c: "Klare Anweisungen." }] }
+                    bad: { title: "Probleme", items: [{ f: "1. Ablenkung", c: "Kein Pause-Button für Animationen." }] },
+                    good: { title: "Lösungen", items: [{ f: "1. Einfache Sprache", c: "Klare Anweisungen." }] }
                 },
                 userTitle: "Wer?", userList: ["**ADHD / Autismus**", "**Legasthenie**"]
             }
@@ -237,13 +246,17 @@
             isPlaying = !isPlaying;
             const body = document.getElementById('bodyTag');
             const btn = document.getElementById('pauseBtn');
+            const icon = document.getElementById('pauseBtnIcon');
             const t = translations[currentLang] || translations['en'];
+            
             if (isPlaying) {
                 body.classList.add('playing');
-                btn.innerText = t.pause;
+                icon.innerText = "⏸";
+                btn.setAttribute('aria-label', t.pauseAria);
             } else {
                 body.classList.remove('playing');
-                btn.innerText = t.play;
+                icon.innerText = "▶";
+                btn.setAttribute('aria-label', t.playAria);
             }
         }
 
@@ -263,7 +276,13 @@
             document.getElementById('txt-instructions').innerText = isAcc ? t.instr.good : t.instr.bad;
             document.getElementById('txt-guide-title').innerText = t.guideTitle;
             document.getElementById('txt-test-steps').innerHTML = t.testSteps.map(s => `<li>${s}</li>`).join('');
-            document.getElementById('pauseBtn').innerText = isPlaying ? t.pause : t.play;
+            
+            const btn = document.getElementById('pauseBtn');
+            btn.setAttribute('aria-label', isPlaying ? t.pauseAria : t.playAria);
+
+            document.getElementById('tab-test').innerText = t.tabTest;
+            document.getElementById('tab-user').innerText = t.tabUser;
+            document.getElementById('tab-feedback').innerText = isAcc ? t.tabRemediations : t.tabIssues;
             
             document.getElementById('txt-user-content').innerHTML = `
                 <h3 class="text-blue-400 font-bold uppercase mb-4 text-xs">${t.userTitle}</h3>

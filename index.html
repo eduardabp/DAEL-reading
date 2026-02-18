@@ -159,11 +159,17 @@
                     bad: "The application process requires that users successfully identify and input the correct alphanumeric string found within the promotional messaging prior to confirmation. Please ensure the identity field contains the legal nomenclature matching your documentation. Applications missing the database-synced promotional code will be processed without the benefit of a secondary discount application.",
                     good: "To apply for your 50% discount:<br>1. In the 'Full Name' field, enter your name as it appears on your ID.<br>2. Enter the discount code (REDUCE2026) at the 'Promotional Code field' and activate the 'Submit Application' button."
                 },
-                testSteps: ["Read the 'Instructions' block and identify the required pieces of information.", "Look for the promotional code.", "Try to complete the form without entering any data to see how the system handles errors.", "Complete the form using the found information.", "Switch to the accessible version and compare clarity."],
+                testSteps: [
+                    "Read the 'Instructions' block and identify the required pieces of information.",
+                    "Look for the promotional code.",
+                    "Try to complete the form without entering any data to see how the system handles errors.",
+                    "Complete the form using the found information.",
+                    "Switch to the accessible version and compare clarity."
+                ],
                 critiques: {
                     bad: { title: "What is wrong?", items: [
-                        { f: "1. Distracting Movement", c: "Constant flashing and scrolling content without a stop mechanism creates a 'sensory hijack' for users with ADHD or Autism." },
-                        { f: "2. Passive & Dense Language", c: "Using complex prose and jargon ('nomenclature') increases cognitive load unnecessarily." },
+                        { f: "1. Distracting Movement", c: "Constant flashing and scrolling content without a stop mechanism creates a 'sensory hijack' for users with ADHD or Autism, making it difficult to focus on the form." },
+                        { f: "2. Passive & Dense Language", c: "Using complex prose and jargon ('nomenclature') increases cognitive load unnecessarily, especially for users with learning disabilities." },
                         { f: "3. Vague Labels & Buttons", c: "Labels like 'Name', 'CODE' and the button 'OK' are not descriptive enough and lack context." },
                         { f: "4. Poor Error Handling", c: "Vague error messages like 'Fail to submit form' do not identify which specific field needs attention and do not allow for user error." },
                         { f: "5. Lack of Success Feedback", c: "In the inaccessible version, the form just resets, leaving users confused about the status of their request." }
@@ -171,15 +177,15 @@
                     good: { title: "Remediations", items: [
                         { f: "1. Control Mechanisms", c: "Always provide a mechanism to stop or pause movement (WCAG 2.2.2) to allow users to eliminate distractions." },
                         { f: "2. Plain Language", c: "Write in short, active sentences and vertical breaks between steps to ensure understanding." },
-                        { f: "3. Descriptive Labels", c: "Use clear, specific labels and explicitly mark required fields." },
+                        { f: "3. Descriptive Labels", c: "Use clear, specific labels and explicitly mark required fields (e.g., 'Full Name (required)')." },
                         { f: "4. Clear Error Identification", c: "Mark errors specifically at the field level with visible indicators and helpful guidance (WCAG 3.3.1)." },
-                        { f: "5. Persistent Success Messages", c: "Provide clear, permanent confirmation that a task has been completed successfully." }
+                        { f: "5. Persistent Success Messages", c: "Provide clear, permanent confirmation that a task has been completed successfully (role='status')." }
                     ]}
                 },
                 userTitle: "Who is impacted?", userList: [
-                    "**ADHD / Autism:** Moving content acts as a major distraction, often causing users to lose their place.",
-                    "**Dyslexia:** Tight line spacing and serif fonts make word shapes harder to distinguish.",
-                    "**Cognitive Impairment:** Vague error messages like 'Fail to submit' cause significant confusion."
+                    "**ADHD / Autism:** Moving and flashing content acts as a major distraction, often causing users to lose their place or abandon the task entirely.",
+                    "**Dyslexia:** Tight line spacing, serif fonts, and all-caps labels make word shapes harder to distinguish, leading to rapid reading fatigue.",
+                    "**Cognitive Impairment:** Vague error messages and complex jargon create significant confusion and frustration for users who struggle with processing dense information."
                 ]
             },
             fr: {
@@ -187,93 +193,105 @@
                 name: { bad: "Nom", good: "Nom complet (requis)" }, code: { bad: "CODE", good: "Code promotionnel (requis)" }, 
                 btn: { bad: "OK", good: "Soumettre ma demande" }, promo: "POSTULEZ ! -50% CODE : REDUCE2026",
                 instrTitle: "Instructions", guideTitle: "Guide étape par étape", pauseAria: "Pause", playAria: "Lecture",
-                tabTest: "Comment tester", tabUser: "Impact", tabIssues: "Problèmes", tabRemediations: "Corrections",
+                tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 successMsg: "Votre demande a été soumise avec succès", failMsg: "Échec de l'envoi du formulaire",
                 errReqName: "Le nom complet est requis", errReqCode: "Le code promotionnel est requis", errInvalidCode: "Code promotionnel invalide",
                 instr: {
-                    bad: "Le processus de candidature exige que les utilisateurs identifient et saisissent avec succès la chaîne alphanumérique correcte trouvée dans le message promotionnel avant confirmation. Veuillez vous assurer que le champ d'identité contient la nomenclature légale correspondant à votre documentation.",
+                    bad: "Le processus de candidature exige que les utilisateurs identifient et saisissent avec succès la chaîne alphanumérique correcte trouvée dans le message promotionnel avant confirmation. Veuillez vous assurer que le champ d'identité contient la nomenclature légale correspondant à votre documentation. Les candidatures sans le code promotionnel synchronisé seront traitées sans le bénéfice d'une remise secondaire.",
                     good: "Pour obtenir votre remise de 50 % :<br>1. Dans le champ 'Nom complet', saisissez votre nom tel qu'il figure sur votre pièce d'identité.<br>2. Saisissez le code promo (REDUCE2026) dans le champ 'Code promotionnel' et activez le bouton 'Soumettre ma demande'."
                 },
-                testSteps: ["Lisez le bloc 'Instructions' et identifiez les informations requises.", "Cherchez le code promotionnel.", "Essayez de remplir le formulaire sans données pour voir la gestion des erreurs.", "Remplissez le formulaire avec les infos trouvées.", "Passez au mode accessible."],
+                testSteps: ["Lisez le bloc 'Instructions' et identifiez les informations requises.", "Cherchez le code promotionnel.", "Essayez de remplir le formulaire sans saisir de données pour voir comment le système gère les erreurs.", "Remplissez le formulaire en utilisant les informations trouvées.", "Passez à la version accessible et comparez la clarté."],
                 critiques: {
                     bad: { title: "Quel est le problème ?", items: [
-                        { f: "1. Mouvement distrayant", c: "Le clignotement constant sans arrêt crée une distraction sensorielle pour les utilisateurs avec TDAH ou Autisme." },
-                        { f: "2. Langage passif et dense", c: "Le jargon complexe augmente inutilement la charge cognitive." },
-                        { f: "3. Libellés vagues", c: "Les libellés comme 'Nom' ou 'OK' manquent de contexte clair." },
-                        { f: "4. Mauvaise gestion des erreurs", c: "Le message 'Échec de l'envoi' est vague et n'identifie pas le champ." },
-                        { f: "5. Absence de retour de succès", c: "Le formulaire se réinitialise sans confirmation, laissant l'utilisateur dans le doute." }
+                        { f: "1. Mouvement distrayant", c: "Le clignotement constant sans mécanisme d'arrêt crée une distraction sensorielle pour les utilisateurs avec TDAH ou Autisme, ce qui rend la concentration difficile." },
+                        { f: "2. Langage passif et dense", c: "L'utilisation de prose complexe et de jargon augmente inutilement la charge cognitive, en particulier pour les utilisateurs ayant des troubles de l'apprentissage." },
+                        { f: "3. Libellés et boutons vagues", c: "Les libellés comme 'Nom', 'CODE' et le bouton 'OK' ne sont pas assez descriptifs et manquent de contexte clair." },
+                        { f: "4. Mauvaise gestion des erreurs", c: "Le message 'Échec de l'envoi' est vague et n'identifie pas quel champ spécifique nécessite une attention particulière." },
+                        { f: "5. Absence de retour de succès", c: "Dans la version inaccessible, le formulaire se réinitialise simplement, laissant les utilisateurs incertains si leurs données ont été envoyées." }
                     ]},
                     good: { title: "Corrections", items: [
-                        { f: "1. Mécanismes de contrôle", c: "Fournissez toujours un mécanisme pour arrêter le mouvement (WCAG 2.2.2)." },
-                        { f: "2. Langage clair", c: "Écrivez des phrases courtes et actives avec des sauts verticaux." },
-                        { f: "3. Libellés descriptifs", c: "Utilisez des libellés spécifiques et marquez les champs requis." },
-                        { f: "4. Identification des erreurs", c: "Marquez les erreurs au niveau du champ avec des indicateurs visibles (WCAG 3.3.1)." },
-                        { f: "5. Messages de succès", c: "Fournissez une confirmation claire et permanente." }
+                        { f: "1. Mécanismes de contrôle", c: "Fournissez toujours un mécanisme pour arrêter ou mettre en pause le mouvement (WCAG 2.2.2) pour éliminer les distractions." },
+                        { f: "2. Langage clair", c: "Écrivez des phrases courtes et actives avec des sauts verticaux entre les étapes pour faciliter la compréhension." },
+                        { f: "3. Libellés descriptifs", c: "Utilisez des libellés clairs et spécifiques et marquez explicitement les champs requis (ex: 'Nom complet (requis)')." },
+                        { f: "4. Identification claire des erreurs", c: "Marquez les erreurs spécifiquement au niveau du champ avec des indicateurs visibles et des conseils utiles (WCAG 3.3.1)." },
+                        { f: "5. Messages de succès persistants", c: "Fournissez une confirmation claire et permanente qu'une tâche a été accomplie avec succès." }
                     ]}
                 },
-                userTitle: "Qui est impacté ?", userList: ["**TDAH / Autisme :** Le mouvement distrait.", "**Dyslexie :** Le texte serré fatigue la lecture.", "**Troubles cognitifs :** Le jargon est un obstacle."]
+                userTitle: "Qui est impacté ?", userList: [
+                    "**TDAH / Autisme :** Le contenu en mouvement et clignotant agit comme une distraction majeure, provoquant souvent la perte de repères ou l'abandon de la tâche.",
+                    "**Dyslexie :** L'espacement serré des lignes, les polices avec empattement et les libellés en majuscules rendent les formes des mots plus difficiles à distinguer.",
+                    "**Troubles cognitifs :** Les messages d'erreur vagues et le jargon complexe créent une confusion et une frustration importantes pour les utilisateurs en difficulté."
+                ]
             },
             nl: {
                 inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", labTitle: "Digital Accessibility Lab", title: "Leeservaring",
                 name: { bad: "Naam", good: "Volledige Naam (verplicht)" }, code: { bad: "CODE", good: "Promotiecode (verplicht)" }, 
                 btn: { bad: "OK", good: "Aanvraag Verzenden" }, promo: "NU AANMELDEN! 50% KORTING: REDUCE2026",
                 instrTitle: "Instructies", guideTitle: "Stappenplan", pauseAria: "Pauze", playAria: "Start",
-                tabTest: "Hoe te testen", tabUser: "Impact", tabIssues: "Problemen", tabRemediations: "Oplossingen",
+                tabTest: "Hoe te testen", tabUser: "Impact op gebruikers", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 successMsg: "Uw aanvraag is succesvol verzonden", failMsg: "Formulier verzenden mislukt",
                 errReqName: "Volledige naam is verplicht", errReqCode: "Promotiecode is verplicht", errInvalidCode: "Ongeldige promotiecode",
                 instr: {
-                    bad: "Het aanvraagproces vereist dat gebruikers de juiste alfanumerieke reeks die in de promotionele berichtgeving wordt gevonden, identificeren en invoeren voorafgaand aan bevestiging.",
+                    bad: "Het aanvraagproces vereist dat gebruikers de juiste alfanumerieke reeks die in de promotionele berichtgeving wordt gevonden, identificeren en invoeren voorafgaand aan bevestiging. Zorg ervoor dat het identiteitsveld de wettelijke nomenclatuur bevat die overeenkomt met uw documentatie.",
                     good: "Om uw 50% korting aan te vragen:<br>1. Voer in het veld 'Volledige Naam' uw naam in zoals deze op uw ID staat.<br>2. Voer de kortingscode (REDUCE2026) in bij het veld 'Promotiecode' en activeer de knop 'Aanvraag Verzenden'."
                 },
-                testSteps: ["Lees het blok 'Instructies' en identificeer de vereiste informatie.", "Zoek naar de promotiecode.", "Probeer het formulier zonder gegevens in te dienen.", "Vul het formulier in.", "Vergelijk met de toegankelijke versie."],
+                testSteps: ["Lees het blok 'Instructies' en identificeer de vereiste informatie.", "Zoek naar de promotiecode.", "Probeer het formulier in te dienen zonder gegevens om te zien hoe het systeem omgaat met fouten.", "Vul het formulier in met de gevonden informatie.", "Schakel over naar de toegankelijke versie en vergelijk de duidelijkheid."],
                 critiques: {
                     bad: { title: "Wat is er mis?", items: [
-                        { f: "1. Storende beweging", c: "Beweging zonder stopmechanisme leidt gebruikers met ADHD of Autisme af." },
-                        { f: "2. Passief taalgebruik", c: "Complex jargon verhoogt de cognitieve belasting." },
-                        { f: "3. Vage labels", c: "Labels zoals 'Naam' en 'OK' bieden onvoldoende context." },
-                        { f: "4. Slechte foutafhandeling", c: "Vage meldingen identificeren het veld niet." },
-                        { f: "5. Geen succesfeedback", c: "Het formulier reset stilzwijgend, wat onzekerheid veroorzaakt." }
+                        { f: "1. Storende beweging", c: "Constant knipperende en scrollende inhoud zonder stopmechanisme zorgt voor een sensorische afleiding voor gebruikers met ADHD of Autisme." },
+                        { f: "2. Passief en dicht taalgebruik", c: "Het gebruik van complex jargon verhoogt de cognitieve belasting onnodig, vooral voor gebruikers met leerproblemen." },
+                        { f: "3. Vage labels en knoppen", c: "Labels zoals 'Naam', 'CODE' en de knop 'OK' zijn niet beschrijvend genoeg en bieden onvoldoende context." },
+                        { f: "4. Slechte foutafhandeling", c: "Vage foutmeldingen zoals 'Verzenden mislukt' identificeren niet welk veld aandacht nodig heeft." },
+                        { f: "5. Geen succesfeedback", c: "In de ontoegankelijke versie reset het formulier stilzwijgend, wat onzekerheid veroorzaakt bij de gebruiker." }
                     ]},
                     good: { title: "Oplossingen", items: [
-                        { f: "1. Controlemechanismen", c: "Zorg voor een pauzeknop (WCAG 2.2.2)." },
-                        { f: "2. Helder taalgebruik", c: "Gebruik korte, actieve zinnen." },
-                        { f: "3. Beschrijvende labels", c: "Gebruik duidelijke labels en markeer verplichte velden." },
-                        { f: "4. Foutidentificatie", c: "Markeer fouten per veld (WCAG 3.3.1)." },
-                        { f: "5. Succesmeldingen", c: "Zorg voor een blijvende bevestiging." }
+                        { f: "1. Controlemechanismen", c: "Zorg altijd voor een mechanisme om beweging te stoppen (WCAG 2.2.2) om afleidingen te elimineren." },
+                        { f: "2. Helder taalgebruik", c: "Gebruik korte, actieve zinnen en verticale witruimte tussen stappen voor betere verwerking." },
+                        { f: "3. Beschrijvende labels", c: "Gebruik duidelijke labels en markeer verplichte velden expliciet (bijv. 'Volledige Naam (verplicht)')." },
+                        { f: "4. Duidelijke foutidentificatie", c: "Markeer fouten specifiek op veldniveau met zichtbare indicatoren en hulp (WCAG 3.3.1)." },
+                        { f: "5. Blijvende succesmeldingen", c: "Zorg voor een duidelijke, permanente bevestiging dat een taak succesvol is afgerond." }
                     ]}
                 },
-                userTitle: "Wie wordt beïnvloed?", userList: ["**ADHD / Autisme :** Beweging leidt af.", "**Dyslexie :** Tekstvorm is onduidelijk.", "**Cognitief :** Jargon vormt een drempel."]
+                userTitle: "Wie wordt beïnvloed?", userList: [
+                    "**ADHD / Autisme:** Bewegende inhoud leidt sterk af en zorgt er vaak voor dat gebruikers hun plek verliezen of de taak staken.",
+                    "**Dyslexia:** Krappe regelafstand, serif-lettertypes en labels in hoofdletters maken woordvormen moeilijker te onderscheiden.",
+                    "**Cognitieve beperking:** Vage foutmeldingen en complex jargon vormen een grote drempel voor gebruikers die moeite hebben met informatieverwerking."
+                ]
             },
             de: {
                 inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Empathie-Labor", title: "Leseerfahrung",
                 name: { bad: "Name", good: "Vollständiger Name (erforderlich)" }, code: { bad: "CODE", good: "Aktionscode (erforderlich)" }, 
                 btn: { bad: "OK", good: "Antrag Absenden" }, promo: "JETZT BEWERBEN! 50% RABATT: REDUCE2026",
-                instrTitle: "Anleitung", guideTitle: "Anleitung", pauseAria: "Pause", playAria: "Start",
-                tabTest: "Wie man testet", tabUser: "Betroffene", tabIssues: "Probleme", tabRemediations: "Lösungen",
-                successMsg: "Ihr Antrag wurde erfolgreich übermittelt", failMsg: "Senden fehlgeschlagen",
-                errReqName: "Vollständiger Name ist erforderlich", errReqCode: "Aktionscode ist erforderlich", errInvalidCode: "Ungültiger Code",
+                instrTitle: "Anleitung", guideTitle: "Schritt-für-Schritt-Anleitung", pauseAria: "Pause", playAria: "Start",
+                tabTest: "Wie man testet", tabUser: "Betroffene Nutzer", tabIssues: "Probleme", tabRemediations: "Lösungen",
+                successMsg: "Ihr Antrag wurde erfolgreich übermittelt", failMsg: "Senden des Formulars fehlgeschlagen",
+                errReqName: "Vollständiger Name ist erforderlich", errReqCode: "Aktionscode ist erforderlich", errInvalidCode: "Ungültiger Aktionscode",
                 instr: {
-                    bad: "Der Bewerbungsprozess setzt voraus, dass Nutzer die korrekte alphanumerische Zeichenfolge vor der Bestätigung erfolgreich identifizieren und eingeben.",
-                    good: "Für Ihren 50 % Rabatt:<br>1. Geben Sie im Feld 'Vollständiger Name' Ihren Namen so ein, wie er auf Ihrem Ausweis steht.<br>2. Geben Sie den Aktionscode (REDUCE2026) ein und aktivieren Sie die Schaltfläche."
+                    bad: "Der Bewerbungsprozess setzt voraus, dass Nutzer die korrekte alphanumerische Zeichenfolge, die in der Werbebotschaft enthalten ist, vor der Bestätigung erfolgreich identifizieren und eingeben. Bitte stellen Sie sicher, dass das Identitätsfeld die rechtliche Nomenklatur enthält.",
+                    good: "So beantragen Sie Ihren 50 % Rabatt:<br>1. Geben Sie im Feld 'Vollständiger Name' Ihren Namen so ein, wie er auf Ihrem Ausweis steht.<br>2. Geben Sie den Aktionscode (REDUCE2026) im Feld 'Aktionscode' ein und aktivieren Sie die Schaltfläche 'Antrag Absenden'."
                 },
-                testSteps: ["Lesen Sie den Block 'Anleitung' und identifizieren Sie die Informationen.", "Suchen Sie den Aktionscode.", "Testen Sie das Senden ohne Daten.", "Formular ausfüllen.", "Wechseln Sie den Modus."],
+                testSteps: ["Lesen Sie den Block 'Anleitung' und identifizieren Sie die erforderlichen Informationen.", "Suchen Sie den Aktionscode.", "Versuchen Sie, das Formular ohne Daten abzusenden, um die Fehlerbehandlung zu sehen.", "Füllen Sie das Formular mit den gefundenen Informationen aus.", "Wechseln Sie zur barrierefreien Version und vergleichen Sie die Klarheit."],
                 critiques: {
                     bad: { title: "Was ist falsch?", items: [
-                        { f: "1. Ablenkung", c: "Blinkende Inhalte ohne Stopp stören Nutzer mit ADHS oder Autismus." },
-                        { f: "2. Fachsprache", c: "Komplexer Jargon erhöht die kognitive Last." },
-                        { f: "3. Vage Labels", c: "Beschriftungen wie 'Name' oder 'OK' bieten keinen Kontext." },
-                        { f: "4. Fehlerbehandlung", c: "Vage Fehlermeldungen nennen das Feld nicht." },
-                        { f: "5. Fehlendes Feedback", c: "Das stille Zurücksetzen verunsichert den Nutzer." }
+                        { f: "1. Ablenkende Bewegung", c: "Ständiges Blinken ohne Stopp-Mechanismus stört die Konzentration von Nutzern mit ADHS oder Autismus massiv." },
+                        { f: "2. Passives Fachchinesisch", c: "Komplexe Formulierungen und Jargon erhöhen die kognitive Last unnötig, besonders bei Lernbehinderungen." },
+                        { f: "3. Vage Beschriftungen", c: "Beschriftungen wie 'Name' oder 'OK' sind nicht aussagekräftig genug und bieten keinen klaren Kontext." },
+                        { f: "4. Mangelhafte Fehlerbehandlung", c: "Vage Fehlermeldungen nennen das fehlerhafte Feld nicht und erlauben keine Benutzerfehler." },
+                        { f: "5. Fehlendes Feedback", c: "In der nicht barrierefreien Version wird das Formular einfach zurückgesetzt, was den Nutzer verunsichert." }
                     ]},
                     good: { title: "Lösungen", items: [
-                        { f: "1. Pause-Button", c: "Stopp-Funktion bereitstellen (WCAG 2.2.2)." },
-                        { f: "2. Einfache Sprache", c: "Kurze Sätze und Abstände nutzen." },
-                        { f: "3. Klare Labels", c: "Kennzeichnen Sie Pflichtfelder explizit." },
-                        { f: "4. Fehleranzeige", c: "Fehler direkt am Feld anzeigen (WCAG 3.3.1)." },
-                        { f: "5. Erfolgsmeldung", c: "Dauerhafte Bestätigung anzeigen." }
+                        { f: "1. Kontrollmechanismen", c: "Stellen Sie immer eine Funktion zum Stoppen oder Pausieren von Bewegungen bereit (WCAG 2.2.2)." },
+                        { f: "2. Einfache Sprache", c: "Verwenden Sie kurze, aktive Sätze und vertikale Abstände zwischen den Schritten." },
+                        { f: "3. Klare Beschriftungen", c: "Nutzen Sie spezifische Labels und kennzeichnen Sie Pflichtfelder explizit (z.B. 'Vollständiger Name (erforderlich)')." },
+                        { f: "4. Fehleridentifizierung", c: "Fehler sollten direkt am Feld mit Hinweisen und Korrekturhilfen markiert werden (WCAG 3.3.1)." },
+                        { f: "5. Dauerhafte Bestätigung", c: "Geben Sie eine klare, dauerhafte Rückmeldung über den Erfolg der Übermittlung." }
                     ]}
                 },
-                userTitle: "Wer?", userList: ["**ADHS / Autismus :** Ablenkung stört.", "**Legasthenie :** Schriftbild unklar.", "**Kognitiv :** Jargon ist eine Barriere."]
+                userTitle: "Wer ist betroffen?", userList: [
+                    "**ADHD / Autismus:** Bewegte und blinkende Inhalte lenken extrem ab und führen oft zum Abbruch der Aufgabe.",
+                    "**Legasthenie:** Enge Zeilenabstände, Serifenschriften und Labels in Großbuchstaben erschweren das Erkennen von Wortformen.",
+                    "**Kognitive Einschränkung:** Vage Fehlermeldungen und Fachsprache sind große Barrieren für Nutzer, die dichte Informationen schwer verarbeiten."
+                ]
             }
         };
 
@@ -327,7 +345,6 @@
             `;
 
             updateMode();
-            
             document.querySelectorAll('.lang-btn').forEach(b => {
                 b.classList.remove('bg-blue-600', 'text-white', 'bg-gray-200', 'text-gray-700');
                 if (b.id === 'btn-' + lang) b.classList.add('bg-blue-600', 'text-white');
@@ -340,7 +357,6 @@
             const nameVal = document.getElementById('inp-name').value.trim();
             const codeVal = document.getElementById('inp-code').value.trim();
             const t = translations[currentLang];
-
             document.getElementById('vague-error').classList.add('hidden');
             ['name', 'code'].forEach(id => {
                 const input = document.getElementById('inp-' + id);
@@ -348,7 +364,6 @@
                 if (input) input.classList.remove('input-error');
                 if (error) error.classList.add('hidden');
             });
-
             let isValid = true;
             if (isAcc) {
                 if (!nameVal) {
@@ -391,7 +406,6 @@
             const container = document.getElementById('controls-container');
             const t = translations[currentLang] || translations['en'];
             const crit = isAcc ? t.critiques.good : t.critiques.bad;
-            
             if (isAcc) {
                 if (!document.getElementById('pauseBtn')) {
                     container.innerHTML = `<button id="pauseBtn" onclick="toggleAnimation()" class="control-btn" aria-label="${isPlaying ? t.pauseAria : t.playAria}">${isPlaying ? '⏸' : '▶'}</button>`;
@@ -399,10 +413,8 @@
             } else {
                 container.innerHTML = '';
             }
-
             document.getElementById('bodyTag').className = isAcc ? "bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font accessible-mode" : "bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font inaccessible-mode";
             if (isAcc && isPlaying) document.getElementById('bodyTag').classList.add('playing');
-            
             document.getElementById('txt-feedback-title').innerText = crit.title;
             document.getElementById('critiqueContent').innerHTML = (crit.items || []).map(i => `<div><span class="text-blue-400 font-bold block mb-1 uppercase text-[11px]">${i.f}</span><p class="text-white opacity-90">${i.c}</p></div>`).join('');
         }

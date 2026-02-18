@@ -6,12 +6,22 @@
     <title>Reading Experience - Digital Accessibility Empathy Lab</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .transition-all { transition: all 0.3s ease; }
+        /* --- CONSTANT LAB UI STYLES (DO NOT CHANGE) --- */
+        .lab-ui-font { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif !important; }
+        .info-panel-container { min-height: 380px !important; display: flex; flex-direction: column; }
+        .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ef4444; transition: .4s; border-radius: 28px; }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #15803d; }
+        input:checked + .slider:before { transform: translateX(22px); }
+        .tab-btn { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+        .tab-btn[aria-selected="true"] { background-color: #111827; color: #60a5fa; border-bottom: 2px solid #60a5fa; }
 
-        /* --- READING BARRIERS (INACCESSIBLE MODE) --- */
-        .inaccessible-mode { font-family: "Times New Roman", Times, serif !important; }
+        /* --- READING BARRIERS (INACCESSIBLE CONTENT AREA ONLY) --- */
+        .inaccessible-mode .reading-content { font-family: "Times New Roman", Times, serif !important; }
         
-        /* 1. Distractor Animation (No Pause) */
+        /* 1. Distractor Animation */
         .promo-banner {
             width: 100%; height: 60px;
             background-color: #ef4444; color: white;
@@ -34,8 +44,8 @@
         }
         .inaccessible-mode .cog-label { text-transform: uppercase !important; font-weight: 900 !important; }
 
-        /* --- ACCESSIBLE MODE --- */
-        .accessible-mode { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+        /* --- ACCESSIBLE CONTENT AREA --- */
+        .accessible-mode .reading-content { font-family: ui-sans-serif, system-ui, sans-serif !important; }
         .accessible-mode .promo-banner { background-color: #1e40af; animation: none; }
         .accessible-mode .promo-text { animation-play-state: paused; }
         .accessible-mode.playing .promo-text { animation-play-state: running; }
@@ -46,24 +56,14 @@
             font-size: 15px;
         }
         .accessible-mode .cog-label { text-transform: none !important; font-weight: 600; }
-
-        /* --- SHARED LAB UI (Exact match to Low Vision) --- */
-        .info-panel-container { min-height: 380px !important; display: flex; flex-direction: column; }
-        .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ef4444; transition: .4s; border-radius: 28px; }
-        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #15803d; }
-        input:checked + .slider:before { transform: translateX(22px); }
-        .tab-btn[aria-selected="true"] { background-color: #111827; color: #60a5fa; border-bottom: 2px solid #60a5fa; }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen p-4 md:p-8 font-sans transition-colors duration-500" id="bodyTag">
+<body class="bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font" id="bodyTag">
 
     <div class="max-w-6xl mx-auto bg-white shadow-2xl rounded-3xl overflow-hidden">
-        <header class="bg-white border-b border-gray-100">
+        <header class="bg-white border-b border-gray-100 lab-ui-font">
             <div class="p-6 flex flex-col md:flex-row justify-between items-center gap-6 border-b border-gray-50">
-                <div id="txt-lab-title" class="text-xl md:text-2xl font-black tracking-tight uppercase" style="color: #008B63;">Digital Accessibility Empathy Lab</div>
+                <div class="text-xl md:text-2xl font-black tracking-tight uppercase" style="color: #008B63;">Digital Accessibility Empathy Lab</div>
                 <img src="https://regine-lambrecht.github.io/color-contrast-checker-size-weight/images/banner.png" alt="Logo" class="h-12">
             </div>
 
@@ -91,32 +91,32 @@
         <main class="p-6 md:p-10">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-16">
                 
-                <div class="lg:col-span-1 space-y-6">
+                <div class="lg:col-span-1 space-y-6 reading-content">
                     <div class="promo-banner" id="banner">
                         <span class="promo-text" id="txt-promo">APPLY NOW! 50% OFF PROMO CODE: REDUCE2026</span>
-                        <button id="pauseBtn" onclick="toggleAnimation()" class="hidden absolute right-2 bg-white text-black text-[9px] px-2 py-1 rounded font-bold uppercase">Pause</button>
+                        <button id="pauseBtn" onclick="toggleAnimation()" class="hidden absolute right-2 bg-white text-black text-[9px] px-2 py-1 rounded font-bold uppercase lab-ui-font">Pause</button>
                     </div>
 
                     <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 mb-6">
-                        <h2 id="txt-instr-title" class="font-bold mb-2 uppercase text-[10px] text-blue-800">Instructions</h2>
+                        <h2 id="txt-instr-title" class="font-bold mb-2 uppercase text-[10px] text-blue-800 lab-ui-font">Instructions</h2>
                         <p id="txt-instructions"></p>
                     </div>
 
                     <div>
                         <label id="txt-label-name" class="cog-label text-xs block mb-1">Full Name</label>
-                        <input type="text" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm">
+                        <input type="text" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm lab-ui-font">
                     </div>
 
                     <div>
                         <label id="txt-label-code" class="cog-label text-xs block mb-1">Promotional Code</label>
-                        <input type="text" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm">
+                        <input type="text" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm lab-ui-font">
                     </div>
 
-                    <button id="txt-btn" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg uppercase text-sm tracking-wide transition-colors">OK</button>
+                    <button id="txt-btn" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg uppercase text-sm tracking-wide transition-colors lab-ui-font">OK</button>
                 </div>
 
                 <div class="lg:col-span-3">
-                    <div class="info-panel-container bg-gray-900 text-white rounded-2xl shadow-xl overflow-hidden h-full flex flex-col">
+                    <div class="info-panel-container bg-gray-900 text-white rounded-2xl shadow-xl overflow-hidden h-full flex flex-col lab-ui-font">
                         <div class="flex bg-gray-800 border-b border-gray-700">
                             <button id="tab-test" onclick="switchTab('test')" class="tab-btn px-6 py-4 text-xs font-black uppercase tracking-widest" aria-selected="true">How to test</button>
                             <button id="tab-feedback" onclick="switchTab('feedback')" class="tab-btn px-6 py-4 text-xs font-black uppercase tracking-widest border-l border-gray-700" aria-selected="false">Issues</button>
@@ -142,7 +142,7 @@
     <script>
         const translations = {
             en: {
-                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Reading Experience",
+                inaccessible: "Inaccessible", accessible: "Accessible", title: "Reading Experience",
                 name: "Full Name", code: "Promotional Code", btn: "OK", promo: "APPLY NOW! 50% OFF PROMO CODE: REDUCE2026",
                 instrTitle: "Instructions", guideTitle: "Step-by-step guide", pause: "Pause", play: "Play",
                 tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "How to remediate",
@@ -160,14 +160,14 @@
                 ],
                 critiques: {
                     bad: { title: "What is wrong?", items: [
-                        { f: "1. Distracting Movement", c: "Rapidly flashing or moving content with no way to stop it prevents users with ADHD or Autism from focusing on the task." },
-                        { f: "2. Complex Language", c: "Legalistic jargon and passive voice increase the effort needed to understand simple instructions, excluding users with learning disabilities." },
+                        { f: "1. Distracting Movement", c: "Rapidly flashing content with no way to stop it creates a 'sensory hijack' for users with ADHD or Autism, making concentration nearly impossible." },
+                        { f: "2. Complex Language", c: "Legalistic jargon and passive voice increase cognitive load, excluding users with learning disabilities or cognitive impairments." },
                         { f: "3. Typographic Crowding", c: "Tight line spacing and serif fonts make word shapes harder to distinguish for dyslexic readers." }
                     ]},
                     good: { title: "How to remediate", items: [
-                        { f: "1. Control Mechanisms", c: "Provide a 'Pause' button for moving content (WCAG 2.2.2). This allows users to eliminate distractions." },
-                        { f: "2. Plain Language", c: "Use short, active sentences. Instructions should be clear and use common words." },
-                        { f: "3. Legible Typography", c: "Use Sans-Serif fonts with at least 1.5 line height to aid scanning and word recognition." }
+                        { f: "1. Control Mechanisms", c: "Always provide a 'Pause' button for moving content (WCAG 2.2.2). This allows users to eliminate distractions." },
+                        { f: "2. Plain Language", c: "Use short, active sentences. Clear instructions ensure the broadest group of users can understand the task." },
+                        { f: "3. Accessible Typography", c: "Use Sans-Serif fonts with a line height of at least 1.5 to aid scanning and recognition." }
                     ]}
                 },
                 userTitle: "Who is impacted?", userList: [
@@ -178,10 +178,10 @@
                 ]
             },
             fr: {
-                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Labo d'Empathie Accessibilité", title: "Expérience de Lecture",
+                inaccessible: "Inaccessible", accessible: "Accessible", title: "Expérience de Lecture",
                 name: "Nom complet", code: "Code promotionnel", btn: "OK", promo: "POSTULEZ ! -50% CODE : REDUCE2026",
                 instrTitle: "Instructions", guideTitle: "Guide étape par étape", pause: "Pause", play: "Lecture",
-                tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
+                tabTest: "Comment tester", tabUser: "Impact", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 instr: {
                     bad: "Il est impératif que le postulant n'initie point le protocole de soumission sans l'acquisition préalable de l'identifiant promotionnel. La non-synchronisation rendra la réduction caduque.",
                     good: "Pour postuler : 1. Entrez votre nom. 2. Entrez le code promo (REDUCE2026). 3. Cliquez sur OK."
@@ -191,10 +191,10 @@
                     bad: { title: "Problèmes", items: [{ f: "Animation", c: "Absence de bouton pause." }, { f: "Langage", c: "Jargon trop complexe." }] },
                     good: { title: "Corrections", items: [{ f: "Bouton Pause", c: "Permettre l'arrêt de l'animation." }] }
                 },
-                userTitle: "Impact ?", userList: ["**TDAH / Autisme**", "**Dyslexie**"]
+                userTitle: "Qui est impacté ?", userList: ["**TDAH / Autisme**", "**Dyslexie**"]
             },
             nl: {
-                inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", labTitle: "Toegankelijkheid Lab", title: "Leeservaring",
+                inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", title: "Leeservaring",
                 name: "Volledige Naam", code: "Promotiecode", btn: "OK", promo: "NU AANMELDEN! 50% KORTING: REDUCE2026",
                 instrTitle: "Instructies", guideTitle: "Stappenplan", pause: "Pauze", play: "Start",
                 tabTest: "Hoe te testen", tabUser: "Impact", tabIssues: "Problemen", tabRemediations: "Oplossingen",
@@ -210,7 +210,7 @@
                 userTitle: "Wie?", userList: ["**ADHD / Autisme**", "**Dyslexie**"]
             },
             de: {
-                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Empathie-Labor", title: "Leseerfahrung",
+                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", title: "Leseerfahrung",
                 name: "Name", code: "Aktionscode", btn: "OK", promo: "JETZT BEWERBEN! 50% RABATT: REDUCE2026",
                 instrTitle: "Anleitung", guideTitle: "Anleitung", pause: "Pause", play: "Start",
                 tabTest: "Anleitung", tabUser: "Betroffene", tabIssues: "Probleme", tabRemediations: "Lösungen",
@@ -251,7 +251,6 @@
             
             document.getElementById('txt-inaccessible').innerText = t.inaccessible;
             document.getElementById('txt-accessible').innerText = t.accessible;
-            document.getElementById('txt-lab-title').innerText = t.labTitle;
             document.getElementById('txt-title').innerText = t.title;
             document.getElementById('txt-label-name').innerText = t.name;
             document.getElementById('txt-label-code').innerText = t.code;
@@ -285,7 +284,7 @@
             const t = translations[currentLang] || translations['en'];
             const crit = isAcc ? t.critiques.good : t.critiques.bad;
             
-            document.getElementById('bodyTag').className = isAcc ? "bg-gray-100 min-h-screen p-4 md:p-8 font-sans accessible-mode" : "bg-gray-100 min-h-screen p-4 md:p-8 font-sans inaccessible-mode";
+            document.getElementById('bodyTag').className = isAcc ? "bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font accessible-mode" : "bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font inaccessible-mode";
             if (isAcc && isPlaying) document.getElementById('bodyTag').classList.add('playing');
             
             document.getElementById('pauseBtn').classList.toggle('hidden', !isAcc);

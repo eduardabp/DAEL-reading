@@ -45,7 +45,6 @@
         .accessible-mode .cog-label { font-size: 14px !important; text-transform: none !important; font-weight: 600; letter-spacing: 0.01em; }
         .accessible-mode .form-gap { gap: 1.5rem !important; }
 
-        /* FIXED FUNCTIONAL BUTTON */
         .control-btn {
             display: flex; align-items: center; justify-content: center;
             width: 36px; height: 36px; border: 2px solid #1e40af;
@@ -163,25 +162,27 @@
                 critiques: {
                     bad: { title: "What is wrong?", items: [
                         { f: "1. Distracting Movement", c: "Constant flashing and scrolling content without a stop mechanism creates a 'sensory hijack' for users with ADHD or Autism, making it difficult to focus on the form." },
-                        { f: "2. Passive & Dense Language", c: "Using complex prose and jargon increases cognitive load unnecessarily, especially for users with learning disabilities." },
+                        { f: "2. Passive & Dense Language", c: "Using complex prose and jargon ('nomenclature') increases cognitive load unnecessarily, especially for users with learning disabilities." },
                         { f: "3. Vague Labels & Buttons", c: "Labels like 'Name', 'CODE' and the button 'OK' are not descriptive enough and lack context." },
-                        { f: "4. Poor Error Handling", c: "Vague error messages like 'Fail to submit form' do not identify which specific field needs attention and do not allow for user error." }
+                        { f: "4. Poor Error Handling", c: "Vague error messages like 'Fail to submit form' do not identify which specific field needs attention and do not allow for user error." },
+                        { f: "5. Lack of Success Feedback", c: "In the inaccessible version, the form just resets, leaving users confused about the status of their request." }
                     ]},
                     good: { title: "Remediations", items: [
-                        { f: "1. Control Mechanisms", c: "Always provide a mechanism to stop or pause movement (WCAG 2.2.2)." },
-                        { f: "2. Plain Language", c: "Write in short, active sentences with vertical breaks to aid processing." },
-                        { f: "3. Descriptive Labels", c: "Labels and action buttons should be clear and descriptive (e.g., 'Full Name' and 'Submit Application')." },
-                        { f: "4. Error Identification", c: "Mark errors specifically at the field level with visible indicators and helpful guidance (WCAG 3.3.1)." }
+                        { f: "1. Control Mechanisms", c: "Always provide a mechanism to stop or pause movement (WCAG 2.2.2) to allow users to eliminate distractions." },
+                        { f: "2. Plain Language", c: "Write in short, active sentences and vertical breaks between steps to ensure understanding." },
+                        { f: "3. Descriptive Labels", c: "Use clear, specific labels and explicitly mark required fields." },
+                        { f: "4. Error Identification", c: "Mark errors specifically at the field level with visible indicators and helpful guidance (WCAG 3.3.1)." },
+                        { f: "5. Clear Status Feedback", c: "Provide clear, persistent confirmation for successful submissions (role='status')." }
                     ]}
                 },
                 userTitle: "Who is impacted?", userList: [
-                    "**ADHD / Autism:** Constant movement acts as a major distraction, often causing users to lose their place or abandon the task.",
-                    "**Dyslexia:** Tight line spacing, serif fonts, and all-caps labels make word shapes harder to distinguish.",
-                    "**Cognitive Impairment:** Vague error messages and complex jargon create barriers for users who struggle with dense information."
+                    "**ADHD / Autism:** Moving and flashing content acts as a major distraction, often causing users to lose their place or abandon the task entirely.",
+                    "**Dyslexia:** Tight line spacing and all-caps labels make word shapes harder to distinguish, leading to rapid reading fatigue.",
+                    "**Cognitive Impairment:** Vague error messages like 'Fail to submit' cause significant confusion and frustration for users struggling with processing info."
                 ]
             },
             fr: {
-                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Labo Empathie", title: "Expérience de Lecture",
+                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Labo d'Empathie Accessibilité", title: "Expérience de Lecture",
                 name: { bad: "Nom", good: "Nom complet (requis)" }, code: { bad: "CODE", good: "Code promotionnel (requis)" }, 
                 btn: { bad: "OK", good: "Soumettre ma demande" }, promo: "POSTULEZ ! -50% CODE : REDUCE2026",
                 instrTitle: "Instructions", guideTitle: "Guide étape par étape", pauseAria: "Pause", playAria: "Lecture",
@@ -189,7 +190,7 @@
                 successMsg: "Votre demande a été soumise avec succès", failMsg: "Échec de l'envoi du formulaire",
                 errReqName: "Le nom complet est requis", errReqCode: "Le code est requis", errInvalidCode: "Code invalide",
                 instr: { bad: "Le processus requiert l'identification de la chaîne alphanumérique avant confirmation.", good: "Pour votre remise :<br>1. Saisissez votre nom complet.<br>2. Saisissez le code (REDUCE2026) et activez le bouton." },
-                testSteps: ["Lisez les instructions.", "Cherchez le code.", "Testez les erreurs.", "Comparez les modes."],
+                testSteps: ["Lisez les instructions.", "Cherchez le code.", "Testez les erreurs.", "Comparez avec le mode accessible."],
                 critiques: {
                     bad: { title: "Quel est le problème ?", items: [{ f: "1. Mouvement", c: "Le mouvement distrait l'utilisateur." }, { f: "2. Libellés", c: "Les libellés vagues manquent de clarté." }, { f: "3. Erreurs", c: "Les messages d'erreur ne sont pas précis." }] },
                     good: { title: "Remediations", items: [{ f: "1. Contrôle", c: "Ajoutez un bouton pause." }, { f: "2. Clarté", c: "Utilisez des libellés descriptifs." }, { f: "3. Identification", c: "Identifiez clairement les erreurs." }] }
@@ -254,19 +255,22 @@
             const t = translations[lang] || translations['en'];
             const isAcc = document.getElementById('modeToggle').checked;
             
-            document.getElementById('txt-inaccessible').innerText = t.inaccessible;
-            document.getElementById('txt-accessible').innerText = t.accessible;
             document.getElementById('txt-lab-title').innerText = t.labTitle;
             document.getElementById('txt-title').innerText = t.title;
+            document.getElementById('txt-inaccessible').innerText = t.inaccessible;
+            document.getElementById('txt-accessible').innerText = t.accessible;
+            
             document.getElementById('txt-label-name').innerText = isAcc ? t.name.good : t.name.bad;
             document.getElementById('txt-label-code').innerText = isAcc ? t.code.good : t.code.bad;
             document.getElementById('txt-btn').innerText = isAcc ? t.btn.good : t.btn.bad;
+            
             document.getElementById('vague-error').innerText = t.failMsg;
             document.getElementById('txt-promo').innerText = t.promo;
             document.getElementById('txt-instr-title').innerText = t.instrTitle;
             document.getElementById('txt-instructions').innerHTML = isAcc ? t.instr.good : t.instr.bad;
             document.getElementById('txt-guide-title').innerText = t.guideTitle;
             document.getElementById('txt-test-steps').innerHTML = (t.testSteps || []).map(s => `<li>${s}</li>`).join('');
+
             document.getElementById('tab-test').innerText = t.tabTest;
             document.getElementById('tab-user').innerText = t.tabUser;
             document.getElementById('tab-feedback').innerText = isAcc ? t.tabRemediations : t.tabIssues;
@@ -275,7 +279,10 @@
                 <h3 class="text-blue-400 font-bold uppercase mb-4 text-xs">${t.userTitle}</h3>
                 <ul class="list-disc pl-5 space-y-3">${(t.userList||[]).map(li => `<li>${li.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</li>`).join('')}</ul>
             `;
+
             updateMode();
+            
+            // Highlight active language button
             document.querySelectorAll('.lang-btn').forEach(b => {
                 b.classList.remove('bg-blue-600', 'text-white', 'bg-gray-200', 'text-gray-700');
                 if (b.id === 'btn-' + lang) b.classList.add('bg-blue-600', 'text-white');
@@ -288,11 +295,15 @@
             const nameVal = document.getElementById('inp-name').value.trim();
             const codeVal = document.getElementById('inp-code').value.trim();
             const t = translations[currentLang];
+
             document.getElementById('vague-error').classList.add('hidden');
             ['name', 'code'].forEach(id => {
-                document.getElementById('inp-' + id).classList.remove('input-error');
-                document.getElementById('err-' + id).classList.add('hidden');
+                const input = document.getElementById('inp-' + id);
+                const error = document.getElementById('err-' + id);
+                if (input) input.classList.remove('input-error');
+                if (error) error.classList.add('hidden');
             });
+
             let isValid = true;
             if (isAcc) {
                 if (!nameVal) {
@@ -313,7 +324,10 @@
                     isValid = false;
                 }
                 if (isValid) {
-                    document.getElementById('form-container').innerHTML = `<div class="bg-green-100 text-green-800 p-8 rounded-2xl border-2 border-green-200 text-center font-bold text-lg" role="status">${t.successMsg}</div>`;
+                    document.getElementById('form-container').innerHTML = `
+                        <div class="bg-green-100 text-green-800 p-8 rounded-2xl border-2 border-green-200 text-center font-bold text-lg" role="status">
+                            ${t.successMsg}
+                        </div>`;
                 }
             } else {
                 if (!nameVal || !codeVal || codeVal !== 'REDUCE2026') {
@@ -335,6 +349,7 @@
             const container = document.getElementById('controls-container');
             const t = translations[currentLang] || translations['en'];
             const crit = isAcc ? t.critiques.good : t.critiques.bad;
+            
             if (isAcc) {
                 if (!document.getElementById('pauseBtn')) {
                     container.innerHTML = `<button id="pauseBtn" onclick="toggleAnimation()" class="control-btn" aria-label="${isPlaying ? t.pauseAria : t.playAria}">${isPlaying ? '⏸' : '▶'}</button>`;
@@ -342,8 +357,10 @@
             } else {
                 container.innerHTML = '';
             }
+
             document.getElementById('bodyTag').className = isAcc ? "bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font accessible-mode" : "bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font inaccessible-mode";
             if (isAcc && isPlaying) document.getElementById('bodyTag').classList.add('playing');
+            
             document.getElementById('txt-feedback-title').innerText = crit.title;
             document.getElementById('critiqueContent').innerHTML = (crit.items || []).map(i => `<div><span class="text-blue-400 font-bold block mb-1 uppercase text-[11px]">${i.f}</span><p class="text-white opacity-90">${i.c}</p></div>`).join('');
         }
@@ -355,6 +372,7 @@
             });
         }
 
+        // Initialize
         setLanguage('en');
         switchTab('test');
     </script>

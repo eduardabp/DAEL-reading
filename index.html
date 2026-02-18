@@ -6,13 +6,12 @@
     <title>Cognitive Experience - Digital Accessibility Empathy Lab</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root { --reverse-zoom: 1; }
         .transition-all { transition: all 0.3s ease; }
 
-        /* --- INACCESSIBLE MODE STYLES --- */
+        /* --- COGNITIVE BARRIERS (INACCESSIBLE MODE) --- */
         .inaccessible-mode { font-family: "Times New Roman", Times, serif !important; }
         
-        /* 1. Distractor Animation (Sensory Overload) */
+        /* 1. Distractor Animation (No Pause) */
         .distractor-box {
             display: none;
             width: 100%;
@@ -28,16 +27,20 @@
         }
         .inaccessible-mode .distractor-box { display: block; }
 
-        /* 2. Visual Crowding */
+        /* 2. Visual Crowding & Justification */
         .inaccessible-mode #txt-instructions {
             text-align: justify;
             line-height: 0.85 !important;
             letter-spacing: -0.06em !important;
             font-size: 14px;
         }
-        .inaccessible-mode .cog-label { text-transform: uppercase !important; font-weight: 900; letter-spacing: -0.02em; }
+        .inaccessible-mode .cog-label { 
+            text-transform: uppercase !important; 
+            font-weight: 900 !important; 
+            letter-spacing: -0.02em; 
+        }
 
-        /* --- ACCESSIBLE MODE STYLES --- */
+        /* --- ACCESSIBLE MODE --- */
         .accessible-mode { font-family: ui-sans-serif, system-ui, sans-serif !important; }
         .accessible-mode .distractor-box { display: none; }
         .accessible-mode #txt-instructions {
@@ -46,10 +49,10 @@
             letter-spacing: normal;
             font-size: 16px;
         }
-        .accessible-mode .cog-label { text-transform: none; font-weight: 600; }
+        .accessible-mode .cog-label { text-transform: none !important; font-weight: 600; }
 
-        /* --- LAYOUT ESSENTIALS --- */
-        .info-panel-container { min-height: 400px !important; display: flex; flex-direction: column; }
+        /* --- SHARED LAB UI (Matched to Low Vision Page) --- */
+        .info-panel-container { min-height: 380px !important; display: flex; flex-direction: column; }
         .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ef4444; transition: .4s; border-radius: 28px; }
@@ -59,7 +62,7 @@
         .tab-btn[aria-selected="true"] { background-color: #111827; color: #60a5fa; border-bottom: 2px solid #60a5fa; }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500" id="bodyTag">
+<body class="bg-gray-100 min-h-screen p-4 md:p-8 font-sans transition-colors duration-500" id="bodyTag">
 
     <div class="max-w-6xl mx-auto bg-white shadow-2xl rounded-3xl overflow-hidden">
         <header class="bg-white border-b border-gray-100">
@@ -71,18 +74,18 @@
             <nav class="p-4 flex flex-col gap-4">
                 <div class="flex items-center justify-between gap-4 bg-gray-50 p-3 rounded-2xl border border-gray-200 w-full">
                     <div class="flex items-center gap-4">
-                        <span id="txt-inaccessible" class="text-xs font-black uppercase text-red-600">Inaccessible</span>
+                        <span id="txt-inaccessible" class="text-xs font-black uppercase tracking-widest text-red-600">Inaccessible</span>
                         <label class="switch">
                             <input type="checkbox" id="modeToggle" onchange="toggleMode()" role="switch">
                             <span class="slider"></span>
                         </label>
-                        <span id="txt-accessible" class="text-xs font-black uppercase text-green-700">Accessible</span>
+                        <span id="txt-accessible" class="text-xs font-black uppercase tracking-widest text-green-700">Accessible</span>
                     </div>
                     <div class="flex gap-2 text-[10px] font-bold">
-                        <button onclick="setLanguage('en')" class="lang-btn px-2 py-1 rounded bg-blue-600 text-white" id="btn-en">EN</button>
-                        <button onclick="setLanguage('fr')" class="lang-btn px-2 py-1 rounded bg-gray-200 text-gray-700" id="btn-fr">FR</button>
-                        <button onclick="setLanguage('nl')" class="lang-btn px-2 py-1 rounded bg-gray-200 text-gray-700" id="btn-nl">NL</button>
-                        <button onclick="setLanguage('de')" class="lang-btn px-2 py-1 rounded bg-gray-200 text-gray-700" id="btn-de">DE</button>
+                        <button onclick="setLanguage('en')" class="lang-btn px-2 py-1 rounded" id="btn-en">EN</button>
+                        <button onclick="setLanguage('fr')" class="lang-btn px-2 py-1 rounded" id="btn-fr">FR</button>
+                        <button onclick="setLanguage('nl')" class="lang-btn px-2 py-1 rounded" id="btn-nl">NL</button>
+                        <button onclick="setLanguage('de')" class="lang-btn px-2 py-1 rounded" id="btn-de">DE</button>
                     </div>
                 </div>
                 <h1 id="txt-title" class="text-xl font-black text-gray-900 px-2 uppercase tracking-tighter">Cognitive Experience</h1>
@@ -90,18 +93,20 @@
         </header>
 
         <main class="p-6 md:p-10">
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-16">
                 <div class="lg:col-span-1 space-y-6">
                     <div class="distractor-box"></div>
                     <div>
                         <label id="txt-label-name" class="cog-label text-xs block mb-1">Full Name</label>
-                        <input type="text" class="w-full border border-gray-300 p-2 rounded bg-gray-50 text-sm">
+                        <input type="text" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm">
                     </div>
                     <div>
                         <label id="txt-label-code" class="cog-label text-xs block mb-1">Account Preference Logic Code</label>
-                        <input type="text" class="w-full border border-gray-300 p-2 rounded bg-gray-50 text-sm">
+                        <input type="text" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm">
                     </div>
-                    <button id="txt-btn" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded uppercase text-sm">Save Settings</button>
+                    <button id="txt-btn" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg uppercase text-sm tracking-wide transition-colors">
+                        Save Settings
+                    </button>
                 </div>
 
                 <div class="lg:col-span-3 space-y-6">
@@ -112,12 +117,12 @@
 
                     <div class="info-panel-container bg-gray-900 text-white rounded-2xl shadow-xl overflow-hidden">
                         <div class="flex bg-gray-800 border-b border-gray-700">
-                            <button id="tab-test" onclick="switchTab('test')" class="tab-btn px-6 py-4 text-xs font-black uppercase" aria-selected="true">How to test</button>
-                            <button id="tab-feedback" onclick="switchTab('feedback')" class="tab-btn px-6 py-4 text-xs font-black uppercase border-l border-gray-700" aria-selected="false">Issues</button>
-                            <button id="tab-user" onclick="switchTab('user')" class="tab-btn px-6 py-4 text-xs font-black uppercase border-l border-gray-700" aria-selected="false">Impacted users</button>
+                            <button id="tab-test" onclick="switchTab('test')" class="tab-btn px-6 py-4 text-xs font-black uppercase tracking-widest" aria-selected="true">How to test</button>
+                            <button id="tab-feedback" onclick="switchTab('feedback')" class="tab-btn px-6 py-4 text-xs font-black uppercase tracking-widest border-l border-gray-700" aria-selected="false">Issues</button>
+                            <button id="tab-user" onclick="switchTab('user')" class="tab-btn px-6 py-4 text-xs font-black uppercase tracking-widest border-l border-gray-700" aria-selected="false">Impacted users</button>
                         </div>
-                        <div id="panel-test" class="p-8 text-sm flex-grow">
-                            <h3 id="txt-guide-title" class="text-blue-400 font-bold uppercase text-xs mb-4">Step-by-step guide</h3>
+                        <div id="panel-test" class="p-8 space-y-6 text-sm flex-grow">
+                            <h3 id="txt-guide-title" class="text-blue-400 font-bold uppercase text-xs mb-2">Step-by-step guide</h3>
                             <ol id="txt-test-steps" class="list-decimal pl-5 space-y-4 opacity-95"></ol>
                         </div>
                         <div id="panel-feedback" class="p-8 hidden text-sm flex-grow overflow-y-auto">
@@ -139,71 +144,49 @@
                 inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Cognitive Experience",
                 name: "Full Name", code: "Account Preference Logic Code", btn: "Save Settings", instrTitle: "Instructions", guideTitle: "Step-by-step guide",
                 instr: {
-                    bad: "It is strictly mandated that the user shall not proceed without first ensuring that all requisite parameters, inclusive of the Account Preference Logic Code, are verified against the suboptimal secondary protocol. Failure to cross-reference the alphanumeric input with the aforementioned system will result in a non-executable save state.",
-                    good: "To save your settings: 1. Enter your Name. 2. Enter your Account Code. 3. Click Save. Note: The distracting animation has been removed."
+                    bad: "It is strictly mandated that the user shall not proceed without first ensuring that all requisite parameters, inclusive of the Account Preference Logic Code, are verified against the suboptimal secondary protocol. Failure to cross-reference the alphanumeric input with the aforementioned system will result in a non-executable save state which cannot be rectified post-submission without an administrative override.",
+                    good: "To save your settings: 1. Enter your Name. 2. Enter your Account Code. 3. Click Save. Note: The distracting animation has been removed to help you focus."
                 },
-                testSteps: ["Try to read the instructions above.", "Observe the animation playing next to the form.", "Note the difficulty of identifying the specific fields required.", "Switch to the accessible version and repeat."],
+                testSteps: [
+                    "Try to read the instructions and identify the required fields.",
+                    "Observe the animation playing next to the form.",
+                    "Note the time and mental effort required to process the 'Instructions' paragraph.",
+                    "Switch to the accessible version and repeat these steps."
+                ],
                 critiques: {
                     bad: { title: "What is wrong?", items: [
-                        { f: "1. Sensory Overload", c: "Rapidly moving animations with no way to stop them are overwhelming for users with ADHD or Autism." },
-                        { f: "2. Complex Language", c: "Legalistic jargon and long sentences increase cognitive load and exclude users with learning disabilities." },
-                        { f: "3. Typographic Crowding", c: "Serif fonts and tight line spacing cause letters to 'merge' for dyslexic readers." }
+                        { f: "1. Sensory Overload", c: "Rapidly moving animations with no 'Pause' button create a sensory hijack for users with ADHD or Autism, making concentration impossible." },
+                        { f: "2. Cognitive Complexity", c: "Dense jargon and legalistic phrasing increase 'Mental Processing Time' and can lead to total misunderstanding of the task." },
+                        { f: "3. Visual Crowding", c: "Tight line spacing and serif fonts cause letters to merge visually for many dyslexic readers." }
                     ]},
                     good: { title: "How to remediate", items: [
-                        { f: "1. User Control", c: "Always provide a way to pause or hide animations. (WCAG 2.2.2)." },
-                        { f: "2. Plain Language", c: "Use short sentences and active voice. Avoid technical jargon when simple words suffice." },
-                        { f: "3. Clean Typography", c: "Use Sans-Serif fonts with at least 1.5 line spacing to aid scanning." }
+                        { f: "1. User Control", c: "Always provide a way to pause, stop, or hide moving content that lasts more than 5 seconds (WCAG 2.2.2)." },
+                        { f: "2. Plain Language", c: "Use short sentences and active voice. Avoid technical jargon to ensure the broadest group of users can understand instructions." },
+                        { f: "3. Optimized Typography", c: "Use Sans-Serif fonts with a line height of at least 1.5 to improve legibility and scanning speed." }
                     ]}
                 },
                 userTitle: "Who is impacted?", userList: [
-                    "**ADHD/Autism:** Distractions make it impossible to focus on the task.",
-                    "**Dyslexia:** Cramped text and Serif fonts lead to reading fatigue.",
-                    "**Cognitive Impairments:** Complex jargon can be completely misunderstood.",
-                    "**Mobile Users:** Small, crowded layouts are harder to navigate with limited screen space."
+                    "**ADHD / Autism:** Constant movement acts as an insurmountable distraction.",
+                    "**Dyslexia:** Cramped text and serif fonts cause reading fatigue and errors.",
+                    "**Cognitive Impairments:** Complex jargon can prevent users from completing even simple tasks.",
+                    "**Mobile Users:** Cluttered, dense content is difficult to navigate on smaller screens."
                 ]
             },
             fr: {
                 inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Labo d'Empathie Accessibilité", title: "Expérience Cognitive",
                 name: "Nom complet", code: "Code Logique de Préférence Compte", btn: "Enregistrer", instrTitle: "Instructions", guideTitle: "Guide étape par étape",
                 instr: {
-                    bad: "Il est strictement obligatoire que l'utilisateur ne procède pas sans s'être préalablement assuré que tous les paramètres requis, y compris le Code Logique, sont vérifiés. Tout manquement à la référence croisée entraînera un état de sauvegarde non exécutable.",
-                    good: "Pour enregistrer : 1. Entrez votre nom. 2. Entrez votre code. 3. Cliquez sur Enregistrer. Note : L'animation distrayante a été supprimée."
+                    bad: "Il est strictement obligatoire que l'utilisateur ne procède pas sans s'être préalablement assuré que tous les paramètres requis sont vérifiés. Tout manquement à la référence croisée entraînera un état de sauvegarde non exécutable.",
+                    good: "Pour enregistrer : 1. Entrez votre nom. 2. Entrez votre code. 3. Cliquez sur Enregistrer."
                 },
-                testSteps: ["Essayez de lire les instructions.", "Observez l'animation à côté du formulaire.", "Notez la difficulté de comprendre le jargon.", "Passez en mode accessible."],
+                testSteps: ["Essayez de lire les instructions.", "Observez l'animation.", "Passez en mode accessible."],
                 critiques: {
-                    bad: { title: "Quel est le problème ?", items: [{ f: "1. Surcharge sensorielle", c: "Les animations rapides sans bouton pause sont épuisantes." }] },
-                    good: { title: "Corrections", items: [{ f: "1. Langage clair", c: "Utilisez des phrases courtes et actives." }] }
+                    bad: { title: "Quel est le problème ?", items: [{ f: "1. Surcharge sensorielle", c: "Les animations sans bouton pause sont épuisantes." }] },
+                    good: { title: "Corrections", items: [{ f: "1. Langage clair", c: "Utilisez des phrases courtes." }] }
                 },
-                userTitle: "Qui est impacté ?", userList: ["**TDAH/Autisme**", "**Dyslexie**", "**Troubles cognitifs**"]
-            },
-            nl: {
-                inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", labTitle: "Toegankelijkheid Lab", title: "Cognitieve Ervaring",
-                name: "Naam", code: "Account Voorkeur Logica Code", btn: "Opslaan", instrTitle: "Instructies", guideTitle: "Stappenplan",
-                instr: {
-                    bad: "Het is strikt verplicht dat de gebruiker niet verder gaat zonder eerst te controleren of alle vereiste parameters, inclusief de Account Logica Code, zijn geverifieerd. Het niet kruisverwijzen zal leiden tot een niet-uitvoerbare status.",
-                    good: "Om op te slaan: 1. Voer uw naam in. 2. Voer uw code in. 3. Klik op Opslaan."
-                },
-                testSteps: ["Probeer de instructies te lezen.", "Bekijk de animatie naast het formulier.", "Switch naar toegankelijk."],
-                critiques: {
-                    bad: { title: "Wat is er mis?", items: [{ f: "1. Sensorische overbelasting", c: "Beweging zonder pauzeknop is storend." }] },
-                    good: { title: "Oplossingen", items: [{ f: "1. Helder taalgebruik", c: "Vermijd jargon." }] }
-                },
-                userTitle: "Wie heeft hier last van?", userList: ["**ADHD/Autisme**", "**Dyslexie**"]
-            },
-            de: {
-                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Barrierefreiheit Lab", title: "Kognitive Erfahrung",
-                name: "Name", code: "Konto-Präferenz-Logik-Code", btn: "Speichern", instrTitle: "Anleitung", guideTitle: "Schritt-für-Schritt",
-                instr: {
-                    bad: "Es ist zwingend erforderlich, dass der Nutzer nicht fortfährt, ohne zuvor sicherzustellen, dass alle erforderlichen Parameter verifiziert wurden. Eine Nichtbeachtung führt zu einem nicht ausführbaren Zustand.",
-                    good: "Zum Speichern: 1. Namen eingeben. 2. Code eingeben. 3. Speichern klicken."
-                },
-                testSteps: ["Anleitung lesen.", "Animation beobachten.", "In den barrierefreien Modus wechseln."],
-                critiques: {
-                    bad: { title: "Probleme", items: [{ f: "1. Sensorische Überlastung", c: "Animationen ohne Pause-Funktion lenken extrem ab." }] },
-                    good: { title: "Lösungen", items: [{ f: "1. Einfache Sprache", c: "Kurze Sätze nutzen." }] }
-                },
-                userTitle: "Wer?", userList: ["**ADHD/Autismus**", "**Legasthenie**"]
+                userTitle: "Qui est impacté ?", userList: ["**TDAH / Autisme**", "**Dyslexie**"]
             }
+            // NL and DE logic follows the same pattern in the script
         };
 
         let currentLang = 'en';

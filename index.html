@@ -6,7 +6,7 @@
     <title>Reading Experience - Digital Accessibility Empathy Lab</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- CONSTANT LAB UI STYLES --- */
+        /* --- CONSTANT LAB UI STYLES (MATCHED TO LOW VISION) --- */
         .lab-ui-font { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif !important; }
         .info-panel-container { min-height: 400px !important; display: flex; flex-direction: column; }
         .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
@@ -21,6 +21,7 @@
         /* --- READING BARRIERS (CONTENT AREA) --- */
         .inaccessible-mode .reading-content { font-family: "Times New Roman", Times, serif !important; }
         
+        /* Realistic Distractor: Promo Banner */
         .promo-banner {
             width: 100%; height: 60px;
             background-color: #ef4444; color: white;
@@ -34,6 +35,7 @@
         .inaccessible-mode .promo-banner { animation: flash 1s step-end infinite; }
         @keyframes flash { 50% { background-color: #facc15; color: black; } }
 
+        /* Typographic Barriers */
         .inaccessible-mode #txt-instructions {
             text-align: justify;
             line-height: 0.95 !important;
@@ -140,7 +142,7 @@
     <script>
         const translations = {
             en: {
-                inaccessible: "Inaccessible", accessible: "Accessible", title: "Reading Experience",
+                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Reading Experience",
                 name: { bad: "Name", good: "Full Name" }, code: "Promotional Code", 
                 btn: { bad: "OK", good: "Submit Application" }, promo: "APPLY NOW! 50% OFF PROMO CODE: REDUCE2026",
                 instrTitle: "Instructions", guideTitle: "Step-by-step guide", pause: "Pause", play: "Play",
@@ -159,71 +161,99 @@
                 ],
                 critiques: {
                     bad: { title: "What is wrong?", items: [
-                        { f: "1. Distracting Movement", c: "Constant flashing content interrupts the reading process and makes it difficult for users with ADHD to stay on task." },
-                        { f: "2. Passive & Dense Prose", c: "Long sentences and passive voice increase cognitive load unnecessarily." },
-                        { f: "3. Typographic Barriers", c: "Serif fonts and tight spacing cause 'visual merging' for dyslexic readers." }
+                        { f: "1. Distracting Movement", c: "Constant flashing content (1s interval) interrupts the reading process and makes it difficult for users with ADHD or Autism to stay on task." },
+                        { f: "2. Passive & Dense Prose", c: "Long sentences and passive voice ('contingent upon') increase cognitive load, making it harder to extract key actions." },
+                        { f: "3. Typographic Barriers", c: "Serif fonts and tight spacing cause 'visual merging' for dyslexic readers, requiring more time to decode words." }
                     ]},
                     good: { title: "How to remediate", items: [
                         { f: "1. Control Mechanisms", c: "A 'Pause' button gives users control over distracting movement (WCAG 2.2.2)." },
-                        { f: "2. Plain Language", c: "Bullet points and active voice ensure that users with cognitive disabilities can easily follow the steps." },
-                        { f: "3. Legible Design", c: "Sans-Serif fonts and 1.75 line height help the brain scan text efficiently." }
+                        { f: "2. Plain Language", c: "Use short, active sentences and bullet points to ensure that instructions are understood at any reading level." },
+                        { f: "3. Legible Design", c: "Sans-Serif fonts and 1.75 line height create 'breathable' text that helps with scanning and word recognition." }
                     ]}
                 },
                 userTitle: "Who is impacted?", userList: [
-                    "**ADHD / Autism:** Benefit from reduced visual noise.",
+                    "**ADHD / Autism:** Benefit from reduced visual noise and the ability to stop motion.",
                     "**Dyslexia:** Benefit from clean fonts and generous spacing.",
-                    "**Cognitive Impairment:** Benefit from plain language.",
-                    "**ESL Speakers:** Benefit from simple sentence structures."
+                    "**Cognitive Impairment:** Benefit from plain language and simplified instructions.",
+                    "**Non-Native Speakers:** Benefit from clear terminology and active sentence structures."
                 ]
             },
             fr: {
-                inaccessible: "Inaccessible", accessible: "Accessible", title: "Expérience de Lecture",
+                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Labo d'Empathie Accessibilité", title: "Expérience de Lecture",
                 name: { bad: "Nom", good: "Nom complet" }, code: "Code promotionnel", 
                 btn: { bad: "OK", good: "Soumettre ma demande" }, promo: "POSTULEZ ! -50% CODE : REDUCE2026",
                 instrTitle: "Instructions", guideTitle: "Guide étape par étape", pause: "Pause", play: "Lecture",
-                tabTest: "Comment tester", tabUser: "Impact", tabIssues: "Problèmes", tabRemediations: "Corrections",
+                tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 instr: {
-                    bad: "L'achèvement de ce protocole est subordonné à la fourniture par le postulant de sa nomenclature légale dans le champ d'identité. De plus, il est impératif de saisir l'identifiant promotionnel alphanumérique observé dans la bannière de signalisation primaire. L'absence de cette chaîne entraînera la déchéance de la remise.",
+                    bad: "L'achèvement de ce protocole est subordonné à la fourniture par le postulant de sa nomenclature légale dans le champ d'identité. De plus, il est impératif de saisir l'identifiant promotionnel alphanumérique observé dans la bannière. L'absence de cette chaîne entraînera la déchéance de la remise.",
                     good: "Pour postuler : 1. Entrez votre nom complet. 2. Trouvez le code promo dans la bannière (REDUCE2026). 3. Entrez le code et cliquez sur 'Soumettre ma demande'."
                 },
-                testSteps: ["Lisez le formulaire.", "Zoomez à 200%.", "Observez l'animation.", "Cherchez le code promo.", "Passez en mode accessible."],
+                testSteps: [
+                    "Essayez de lire le formulaire et d'identifier toutes les instructions.",
+                    "Zoomez à 200%.",
+                    "Observez l'animation clignotante.",
+                    "Identifiez le code promo nécessaire.",
+                    "Passez à la version accessible et recommencez."
+                ],
                 critiques: {
-                    bad: { title: "Problèmes", items: [{ f: "1. Animation distrayante", c: "L'absence de bouton pause déconcentre totalement l'utilisateur." }, { f: "2. Langage complexe", c: "L'utilisation de jargon augmente inutilement la charge cognitive." }] },
-                    good: { title: "Corrections", items: [{ f: "1. Bouton Pause", c: "Permettre l'arrêt de l'animation." }, { f: "2. Langage clair", c: "Utilisez des phrases courtes et actives." }] }
+                    bad: { title: "Quel est le problème ?", items: [
+                        { f: "1. Mouvement distrayant", c: "Le clignotement constant sans bouton pause déconcentre totalement les utilisateurs TDAH ou autistes." },
+                        { f: "2. Langage complexe", c: "Les phrases longues et le jargon ('nomenclature') augmentent inutilement la charge cognitive." }
+                    ]},
+                    good: { title: "Comment corriger", items: [
+                        { f: "1. Mécanismes de contrôle", c: "Fournissez toujours un bouton 'Pause' pour les contenus animés (WCAG 2.2.2)." },
+                        { f: "2. Langage clair", c: "Privilégiez les listes à puces et la voix active pour plus de simplicité." }
+                    ]}
                 },
-                userTitle: "Qui est impacté ?", userList: ["**TDAH / Autisme**", "**Dyslexie**", "**Troubles cognitifs**"]
+                userTitle: "Qui est impacté ?", userList: [
+                    "**TDAH / Autisme :** Bénéficient d'un environnement calme sans distractions visuelles.",
+                    "**Dyslexie :** Bénéficient de polices sans-serif et d'un espacement généreux.",
+                    "**Troubles cognitifs :** Le langage simple est crucial pour la réussite de la tâche."
+                ]
             },
             nl: {
-                inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", title: "Leeservaring",
+                inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", labTitle: "Toegankelijkheid Lab", title: "Leeservaring",
                 name: { bad: "Naam", good: "Volledige Naam" }, code: "Promotiecode", 
                 btn: { bad: "OK", good: "Aanvraag Verzenden" }, promo: "NU AANMELDEN! 50% KORTING: REDUCE2026",
                 instrTitle: "Instructies", guideTitle: "Stappenplan", pause: "Pauze", play: "Start",
                 tabTest: "Hoe te testen", tabUser: "Impact", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 instr: {
-                    bad: "De succesvolle afronding van dit protocol is afhankelijk van het verstrekken van de wettelijke nomenclatuur door de aanvrager. Bovendien is het verplicht om de specifieke alfanumerieke promotionele aanduiding in te voeren. Het niet opnemen van deze reeks zal leiden tot het verlies van de korting.",
+                    bad: "De succesvolle afronding van dit protocol is afhankelijk van het verstrekken van de wettelijke nomenclatuur door de aanvrager. Bovendien is het verplicht om de alfanumerieke promotionele aanduiding in te voeren.",
                     good: "Aanmelden: 1. Voer uw volledige naam in. 2. Gebruik de promotiecode uit de banner (REDUCE2026). 3. Klik op 'Aanvraag Verzenden'."
                 },
                 testSteps: ["Lees het formulier.", "Zoom naar 200%.", "Bekijk de animatie.", "Zoek de code.", "Switch naar toegankelijk."],
                 critiques: {
-                    bad: { title: "Wat is er mis?", items: [{ f: "1. Storende beweging", c: "Flitsende inhoud zonder pauzeknop maakt concentratie onmogelijk." }] },
-                    good: { title: "Oplossingen", items: [{ f: "1. Controle", c: "Zorg voor een pauzeknop." }, { f: "2. Helder taalgebruik", c: "Gebruik eenvoudige woorden." }] }
+                    bad: { title: "Wat is er mis?", items: [
+                        { f: "1. Storende beweging", c: "Flitsende inhoud zonder pauzeknop maakt concentratie onmogelijk voor ADHD-gebruikers." },
+                        { f: "2. Complex taalgebruik", c: "Vaktaal en passieve zinnen verhogen de cognitieve belasting." }
+                    ]},
+                    good: { title: "Oplossingen", items: [
+                        { f: "1. Controlemechanisme", c: "Zorg voor een pauzeknop (WCAG 2.2.2)." },
+                        { f: "2. Helder taalgebruik", c: "Gebruik korte zinnen en vermijd jargon." }
+                    ]}
                 },
-                userTitle: "Wie?", userList: ["**ADHD / Autisme**", "**Dyslexie**", "**Cognitieve beperking**"]
+                userTitle: "Wie heeft hier last van?", userList: ["**ADHD / Autisme**", "**Dyslexie**", "**Cognitieve beperking**"]
             },
             de: {
-                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", title: "Leseerfahrung",
+                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Empathie-Labor", title: "Leseerfahrung",
                 name: { bad: "Name", good: "Vollständiger Name" }, code: "Aktionscode", 
                 btn: { bad: "OK", good: "Antrag Absenden" }, promo: "JETZT BEWERBEN! 50% RABATT: REDUCE2026",
                 instrTitle: "Anleitung", guideTitle: "Anleitung", pause: "Pause", play: "Start",
                 tabTest: "Anleitung", tabUser: "Betroffene", tabIssues: "Probleme", tabRemediations: "Lösungen",
                 instr: {
-                    bad: "Der erfolgreiche Abschluss dieses Protokolls ist davon abhängig, dass der Bewerber seine rechtliche Nomenklatur angibt. Des Weiteren ist es zwingend erforderlich, das spezifische alphanumerische Aktionskennzeichen einzugeben. Das Fehlen dieser Zeichenfolge führt zum Verfall des Rabatts.",
-                    good: "Bewerben: 1. Geben Sie Ihren vollständigen Namen ein. 2. Suchen Sie den Aktionscode im Banner (REDUCE2026). 3. Klicken Sie auf 'Antrag Absenden'."
+                    bad: "Der erfolgreiche Abschluss dieses Protokolls ist davon abhängig, dass der Bewerber seine rechtliche Nomenklatur angibt. Des Weiteren ist es zwingend erforderlich, das Aktionskennzeichen einzugeben.",
+                    good: "Bewerben: 1. Namen eingeben. 2. Aktionscode eingeben (REDUCE2026). 3. Auf 'Antrag Absenden' klicken."
                 },
                 testSteps: ["Anleitung lesen.", "Zoom 200%.", "Animation prüfen.", "Aktionscode finden.", "Zu Barrierefrei wechseln."],
                 critiques: {
-                    bad: { title: "Probleme", items: [{ f: "1. Ablenkung", c: "Blinkende Inhalte ohne Pause-Funktion stören den Lesefluss extrem." }] },
-                    good: { title: "Lösungen", items: [{ f: "1. Pause-Button", c: "Geben Sie dem Nutzer Kontrolle über Animationen." }] }
+                    bad: { title: "Probleme", items: [
+                        { f: "1. Ablenkung", c: "Blinkende Inhalte ohne Pause-Funktion stören den Lesefluss von Menschen mit ADHS extrem." },
+                        { f: "2. Komplexe Sprache", c: "Passive Sätze und Fachbegriffe erschweren das Verständnis der Aufgabe." }
+                    ]},
+                    good: { title: "Lösungen", items: [
+                        { f: "1. Pause-Button", c: "Geben Sie dem Nutzer Kontrolle über Animationen (WCAG 2.2.2)." },
+                        { f: "2. Einfache Sprache", c: "Nutzen Sie klare Anweisungen und vermeiden Sie Fachjargon." }
+                    ]}
                 },
                 userTitle: "Wer?", userList: ["**ADHD / Autismus**", "**Legasthenie**", "**Kognitive Beeinträchtigung**"]
             }

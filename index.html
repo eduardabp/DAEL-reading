@@ -105,7 +105,7 @@
 
                     <div class="space-y-4">
                         <div>
-                            <label id="txt-label-name" class="cog-label text-xs block mb-1">Full Name</label>
+                            <label id="txt-label-name" class="cog-label text-xs block mb-1">Name</label>
                             <input type="text" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm lab-ui-font">
                         </div>
 
@@ -145,7 +145,7 @@
     <script>
         const translations = {
             en: {
-                inaccessible: "Inaccessible", accessible: "Accessible", title: "Reading Experience",
+                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Reading Experience",
                 name: { bad: "Name", good: "Full Name" }, code: "Promotional Code", btn: { bad: "OK", good: "Submit Application" }, promo: "APPLY NOW! 50% OFF PROMO CODE: REDUCE2026",
                 instrTitle: "Instructions", guideTitle: "Step-by-step guide", pause: "Pause", play: "Play",
                 tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "How to remediate",
@@ -187,7 +187,7 @@
                 tabTest: "Comment tester", tabUser: "Impact", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 instr: {
                     bad: "L'achèvement de ce protocole est subordonné à la fourniture par le postulant de sa nomenclature légale dans le champ d'identité. De plus, il est impératif de saisir l'identifiant promotionnel alphanumérique observé dans la bannière. L'absence de cette chaîne entraînera la déchéance de la remise de 50%. Cette offre est non remboursable et nécessite une synchronisation.",
-                    good: "Pour obtenir votre remise de 50% (non remboursable) : 1. Saisissez votre Nom complet tel qu'il figure sur votre pièce d'identité. 2. Saisissez le code promo (REDUCE2026) dans le champ Code promotionnel et activez 'Soumettre ma demande'."
+                    good: "Pour obtenir votre remise de 50% (non remboursable) : 1. Saisissez votre Nom complet tel qu'il figure sur votre pièce d'identité. 2. Saisissez le code promo (REDUCE2026) dans le champ Code promotionnel et sélectionnez 'Soumettre ma demande'."
                 },
                 testSteps: ["Lisez le formulaire.", "Zoomez à 200%.", "Observez l'animation.", "Cherchez le code promo.", "Passez en mode accessible."],
                 critiques: {
@@ -203,7 +203,7 @@
                 tabTest: "Hoe te testen", tabUser: "Impact", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 instr: {
                     bad: "De succesvolle afronding van dit protocol is afhankelijk van het verstrekken van de wettelijke nomenclatuur door de aanvrager. Bovendien is het verplicht om de alfanumerieke promotionele aanduiding in te voeren. Het niet opnemen van deze reeks zal leiden tot het verlies van de 50% korting.",
-                    good: "Voor 50% korting: 1. Vul uw Volledige Naam in zoals deze op uw ID staat. 2. Voer de kortingscode (REDUCE2026) in bij het veld Promotiecode en activeer 'Aanvraag Verzenden'."
+                    good: "Voor 50% korting: 1. Vul uw Volledige Naam in zoals deze op uw ID staat. 2. Voer de kortingscode (REDUCE2026) in bij het veld Promotiecode en selecteer 'Aanvraag Verzenden'."
                 },
                 testSteps: ["Lees het formulier.", "Zoom naar 200%.", "Schakel over naar toegankelijk."],
                 critiques: {
@@ -218,10 +218,10 @@
                 instrTitle: "Anleitung", guideTitle: "Anleitung", pause: "Pause", play: "Start",
                 tabTest: "Anleitung", tabUser: "Betroffene", tabIssues: "Probleme", tabRemediations: "Lösungen",
                 instr: {
-                    bad: "Der erfolgreiche Abschluss dieses Protokolls ist davon abhängig, dass der Bewerber seine rechtliche Nomenklatur angibt. Des Weiteren ist es zwingend erforderlich, das alphanumerische Aktionskennzeichen einzugeben. Das Fehlen führt zum Verfall des Rabatts von 50%.",
+                    bad: "Der Bewerbungsprozess setzt voraus, dass Nutzer die korrekte alphanumerische Zeichenfolge vor der Bestätigung identifizieren.",
                     good: "Für 50% Rabatt: 1. Geben Sie Ihren vollständigen Namen ein, wie er auf Ihrem Ausweis steht. 2. Geben Sie den Aktionscode (REDUCE2026) im Feld Aktionscode ein und wählen Sie 'Antrag Absenden'."
                 },
-                testSteps: ["Anleitung lesen.", "Zoom 200%.", "Animation prüfen.", "Aktionscode finden.", "Zu Barrierefrei wechseln."],
+                testSteps: ["Anleitung lesen.", "Zoom 200%.", "In den barrierefreien Modus wechseln."],
                 critiques: {
                     bad: { title: "Probleme", items: [{ f: "Ablenkung", c: "Kein Pause-Button für Animationen." }] },
                     good: { title: "Lösungen", items: [{ f: "Einfache Sprache", c: "Klare Anweisungen." }] }
@@ -264,10 +264,6 @@
             document.getElementById('txt-guide-title').innerText = t.guideTitle;
             document.getElementById('txt-test-steps').innerHTML = t.testSteps.map(s => `<li>${s}</li>`).join('');
             document.getElementById('pauseBtn').innerText = isPlaying ? t.pause : t.play;
-
-            document.getElementById('tab-test').innerText = t.tabTest;
-            document.getElementById('tab-user').innerText = t.tabUser;
-            document.getElementById('tab-feedback').innerText = isAcc ? t.tabRemediations : t.tabIssues;
             
             document.getElementById('txt-user-content').innerHTML = `
                 <h3 class="text-blue-400 font-bold uppercase mb-4 text-xs">${t.userTitle}</h3>

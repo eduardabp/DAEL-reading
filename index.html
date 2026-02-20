@@ -34,17 +34,16 @@
             text-align: justify;
             line-height: 0.95 !important;
             letter-spacing: -0.04em !important;
-            font-size: 13px;
+            font-size: 14px;
             display: block;
         }
+        .inaccessible-mode .cog-label { font-size: 12px !important; text-transform: uppercase !important; font-weight: 900 !important; }
 
         /* --- ACCESSIBLE MODE --- */
         .accessible-mode .reading-content { font-family: ui-sans-serif, system-ui, sans-serif !important; }
         .accessible-mode .promo-banner { background-color: #1e40af; animation: none; margin-bottom: 24px; }
         .accessible-mode #txt-instructions { text-align: left; line-height: 1.8; font-size: 14px; }
-        
-        /* Bold accessible labels */
-        .accessible-mode .cog-label { font-weight: 700 !important; font-size: 14px !important; }
+        .accessible-mode .cog-label { font-size: 14px !important; text-transform: none !important; font-weight: 600; letter-spacing: 0.01em; }
 
         .carousel-btn {
             display: flex; align-items: center; justify-content: center;
@@ -92,7 +91,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
                 <div class="lg:col-span-2 reading-content flex flex-col form-gap" id="exercise-column">
                     <div id="form-container" class="contents">
-                        <div id="banner-host" class="promo-banner rounded-lg h-[60px] flex items-center justify-center"></div>
+                        <div id="banner-container" class="promo-banner rounded-lg h-[60px] flex items-center justify-center"></div>
                         
                         <div id="vague-error" class="hidden bg-red-100 text-red-700 p-3 rounded-lg text-sm font-bold mt-4" role="alert">Fail to submit form</div>
                         
@@ -153,7 +152,7 @@
                 inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Reading and Understanding Experience",
                 name: { bad: "IDENTIFIER", good: "Full Name (required)" }, code: { bad: "CODE", good: "Promotional Code" }, 
                 btn: { bad: "OK", good: "Submit Application" }, promoPrefix: "APPLY NOW! 50% OFF PROMO CODE:",
-                namePlaceholder: "Type your identifier", codePlaceholder: "S5bd1L",
+                namePlaceholder: "Type your identifier", codePlaceholder: "SZ1ILOQ",
                 instrTitle: "Instructions", guideTitle: "Step-by-step guide", prevAria: "Previous slide", nextAria: "Next slide",
                 indicator: "Step {x} of {total}", tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "Remediations",
                 successMsg: "Your request was successfully submitted", failMsg: "Fail to submit form", errReqName: "Full Name is required",
@@ -202,7 +201,7 @@
                 inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Laboratoire d'empathie sur l'accessibilité numérique", title: "Expérience de lecture et compréhension",
                 name: { bad: "IDENTIFIANT", good: "Nom complet (requis)" }, code: { bad: "CODE", good: "Code promotionnel" }, 
                 btn: { bad: "OK", good: "Soumettre ma demande" }, promoPrefix: "POSTULEZ ! -50% CODE :",
-                namePlaceholder: "Saisissez votre identifiant", codePlaceholder: "S5bd1L",
+                namePlaceholder: "Saisissez votre identifiant", codePlaceholder: "SZ1ILOQ",
                 instrTitle: "Instructions", guideTitle: "Guide étape par étape", prevAria: "Diapositive précédente", nextAria: "Diapositive suivante",
                 indicator: "Étape {x} sur {total}", tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 successMsg: "Votre demande a été soumise avec succès", failMsg: "Échec de l'envoi du formulaire", errReqName: "Le nom complet est requis",
@@ -218,7 +217,13 @@
                     "Étape 3 : Cliquez sur le lien dans cet e-mail pour confirmer vos coordonnées et activer votre remise.",
                     "Étape 4 : Vous avez 15 jours pour retourner le produit si vous n'êtes pas satisfait."
                 ],
-                testSteps: ["Lisez le bloc 'Instructions' et identifiez les informations requises.", "Cherchez le code promotionnel dans la bannière.", "Essayez de remplir le formulaire sans saisir de données pour voir la gestion des erreurs.", "Remplissez le formulaire en utilisant les informations trouvées.", "Passez à la version accessible et comparez la clarté."],
+                testSteps: [
+                    "Read the 'Instructions' block and identify the required pieces of information.",
+                    "Look for the promotional code in the banner.",
+                    "Try to complete the form without entering any data to see how the system handles errors.",
+                    "Complete the form using the found information.",
+                    "Switch to the accessible version and compare clarity."
+                ],
                 critiques: {
                     bad: { title: "Quel est le problème ?", items: [
                         { f: "Contenu en mouvement", c: "La bannière défilante et clignotante ainsi que les instructions automatiques créent une distraction qui empêche de se concentrer sur la lecture." },
@@ -245,14 +250,14 @@
                 inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", labTitle: "Digital Accessibility Empathy Lab", title: "Ervaring in lezen en begrijpen",
                 name: { bad: "IDENTIFICATIE", good: "Volledige Naam (verplicht)" }, code: { bad: "CODE", good: "Promotiecode" }, 
                 btn: { bad: "OK", good: "Aanvraag Verzenden" }, promoPrefix: "NU AANMELDEN! 50% KORTING:",
-                namePlaceholder: "Typ uw identificatie", codePlaceholder: "S5bd1L",
-                instrTitle: "Instructions", guideTitle: "Stappenplan", prevAria: "Vorige dia", nextAria: "Volgende dia",
+                namePlaceholder: "Typ uw identificatie", codePlaceholder: "SZ1ILOQ",
+                instrTitle: "Instructies", guideTitle: "Stappenplan", prevAria: "Vorige dia", nextAria: "Volgende dia",
                 indicator: "Stap {x} van {total}", tabTest: "Hoe te testen", tabUser: "Impact op gebruikers", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 successMsg: "Uw aanvraag is succesvol verzonden", failMsg: "Formulier verzenden mislukt", errReqName: "Volledige naam is verplicht",
                 instrSlidesInacc: [
                     "Stap 1: Het is een dwingende vereiste dat de gebruiker de interactie faciliteert door nauwgezet de alfanumerieke velden in te vullen met de specifieke reeks in de bewegende banner.",
                     "Stap 2: Na de eerste verzending zal een geautomatiseerd verificatieprotocol een tweede bericht sturen naar uw e-mailadres om de integriteit van de verstrekte gegevens te valideren.",
-                    "Stap 3: Om het proces te voltooie is de gebruiker verplicht de ontvangst van het verificatiebericht formeel te bevestigen om het voordeel in de database te activeren.",
+                    "Stap 3: Om het proces te voltooien is de gebruiker verplicht de ontvangst van het verificatiebericht formeel te bevestigen om het voordeel in de database te activeren.",
                     "Stap 4: In geval van ontevredenheid wordt een termijn van precies vijftien dagen verleend voor het retourneren van goederen, mits alle bewijsstukken aanwezig zijn."
                 ],
                 instrSlidesAcc: [
@@ -261,7 +266,13 @@
                     "Stap 3: Klik op de link in die e-mail om je gegevens te bevestigen en je korting te activeren.",
                     "Stap 4: Je hebt 15 dagen de tijd om het product te retourneren als je niet tevreden bent."
                 ],
-                testSteps: ["Lees het blok 'Instructies' en identificeer de vereiste informatie.", "Zoek naar de promotiecode in de banner.", "Probeer het formulier in te dienen zonder gegevens om te zien hoe het systeem omgaat met fouten.", "Vul het formulier in met de gevonden informatie.", "Schakel over naar de toegankelijke versie en vergelijk de duidelijkheid."],
+                testSteps: [
+                    "Read the 'Instructions' block and identify the required pieces of information.",
+                    "Look for the promotional code in the banner.",
+                    "Try to complete the form without entering any data to see how the system handles errors.",
+                    "Complete the form using the found information.",
+                    "Switch to the accessible version and compare clarity."
+                ],
                 critiques: {
                     bad: { title: "Wat is er mis?", items: [
                         { f: "Bewegende inhoud", c: "De knipperende, scrollende banner en automatisch verschuivende instructies leiden af, waardoor het moeilijk is om te focussen op het lezen." },
@@ -278,17 +289,17 @@
                     ]}
                 },
                 userTitle: "Wie wordt beïnvloed?", userList: [
-                    "**ADHD / Autisme :** Bewegende delen en willekeurig vetgedrukte tekst werken als grote afleiders, waardoor het erg moeilijk is om bij de les te blijven.",
-                    "**Dyslexie :** Krappe spatiëring en lettertypen waarbij letters op elkaar lijken, vormen ernstige barrières voor deze gebruikers.",
-                    "**Doven :** Mensen die gebarentaal als eerste taal gebruiken, kunnen een andere woordenschat hebben in geschreven tekst, waardoor complexe instructies lastiger zijn.",
-                    "**Cognitieve beperking :** Snelle carrousels en vage labels zorgen voor frustratie wanneer mensen de informatie niet op tijd kunnen verwerken."
+                    "**ADHD / Autisme:** Bewegende delen en willekeurig vetgedrukte tekst werken als grote afleiders, waardoor het erg moeilijk is om bij de les te blijven.",
+                    "**Dyslexie:** Krappe spatiëring en lettertypen waarbij letters op elkaar lijken, vormen ernstige barrières voor deze gebruikers.",
+                    "**Doven:** Mensen die gebarentaal als eerste taal gebruiken, kunnen een andere woordenschat hebben in geschreven tekst, waardoor complexe instructies lastiger zijn.",
+                    "**Cognitieve beperking:** Snelle carrousels en vage labels zorgen voor frustratie wanneer mensen de informatie niet op tijd kunnen verwerken."
                 ]
             },
             de: {
-                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Digitales Barrierefreiheits-Empathie-Labor", title: "Leseerfahrung",
+                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Digitales Barrierefreiheits-Empathie-Labor", title: "Lese- und Verständnis-Erfahrung",
                 name: { bad: "IDENTIFIKATOR", good: "Vollständiger Name (erforderlich)" }, code: { bad: "CODE", good: "Aktionscode" }, 
                 btn: { bad: "OK", good: "Antrag Absenden" }, promoPrefix: "JETZT BEWERBEN! 50% RABATT:",
-                namePlaceholder: "Geben Sie Ihren Identifikator ein", codePlaceholder: "S5bd1L",
+                namePlaceholder: "Geben Sie Ihren Identifikator ein", codePlaceholder: "SZ1ILOQ",
                 instrTitle: "Anleitung", guideTitle: "Schritt-für-Schritt-Anleitung", prevAria: "Vorherige Folie", nextAria: "Nächste Folie",
                 indicator: "Schritt {x} von {total}", tabTest: "Wie man testet", tabUser: "Betroffene Nutzer", tabIssues: "Probleme", tabRemediations: "Lösungen",
                 successMsg: "Ihr Antrag wurde erfolgreich übermittelt", failMsg: "Senden fehlgeschlagen", errReqName: "Vollständiger Name ist erforderlich",
@@ -304,7 +315,13 @@
                     "Schritt 3: Klicken Sie auf den Link in dieser E-Mail, um Ihre Daten zu bestätigen und den Rabatt zu aktivieren.",
                     "Schritt 4: Sie haben 15 Tage Zeit, das Produkt zurückzugeben, wenn Sie mit Ihrem Kauf nicht zufrieden sind."
                 ],
-                testSteps: ["Anleitung lesen.", "Code suchen.", "Fehler prüfen.", "Ausfüllen.", "Modus wechseln."],
+                testSteps: [
+                    "Read the 'Instructions' block and identify the required pieces of information.",
+                    "Look for the promotional code in the banner.",
+                    "Try to complete the form without entering any data to see how the system handles errors.",
+                    "Complete the form using the found information.",
+                    "Switch to the accessible version and compare clarity."
+                ],
                 critiques: {
                     bad: { title: "Was ist falsch?", items: [
                         { f: "Bewegte Inhalte", c: "Der blinkende, scrollende Banner und automatisch wechselnde Anleitungen lenken ab und erschweren die Konzentration auf den Text." },
@@ -321,10 +338,10 @@
                     ]}
                 },
                 userTitle: "Wer ist betroffen?", userList: [
-                    "**ADHS / Autismus :** Bewegliche Teile und unnötige Fettschrift stören die Konzentration massiv und erschweren das Dranbleiben an der Aufgabe.",
-                    "**Legasthenie :** Enge Abstände und Schriftarten, die ähnliche Buchstaben identisch aussehen lassen, schaffen schwere Barrieren.",
-                    "**Gehörlose Menschen :** Bei Menschen, die Gebärdensprache als Primärsprache nutzen, kann das Verständnis komplexer schriftsprachlicher Anweisungen mehr Zeit erfordern.",
-                    "**Kognitive Einschränkung :** Schnelle Karussells und vage Begriffe führen zu Frustration, wenn Informationen nicht rechtzeitig verarbeitet werden können."
+                    "**ADHS / Autismus:** Bewegliche Teile und unnötige Fettschrift stören die Konzentration massiv und erschweren das Dranbleiben an der Aufgabe.",
+                    "**Legasthenie:** Enge Abstände und Schriftarten, die ähnliche Buchstaben identisch aussehen lassen, schaffen schwere Barrieren.",
+                    "**Gehörlose Menschen:** Bei Menschen, die Gebärdensprache als Primärsprache nutzen, kann das Verständnis komplexer schriftsprachlicher Anweisungen mehr Zeit erfordern.",
+                    "**Kognitive Einschränkung:** Schnelle Karussells und vage Begriffe führen zu Frustration, wenn Informationen nicht rechtzeitig verarbeitet werden können."
                 ]
             }
         };
@@ -350,7 +367,6 @@
                 indicator.innerText = t.indicator.replace('{x}', currentSlide + 1).replace('{total}', slides.length);
                 indicator.classList.remove('hidden');
             }
-            
             display.innerHTML = content;
         }
 
@@ -370,38 +386,32 @@
             updateCarousel();
         }
 
-        function createProtectedBanner(text, isMoving) {
-            const host = document.getElementById('banner-host');
-            host.innerHTML = '';
-            const shadow = host.attachShadow({mode: 'closed'});
+        function setBanner(isAcc) {
+            const container = document.getElementById('banner-container');
+            const t = translations[currentLang];
+            // Clear existing Shadow DOM or content
+            container.innerHTML = '';
             
-            const style = document.createElement('style');
-            style.textContent = `
-                .content {
-                    font-family: serif;
-                    font-style: italic;
-                    font-weight: 900;
-                    color: white;
-                    white-space: nowrap;
-                    font-size: 1.2rem;
-                    letter-spacing: -0.05em !important;
-                    word-spacing: -0.1em !important;
-                }
-                ${isMoving ? `
-                .moving {
-                    display: inline-block;
-                    animation: slide 4s linear infinite;
-                }
-                @keyframes slide { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-                ` : ''}
-            `;
-            
-            const wrapper = document.createElement('div');
-            wrapper.className = isMoving ? 'content moving' : 'content';
-            wrapper.textContent = text;
-            
-            shadow.appendChild(style);
-            shadow.appendChild(wrapper);
+            if (!isAcc) {
+                const shadow = container.attachShadow({mode: 'closed'});
+                const style = document.createElement('style');
+                style.textContent = `
+                    .content {
+                        font-family: serif; font-style: italic; font-weight: 900;
+                        color: white; white-space: nowrap; font-size: 1.1rem;
+                        letter-spacing: -0.05em !important; word-spacing: -0.1em !important;
+                        display: inline-block; animation: slide 4s linear infinite;
+                    }
+                    @keyframes slide { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+                `;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'content';
+                wrapper.textContent = `${t.promoPrefix} S5bd1L`;
+                shadow.appendChild(style);
+                shadow.appendChild(wrapper);
+            } else {
+                container.innerHTML = `<div class="text-white font-bold text-lg uppercase tracking-tight">${t.promoPrefix} REDUCE2026</div>`;
+            }
         }
 
         function setLanguage(lang) {
@@ -427,13 +437,8 @@
 
             const inpName = document.getElementById('inp-name');
             const inpCode = document.getElementById('inp-code');
-            if (!isAcc) {
-                inpName.placeholder = t.namePlaceholder;
-                inpCode.placeholder = t.codePlaceholder;
-            } else {
-                inpName.placeholder = "";
-                inpCode.placeholder = "";
-            }
+            inpName.placeholder = !isAcc ? t.namePlaceholder : "";
+            inpCode.placeholder = !isAcc ? t.codePlaceholder : "";
 
             document.getElementById('txt-user-content').innerHTML = `
                 <h3 class="text-blue-400 font-bold uppercase mb-4 text-xs">${t.userTitle}</h3>
@@ -477,25 +482,23 @@
         }
 
         function handleModeToggle() {
-            if (!document.getElementById('form-container')) location.reload();
             setLanguage(currentLang);
         }
 
         function updateMode() {
             const isAcc = document.getElementById('modeToggle').checked;
-            const host = document.getElementById('banner-host');
             const t = translations[currentLang] || translations['en'];
             const crit = isAcc ? t.critiques.good : t.critiques.bad;
             
             clearInterval(carouselInterval);
             if (!isAcc) {
-                createProtectedBanner(`${t.promoPrefix} S5bd1L`, true);
-                carouselInterval = setInterval(nextSlide, 2000);
+                carouselInterval = setInterval(nextSlide, 4000);
                 document.getElementById('carousel-controls').classList.add('hidden');
             } else {
-                host.innerHTML = `<div class="text-white font-bold text-lg uppercase tracking-tight">${t.promoPrefix} REDUCE2026</div>`;
                 document.getElementById('carousel-controls').classList.remove('hidden');
             }
+
+            setBanner(isAcc);
 
             document.getElementById('bodyTag').className = isAcc ? "bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font accessible-mode" : "bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font inaccessible-mode";
             document.getElementById('txt-feedback-title').innerText = crit.title;

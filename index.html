@@ -30,19 +30,25 @@
         .inaccessible-mode .promo-banner { animation: flash 1s step-end infinite; margin-bottom: 24px; }
         @keyframes flash { 50% { background-color: #facc15; } }
 
+        /* Small Inaccessible Instruction box */
         .inaccessible-mode #txt-instructions {
             text-align: justify;
             line-height: 0.95 !important;
             letter-spacing: -0.04em !important;
             font-size: 14px;
-            display: block;
+        }
+        .inaccessible-mode #txt-instr-title { 
+            font-size: 14px !important; 
+            margin-bottom: 0px !important; 
+            text-transform: none !important; 
+            font-weight: normal !important;
         }
         .inaccessible-mode .cog-label { font-size: 12px !important; text-transform: uppercase !important; font-weight: 900 !important; }
 
         /* --- ACCESSIBLE MODE --- */
         .accessible-mode .reading-content { font-family: ui-sans-serif, system-ui, sans-serif !important; }
         .accessible-mode .promo-banner { background-color: #1e40af; animation: none; margin-bottom: 24px; }
-        .accessible-mode #txt-instructions { text-align: left; line-height: 1.8; font-size: 14px; }
+        .accessible-mode #txt-instructions { text-align: left; line-height: 1.6; font-size: 14px; }
         .accessible-mode .cog-label { font-size: 14px !important; text-transform: none !important; font-weight: 600; letter-spacing: 0.01em; }
 
         .carousel-btn {
@@ -91,20 +97,22 @@
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
                 <div class="lg:col-span-2 reading-content flex flex-col form-gap" id="exercise-column">
                     <div id="form-container" class="contents">
-                        <div id="banner-container" class="promo-banner rounded-lg h-[60px] flex items-center justify-center"></div>
+                        <div id="banner-host" class="promo-banner rounded-lg h-[60px] flex items-center justify-center"></div>
                         
                         <div id="vague-error" class="hidden bg-red-100 text-red-700 p-3 rounded-lg text-sm font-bold mt-4" role="alert">Fail to submit form</div>
                         
-                        <div class="bg-blue-50 p-5 rounded-xl border border-blue-100 mt-4">
-                            <div class="flex justify-between items-center mb-3">
-                                <h2 id="txt-instr-title" class="font-bold uppercase text-lg text-blue-900 lab-ui-font">Instructions</h2>
-                                <div id="carousel-controls" class="flex gap-2 hidden">
-                                    <button onclick="prevSlide()" class="carousel-btn" id="btn-prev">❮</button>
-                                    <button onclick="nextSlide()" class="carousel-btn" id="btn-next">❯</button>
+                        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 mt-4 h-[180px] flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <h2 id="txt-instr-title" class="lab-ui-font">Instructions</h2>
+                                    <div id="carousel-controls" class="flex gap-2 hidden">
+                                        <button onclick="prevSlide()" class="carousel-btn" id="btn-prev">❮</button>
+                                        <button onclick="nextSlide()" class="carousel-btn" id="btn-next">❯</button>
+                                    </div>
                                 </div>
+                                <div id="txt-instructions"></div>
                             </div>
-                            <div id="txt-instructions" class="min-h-[140px]"></div>
-                            <div id="slide-indicator" class="text-[11px] font-bold text-[#1e40af] mt-2 hidden"></div>
+                            <div id="slide-indicator" class="text-[11px] font-bold text-[#1e40af] hidden"></div>
                         </div>
 
                         <div class="space-y-4 mt-6">
@@ -157,10 +165,10 @@
                 indicator: "Step {x} of {total}", tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "Remediations",
                 successMsg: "Your request was successfully submitted", failMsg: "Fail to submit form", errReqName: "Full Name is required",
                 instrSlidesInacc: [
-                    "Step 1: It is a mandatory requirement that the user facilitates the interaction by meticulously populating the alphanumeric fields with the specific key string visible in the oscillating promotional header.",
-                    "Step 2: Upon successful initial transmission, an automated verification protocol will trigger a secondary correspondence to your registered electronic mail for the purpose of validating the integrity of the data provided.",
-                    "Step 3: To finalize the process, the user is obliged to formally acknowledge the reception of the aforementioned validation notice, ensuring the synchronization of the benefit to the internal database.",
-                    "Step 4: In the event of dissatisfaction, a window of exactly fifteen days is granted for the return of goods, provided that all evidentiary documentation is presented in accordance with our extensive policy."
+                    "It is a mandatory requirement that the user facilitates the interaction by meticulously populating the alphanumeric fields with the specific key string visible in the oscillating promotional header.",
+                    "Upon successful initial transmission, an automated verification protocol will trigger a secondary correspondence to your registered electronic mail for the purpose of validating the integrity of the data provided.",
+                    "To finalize the process, the user is obliged to formally acknowledge the reception of the aforementioned validation notice, ensuring the synchronization of the benefit to the internal database.",
+                    "In the event of dissatisfaction, a window of exactly fifteen days is granted for the return of goods, provided that all evidentiary documentation is presented in accordance with our extensive policy."
                 ],
                 instrSlidesAcc: [
                     "Step 1: Fill in the form using the promo code shown in the banner above.",
@@ -206,16 +214,16 @@
                 indicator: "Étape {x} sur {total}", tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 successMsg: "Votre demande a été soumise avec succès", failMsg: "Échec de l'envoi du formulaire", errReqName: "Le nom complet est requis",
                 instrSlidesInacc: [
-                    "Étape 1 : Il est impératif que l'utilisateur facilite l'interaction en saisissant méticuleusement les séquences alphanumériques visibles dans l'en-tête promotionnel oscillant.",
-                    "Étape 2 : Après la transmission initiale, un protocole de vérification déclenchera une correspondance secondaire vers votre courrier électronique pour valider l'intégrité des données.",
-                    "Étape 3 : L'utilisateur est obligé d'accuser formellement réception de ladite notice de validation pour assurer la synchronisation de l'avantage dans la base de données.",
-                    "Étape 4 : En cas d'insatisfaction, un délai de quinze jours est accordé pour le retour des marchandises, sous réserve de présentation de toute la documentation requise."
+                    "Il est impératif que l'utilisateur facilite l'interaction en saisissant méticuleusement les séquences alphanumériques visibles dans l'en-tête promotionnel oscillant.",
+                    "Après la transmission initiale, un protocole de vérification déclenchera une correspondance secondaire vers votre courrier électronique pour valider l'intégrité des données fournies.",
+                    "L'utilisateur est obligé d'accuser formellement réception de ladite notice de validation pour assurer la synchronisation de l'avantage dans la base de données interne.",
+                    "En cas d'insatisfaction, un délai de quinze jours est accordé pour le retour des marchandises, sous réserve de présentation de toute la documentation requise."
                 ],
                 instrSlidesAcc: [
                     "Étape 1 : Remplissez le formulaire avec le code promo affiché dans la bannière ci-dessus.",
                     "Étape 2 : Un e-mail de confirmation vous sera envoyé automatiquement.",
                     "Étape 3 : Cliquez sur le lien dans cet e-mail pour confirmer vos coordonnées et activer votre remise.",
-                    "Étape 4 : Vous avez 15 jours pour retourner le produit si vous n'êtes pas satisfait."
+                    "Étape 4 : Vous avez 15 jours pour retourner le produit si vous n'êtes pas satisfait de votre achat."
                 ],
                 testSteps: [
                     "Read the 'Instructions' block and identify the required pieces of information.",
@@ -255,16 +263,16 @@
                 indicator: "Stap {x} van {total}", tabTest: "Hoe te testen", tabUser: "Impact op gebruikers", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 successMsg: "Uw aanvraag is succesvol verzonden", failMsg: "Formulier verzenden mislukt", errReqName: "Volledige naam is verplicht",
                 instrSlidesInacc: [
-                    "Stap 1: Het is een dwingende vereiste dat de gebruiker de interactie faciliteert door nauwgezet de alfanumerieke velden in te vullen met de specifieke reeks in de bewegende banner.",
-                    "Stap 2: Na de eerste verzending zal een geautomatiseerd verificatieprotocol een tweede bericht sturen naar uw e-mailadres om de integriteit van de verstrekte gegevens te valideren.",
-                    "Stap 3: Om het proces te voltooien is de gebruiker verplicht de ontvangst van het verificatiebericht formeel te bevestigen om het voordeel in de database te activeren.",
-                    "Stap 4: In geval van ontevredenheid wordt een termijn van precies vijftien dagen verleend voor het retourneren van goederen, mits alle bewijsstukken aanwezig zijn."
+                    "Het is een dwingende vereiste dat de gebruiker de interactie faciliteert door nauwgezet de alfanumerieke velden in te vullen met de specifieke reeks in de bewegende banner.",
+                    "Na de eerste verzending zal een geautomatiseerd verificatieprotocol een tweede bericht sturen naar uw geregistreerde e-mailadres om de integriteit van de verstrekte gegevens te valideren.",
+                    "Om het proces te voltooien is de gebruiker verplicht de ontvangst van het verificatiebericht formeel te bevestigen om het voordeel in de interne database te activeren.",
+                    "In geval van ontevredenheid wordt een termijn van precies vijftien dagen verleend voor het retourneren van goederen, mits alle bewijsstukken aanwezig zijn conform onze regels."
                 ],
                 instrSlidesAcc: [
                     "Stap 1: Vul het formulier in met de promotiecode die in de banner hierboven staat.",
                     "Stap 2: Je ontvangt automatisch een bevestigingsmail van ons.",
                     "Stap 3: Klik op de link in die e-mail om je gegevens te bevestigen en je korting te activeren.",
-                    "Stap 4: Je hebt 15 dagen de tijd om het product te retourneren als je niet tevreden bent."
+                    "Stap 4: Je hebt 15 dagen de tijd om het product te retourneren als je niet tevreden bent met je aankoop."
                 ],
                 testSteps: [
                     "Read the 'Instructions' block and identify the required pieces of information.",
@@ -289,10 +297,10 @@
                     ]}
                 },
                 userTitle: "Wie wordt beïnvloed?", userList: [
-                    "**ADHD / Autisme:** Bewegende delen en willekeurig vetgedrukte tekst werken als grote afleiders, waardoor het erg moeilijk is om bij de les te blijven.",
-                    "**Dyslexie:** Krappe spatiëring en lettertypen waarbij letters op elkaar lijken, vormen ernstige barrières voor deze gebruikers.",
-                    "**Doven:** Mensen die gebarentaal als eerste taal gebruiken, kunnen een andere woordenschat hebben in geschreven tekst, waardoor complexe instructies lastiger zijn.",
-                    "**Cognitieve beperking:** Snelle carrousels en vage labels zorgen voor frustratie wanneer mensen de informatie niet op tijd kunnen verwerken."
+                    "**ADHD / Autisme :** Bewegende delen en willekeurig vetgedrukte tekst werken als grote afleiders, waardoor het erg moeilijk is om bij de les te blijven.",
+                    "**Dyslexie :** Krappe spatiëring en lettertypen waarbij letters op elkaar lijken, vormen ernstige barrières voor deze gebruikers.",
+                    "**Doven :** Mensen die gebarentaal als eerste taal gebruiken, kunnen een andere woordenschat hebben in geschreven tekst, waardoor complexe instructies lastiger zijn.",
+                    "**Cognitieve beperking :** Snelle carrousels en vage labels zorgen voor frustratie wanneer mensen de informatie niet op tijd kunnen verwerken."
                 ]
             },
             de: {
@@ -304,10 +312,10 @@
                 indicator: "Schritt {x} von {total}", tabTest: "Wie man testet", tabUser: "Betroffene Nutzer", tabIssues: "Probleme", tabRemediations: "Lösungen",
                 successMsg: "Ihr Antrag wurde erfolgreich übermittelt", failMsg: "Senden fehlgeschlagen", errReqName: "Vollständiger Name ist erforderlich",
                 instrSlidesInacc: [
-                    "Schritt 1: Es ist zwingend erforderlich, dass der Nutzer die Interaktion erleichtert, indem er akribisch die alphanumerischen Felder mit der Sequenz aus dem oszillierenden Header füllt.",
-                    "Schritt 2: Nach der ersten Übermittlung wird ein automatisiertes Verifizierungsprotokoll eine Nachricht an Ihre E-Mail senden, um die Integrität der bereitgestellten Daten zu validieren.",
-                    "Schritt 3: Um den Prozess abzuschließen, ist der Nutzer verpflichtet, den Empfang der Validierungsnachricht förmlich zu bestätigen, um den Vorteil in der Datenbank zu aktivieren.",
-                    "Schritt 4: Im Falle von Unzufriedenheit wird eine Frist von genau fünfzehn Tagen für die Rückgabe gewährt, sofern alle Belege gemäß unserer Richtlinien vorliegen."
+                    "Es ist zwingend erforderlich, dass der Nutzer die Interaktion erleichtert, indem er akribisch die alphanumerischen Felder mit der Sequenz aus dem oszillierenden Header füllt.",
+                    "Nach der ersten Übermittlung wird ein automatisiertes Verifizierungsprotokoll eine Nachricht an Ihre E-Mail senden, um die Integrität der bereitgestellten Daten zu validieren.",
+                    "Um den Prozess abzuschließen, ist der Nutzer verpflichtet, den Empfang der Validierungsnachricht förmlich zu bestätigen, um den Vorteil in der Datenbank zu aktivieren.",
+                    "Im Falle von Unzufriedenheit wird eine Frist von genau fünfzehn Tagen für die Rückgabe gewährt, sofern alle Belege gemäß unserer umfangreichen Richtlinien vorliegen."
                 ],
                 instrSlidesAcc: [
                     "Schritt 1: Füllen Sie das Formular mit dem Aktionscode aus der obigen Anzeige aus.",
@@ -338,10 +346,10 @@
                     ]}
                 },
                 userTitle: "Wer ist betroffen?", userList: [
-                    "**ADHS / Autismus:** Bewegliche Teile und unnötige Fettschrift stören die Konzentration massiv und erschweren das Dranbleiben an der Aufgabe.",
-                    "**Legasthenie:** Enge Abstände und Schriftarten, die ähnliche Buchstaben identisch aussehen lassen, schaffen schwere Barrieren.",
-                    "**Gehörlose Menschen:** Bei Menschen, die Gebärdensprache als Primärsprache nutzen, kann das Verständnis komplexer schriftsprachlicher Anweisungen mehr Zeit erfordern.",
-                    "**Kognitive Einschränkung:** Schnelle Karussells und vage Begriffe führen zu Frustration, wenn Informationen nicht rechtzeitig verarbeitet werden können."
+                    "**ADHS / Autismus :** Bewegliche Teile und unnötige Fettschrift stören die Konzentration massiv und erschweren das Dranbleiben an der Aufgabe.",
+                    "**Legasthenie :** Enge Abstände und Schriftarten, die ähnliche Buchstaben identisch aussehen lassen, schaffen schwere Barrieren.",
+                    "**Gehörlose Menschen :** Bei Menschen, die Gebärdensprache als Primärsprache nutzen, kann das Verständnis komplexer schriftsprachlicher Anweisungen mehr Zeit erfordern.",
+                    "**Kognitive Einschränkung :** Schnelle Karussells und vage Begriffe führen zu Frustration, wenn Informationen nicht rechtzeitig verarbeitet werden können."
                 ]
             }
         };
@@ -360,6 +368,7 @@
             let content = slides[currentSlide];
 
             if (!isAcc) {
+                // Distracting bolding for inaccessible mode
                 const words = content.split(' ');
                 content = words.map((w, i) => i % 3 === 0 ? `<b>${w}</b>` : w).join(' ');
                 indicator.classList.add('hidden');
@@ -372,28 +381,26 @@
 
         function nextSlide() {
             const isAcc = document.getElementById('modeToggle').checked;
-            const t = translations[currentLang];
-            const slides = isAcc ? t.instrSlidesAcc : t.instrSlidesInacc;
+            const slides = isAcc ? translations[currentLang].instrSlidesAcc : translations[currentLang].instrSlidesInacc;
             currentSlide = (currentSlide + 1) % slides.length;
             updateCarousel();
         }
 
         function prevSlide() {
             const isAcc = document.getElementById('modeToggle').checked;
-            const t = translations[currentLang];
-            const slides = isAcc ? t.instrSlidesAcc : t.instrSlidesInacc;
+            const slides = isAcc ? translations[currentLang].instrSlidesAcc : translations[currentLang].instrSlidesInacc;
             currentSlide = (currentSlide - 1 + slides.length) % slides.length;
             updateCarousel();
         }
 
+        // Encapsulated Protected Banner
         function setBanner(isAcc) {
-            const container = document.getElementById('banner-container');
+            const host = document.getElementById('banner-host');
             const t = translations[currentLang];
-            // Clear existing Shadow DOM or content
-            container.innerHTML = '';
+            host.innerHTML = ''; // Full Reset
             
             if (!isAcc) {
-                const shadow = container.attachShadow({mode: 'closed'});
+                const shadow = host.attachShadow({mode: 'closed'});
                 const style = document.createElement('style');
                 style.textContent = `
                     .content {
@@ -410,7 +417,7 @@
                 shadow.appendChild(style);
                 shadow.appendChild(wrapper);
             } else {
-                container.innerHTML = `<div class="text-white font-bold text-lg uppercase tracking-tight">${t.promoPrefix} REDUCE2026</div>`;
+                host.innerHTML = `<div class="text-white font-bold text-lg uppercase tracking-tight">${t.promoPrefix} REDUCE2026</div>`;
             }
         }
 
@@ -438,7 +445,7 @@
             const inpName = document.getElementById('inp-name');
             const inpCode = document.getElementById('inp-code');
             inpName.placeholder = !isAcc ? t.namePlaceholder : "";
-            inpCode.placeholder = !isAcc ? t.codePlaceholder : "";
+            inpCode.placeholder = !isAcc ? t.codePlaceholder : "REDUCE2026";
 
             document.getElementById('txt-user-content').innerHTML = `
                 <h3 class="text-blue-400 font-bold uppercase mb-4 text-xs">${t.userTitle}</h3>
@@ -482,6 +489,7 @@
         }
 
         function handleModeToggle() {
+            currentSlide = 0; // Reset to Step 1
             setLanguage(currentLang);
         }
 
@@ -492,7 +500,7 @@
             
             clearInterval(carouselInterval);
             if (!isAcc) {
-                carouselInterval = setInterval(nextSlide, 4000);
+                carouselInterval = setInterval(nextSlide, 3000); // 3 seconds transition
                 document.getElementById('carousel-controls').classList.add('hidden');
             } else {
                 document.getElementById('carousel-controls').classList.remove('hidden');

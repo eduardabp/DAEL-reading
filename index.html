@@ -18,32 +18,33 @@
         .tab-btn { font-family: ui-sans-serif, system-ui, sans-serif !important; }
         .tab-btn[aria-selected="true"] { background-color: #111827; color: #60a5fa; border-bottom: 2px solid #60a5fa; }
 
-        /* --- INACCESSIBLE MODE: FLASHING & MOVING BANNER --- */
-        .inaccessible-mode .promo-banner { 
-            animation: flash 1s step-end infinite; 
-            overflow: hidden;
-            position: relative;
+        /* --- READING BARRIERS --- */
+        .inaccessible-mode .reading-content { font-family: "Times New Roman", Times, serif !important; }
+        .promo-banner {
+            width: 100%; height: 60px;
+            background-color: #ef4444; color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; overflow: hidden; position: relative;
+            border-radius: 8px;
         }
-        .inaccessible-mode .promo-text-img {
-            white-space: nowrap;
-            animation: slide-banner 4s linear infinite;
-            height: 40px;
-        }
-        @keyframes slide-banner { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .inaccessible-mode .promo-banner { animation: flash 1s step-end infinite; margin-bottom: 24px; }
         @keyframes flash { 50% { background-color: #facc15; } }
 
-        /* --- INACCESSIBLE INSTRUCTIONS (Wall of Text style) --- */
         .inaccessible-mode #txt-instructions {
             text-align: justify;
             line-height: 0.95 !important;
             letter-spacing: -0.04em !important;
-            font-size: 14px;
+            font-size: 13px;
             display: block;
         }
 
         /* --- ACCESSIBLE MODE --- */
+        .accessible-mode .reading-content { font-family: ui-sans-serif, system-ui, sans-serif !important; }
         .accessible-mode .promo-banner { background-color: #1e40af; animation: none; margin-bottom: 24px; }
         .accessible-mode #txt-instructions { text-align: left; line-height: 1.8; font-size: 14px; }
+        
+        /* Bold accessible labels */
+        .accessible-mode .cog-label { font-weight: 700 !important; font-size: 14px !important; }
 
         .carousel-btn {
             display: flex; align-items: center; justify-content: center;
@@ -91,7 +92,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
                 <div class="lg:col-span-2 reading-content flex flex-col form-gap" id="exercise-column">
                     <div id="form-container" class="contents">
-                        <div class="promo-banner rounded-lg h-[60px] flex items-center justify-center" id="banner"></div>
+                        <div id="banner-host" class="promo-banner rounded-lg h-[60px] flex items-center justify-center"></div>
                         
                         <div id="vague-error" class="hidden bg-red-100 text-red-700 p-3 rounded-lg text-sm font-bold mt-4" role="alert">Fail to submit form</div>
                         
@@ -103,8 +104,8 @@
                                     <button onclick="nextSlide()" class="carousel-btn" id="btn-next">❯</button>
                                 </div>
                             </div>
-                            <div id="txt-instructions" class="min-h-[120px]"></div>
-                            <div id="slide-indicator" class="text-[10px] font-bold text-blue-400 mt-2 hidden"></div>
+                            <div id="txt-instructions" class="min-h-[140px]"></div>
+                            <div id="slide-indicator" class="text-[11px] font-bold text-[#1e40af] mt-2 hidden"></div>
                         </div>
 
                         <div class="space-y-4 mt-6">
@@ -150,17 +151,23 @@
         const translations = {
             en: {
                 inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Reading and Understanding Experience",
-                name: { bad: "Identifier", good: "Full Name (required)" }, code: { bad: "CODE", good: "Promotional Code" }, 
+                name: { bad: "IDENTIFIER", good: "Full Name (required)" }, code: { bad: "CODE", good: "Promotional Code" }, 
                 btn: { bad: "OK", good: "Submit Application" }, promoPrefix: "APPLY NOW! 50% OFF PROMO CODE:",
                 namePlaceholder: "Type your identifier", codePlaceholder: "S5bd1L",
                 instrTitle: "Instructions", guideTitle: "Step-by-step guide", prevAria: "Previous slide", nextAria: "Next slide",
-                indicator: "Slide {x} of {total}", tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "Remediations",
+                indicator: "Step {x} of {total}", tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "Remediations",
                 successMsg: "Your request was successfully submitted", failMsg: "Fail to submit form", errReqName: "Full Name is required",
-                instrSlides: [
-                    "Step 1: Fill in the form using the unique alphanumeric sequence provided in the banner.",
-                    "Step 2: You will receive an automated e-mail message requesting an immediate confirmation of the data.",
-                    "Step 3: You must acknowledge the electronic reception of said message to activate the benefit.",
-                    "Step 4: You can return the product if you are not fully satisfied within a 15-day window."
+                instrSlidesInacc: [
+                    "Step 1: It is a mandatory requirement that the user facilitates the interaction by meticulously populating the alphanumeric fields with the specific key string visible in the oscillating promotional header.",
+                    "Step 2: Upon successful initial transmission, an automated verification protocol will trigger a secondary correspondence to your registered electronic mail for the purpose of validating the integrity of the data provided.",
+                    "Step 3: To finalize the process, the user is obliged to formally acknowledge the reception of the aforementioned validation notice, ensuring the synchronization of the benefit to the internal database.",
+                    "Step 4: In the event of dissatisfaction, a window of exactly fifteen days is granted for the return of goods, provided that all evidentiary documentation is presented in accordance with our extensive policy."
+                ],
+                instrSlidesAcc: [
+                    "Step 1: Fill in the form using the promo code shown in the banner above.",
+                    "Step 2: Check your email for a confirmation message we will send you automatically.",
+                    "Step 3: Click the link in that email to confirm your details and activate your discount.",
+                    "Step 4: You have 15 days to return the product if you are not happy with your purchase."
                 ],
                 testSteps: [
                     "Read the 'Instructions' block and identify the required pieces of information.",
@@ -173,14 +180,14 @@
                     bad: { title: "What is wrong?", items: [
                         { f: "Moving Content", c: "The flashing, scrolling banner and auto-sliding instructions create a distraction that makes it hard to focus on reading." },
                         { f: "Uncontrolled Carousel", c: "The instructions change automatically without giving enough time to read, and there is no way to stop or go back manually." },
-                        { f: "Unreadable Formatting", c: "The banner uses an image of text which prevents resizing. Overuse of bolding on non-essential words and tight justified text creates a 'wall of text' that is hard to scan." },
-                        { f: "Confusing Labels", c: "The label 'Identifier' is vague, and redundant jargon placeholders make it difficult to understand exactly what information is needed." },
+                        { f: "Unreadable Formatting", c: "The banner uses protected styles that prevent user adjustments. Overuse of bolding on non-essential words and tight justified text creates a 'wall of text' that is hard to scan." },
+                        { f: "Confusing Labels", c: "The label 'IDENTIFIER' in all caps is hard to read, and redundant jargon placeholders make it difficult to understand exactly what information is needed." },
                         { f: "Poor Feedback", c: "The generic error message doesn't specify which field is wrong, and the form resets silently upon success." }
                     ]},
                     good: { title: "Remediations", items: [
                         { f: "Static & Controlled Content", c: "Ensure promotional content is static. Allow users to navigate instructions at their own pace with manual buttons and a progress indicator." },
                         { f: "Standard Text & Spacing", c: "Use real text instead of images. Provide generous line spacing and only use bolding for actual key terms to help with scanning." },
-                        { f: "Descriptive Labels", c: "Use clear labels like 'Full Name' and remove distracting placeholder text to reduce the effort needed to understand the form." },
+                        { f: "Descriptive Labels", c: "Use clear labels like 'Full Name' and remove confusing placeholder text to reduce the effort needed to understand the form." },
                         { f: "Clear Error Guidance", c: "Point specifically to the field that needs fixing and provide a permanent success message when the task is complete." }
                     ]}
                 },
@@ -193,26 +200,32 @@
             },
             fr: {
                 inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Laboratoire d'empathie sur l'accessibilité numérique", title: "Expérience de lecture et compréhension",
-                name: { bad: "Identifiant", good: "Nom complet (requis)" }, code: { bad: "CODE", good: "Code promotionnel" }, 
+                name: { bad: "IDENTIFIANT", good: "Nom complet (requis)" }, code: { bad: "CODE", good: "Code promotionnel" }, 
                 btn: { bad: "OK", good: "Soumettre ma demande" }, promoPrefix: "POSTULEZ ! -50% CODE :",
                 namePlaceholder: "Saisissez votre identifiant", codePlaceholder: "S5bd1L",
                 instrTitle: "Instructions", guideTitle: "Guide étape par étape", prevAria: "Diapositive précédente", nextAria: "Diapositive suivante",
-                indicator: "Diapositive {x} sur {total}", tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
+                indicator: "Étape {x} sur {total}", tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 successMsg: "Votre demande a été soumise avec succès", failMsg: "Échec de l'envoi du formulaire", errReqName: "Le nom complet est requis",
-                instrSlides: [
-                    "Étape 1 : Remplissez le formulaire en utilisant la séquence alphanumérique unique fournie dans la bannière.",
-                    "Étape 2 : Vous recevrez un message électronique automatisé demandant une confirmation immédiate des données.",
-                    "Étape 3 : Vous devez accuser réception électronique dudit message pour activer l'avantage.",
-                    "Étape 4 : Vous pouvez retourner le produit si vous n'êtes pas entièrement satisfait dans un délai de 15 jours."
+                instrSlidesInacc: [
+                    "Étape 1 : Il est impératif que l'utilisateur facilite l'interaction en saisissant méticuleusement les séquences alphanumériques visibles dans l'en-tête promotionnel oscillant.",
+                    "Étape 2 : Après la transmission initiale, un protocole de vérification déclenchera une correspondance secondaire vers votre courrier électronique pour valider l'intégrité des données.",
+                    "Étape 3 : L'utilisateur est obligé d'accuser formellement réception de ladite notice de validation pour assurer la synchronisation de l'avantage dans la base de données.",
+                    "Étape 4 : En cas d'insatisfaction, un délai de quinze jours est accordé pour le retour des marchandises, sous réserve de présentation de toute la documentation requise."
                 ],
-                testSteps: ["Lisez les instructions.", "Cherchez le code.", "Testez les erreurs.", "Remplissez le formulaire.", "Comparez les modes."],
+                instrSlidesAcc: [
+                    "Étape 1 : Remplissez le formulaire avec le code promo affiché dans la bannière ci-dessus.",
+                    "Étape 2 : Un e-mail de confirmation vous sera envoyé automatiquement.",
+                    "Étape 3 : Cliquez sur le lien dans cet e-mail pour confirmer vos coordonnées et activer votre remise.",
+                    "Étape 4 : Vous avez 15 jours pour retourner le produit si vous n'êtes pas satisfait."
+                ],
+                testSteps: ["Lisez le bloc 'Instructions' et identifiez les informations requises.", "Cherchez le code promotionnel dans la bannière.", "Essayez de remplir le formulaire sans saisir de données pour voir la gestion des erreurs.", "Remplissez le formulaire en utilisant les informations trouvées.", "Passez à la version accessible et comparez la clarté."],
                 critiques: {
                     bad: { title: "Quel est le problème ?", items: [
                         { f: "Contenu en mouvement", c: "La bannière défilante et clignotante ainsi que les instructions automatiques créent une distraction qui empêche de se concentrer sur la lecture." },
-                        { f: "Carrousel non contrôlé", c: "Les instructions changent automatiquement sans laisser assez de temps pour lire, et il n'y a aucun moyen de s'arrêter ou de revenir en arrière." },
-                        { f: "Mise en forme illisible", c: "La bannière utilise une image de texte empêchant le redimensionnement. L'excès de gras et le texte justifié serré créent un 'mur de texte' difficile à parcourir." },
-                        { f: "Libellés confus", c: "Le libellé 'Identifiant' est vague et les textes de remplissage inutiles compliquent la compréhension des informations requises." },
-                        { f: "Mauvais retours", c: "Le message d'erreur générique ne précise pas quel champ est incorrect, et le formulaire se réinitialise sans confirmation." }
+                        { f: "Carrousel non contrôlé", c: "Les instructions changent automatiquement sans laisser assez de temps pour lire, et il n'y a aucun moyen de s'arrêter ou de revenir en arrière manuellement." },
+                        { f: "Mise en forme illisible", c: "La bannière utilise des styles protégés empêchant le redimensionnement. L'excès de gras et le texte justifié serré créent un 'mur de texte' difficile à parcourir." },
+                        { f: "Libellés confus", c: "Le libellé 'IDENTIFIANT' en majuscules est difficile à lire et les textes de remplissage inutiles compliquent la compréhension des informations requises." },
+                        { f: "Mauvais retours", c: "Le message d'erreur générique ne précise pas quel champ est incorrect, et le formulaire se réinitialise sans confirmation permanente." }
                     ]},
                     good: { title: "Corrections", items: [
                         { f: "Contenu statique et contrôlé", c: "Assurez-vous que le contenu promotionnel est statique. Permettez de naviguer à son propre rythme avec des boutons manuels et un indicateur de progression." },
@@ -230,26 +243,32 @@
             },
             nl: {
                 inaccessible: "Niet Toegankelijk", accessible: "Toegankelijk", labTitle: "Digital Accessibility Empathy Lab", title: "Ervaring in lezen en begrijpen",
-                name: { bad: "Identificatie", good: "Volledige Naam (verplicht)" }, code: { bad: "CODE", good: "Promotiecode" }, 
+                name: { bad: "IDENTIFICATIE", good: "Volledige Naam (verplicht)" }, code: { bad: "CODE", good: "Promotiecode" }, 
                 btn: { bad: "OK", good: "Aanvraag Verzenden" }, promoPrefix: "NU AANMELDEN! 50% KORTING:",
                 namePlaceholder: "Typ uw identificatie", codePlaceholder: "S5bd1L",
-                instrTitle: "Instructies", guideTitle: "Stappenplan", prevAria: "Vorige dia", nextAria: "Volgende dia",
-                indicator: "Dia {x} van {total}", tabTest: "Hoe te testen", tabUser: "Impact op gebruikers", tabIssues: "Problemen", tabRemediations: "Oplossingen",
+                instrTitle: "Instructions", guideTitle: "Stappenplan", prevAria: "Vorige dia", nextAria: "Volgende dia",
+                indicator: "Stap {x} van {total}", tabTest: "Hoe te testen", tabUser: "Impact op gebruikers", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 successMsg: "Uw aanvraag is succesvol verzonden", failMsg: "Formulier verzenden mislukt", errReqName: "Volledige naam is verplicht",
-                instrSlides: [
-                    "Stap 1: Vul het formulier in met de unieke alfanumerieke reeks die in de banner staat.",
-                    "Stap 2: U ontvangt een geautomatiseerd e-mailbericht met het verzoek om onmiddellijke bevestiging van de gegevens.",
-                    "Stap 3: U moet de elektronische ontvangst van dit bericht bevestigen om het voordeel te activeren.",
-                    "Stap 4: U kunt het product retourneren binnen 15 dagen als u niet volledig tevreden bent."
+                instrSlidesInacc: [
+                    "Stap 1: Het is een dwingende vereiste dat de gebruiker de interactie faciliteert door nauwgezet de alfanumerieke velden in te vullen met de specifieke reeks in de bewegende banner.",
+                    "Stap 2: Na de eerste verzending zal een geautomatiseerd verificatieprotocol een tweede bericht sturen naar uw e-mailadres om de integriteit van de verstrekte gegevens te valideren.",
+                    "Stap 3: Om het proces te voltooie is de gebruiker verplicht de ontvangst van het verificatiebericht formeel te bevestigen om het voordeel in de database te activeren.",
+                    "Stap 4: In geval van ontevredenheid wordt een termijn van precies vijftien dagen verleend voor het retourneren van goederen, mits alle bewijsstukken aanwezig zijn."
                 ],
-                testSteps: ["Lees de instructies.", "Zoek de code.", "Test fouten.", "Vul in.", "Vergelijk."],
+                instrSlidesAcc: [
+                    "Stap 1: Vul het formulier in met de promotiecode die in de banner hierboven staat.",
+                    "Stap 2: Je ontvangt automatisch een bevestigingsmail van ons.",
+                    "Stap 3: Klik op de link in die e-mail om je gegevens te bevestigen en je korting te activeren.",
+                    "Stap 4: Je hebt 15 dagen de tijd om het product te retourneren als je niet tevreden bent."
+                ],
+                testSteps: ["Lees het blok 'Instructies' en identificeer de vereiste informatie.", "Zoek naar de promotiecode in de banner.", "Probeer het formulier in te dienen zonder gegevens om te zien hoe het systeem omgaat met fouten.", "Vul het formulier in met de gevonden informatie.", "Schakel over naar de toegankelijke versie en vergelijk de duidelijkheid."],
                 critiques: {
                     bad: { title: "Wat is er mis?", items: [
                         { f: "Bewegende inhoud", c: "De knipperende, scrollende banner en automatisch verschuivende instructies leiden af, waardoor het moeilijk is om te focussen op het lezen." },
                         { f: "Ongecontroleerde carrousel", c: "De instructies wisselen automatisch zonder genoeg tijd te laten om te lezen, en er is geen manier om handmatig te stoppen of terug te gaan." },
-                        { f: "Onleesbare opmaak", c: "De banner gebruikt een afbeelding van tekst wat vergroten verhindert. Te veel vetgedrukte woorden en strak uitgelijnde tekst maken het onoverzichtelijk." },
-                        { f: "Vage labels", c: "Het label 'Identificatie' is vaag en placeholders met jargon maken het moeilijk om te begrijpen welke informatie precies nodig is." },
-                        { f: "Slechte feedback", c: "De algemene foutmelding geeft niet aan welk veld fout is, en het formulier reset zonder duidelijke bevestiging bij succes." }
+                        { f: "Onleesbare opmaak", c: "De banner gebruikt beschermde stijlen die aanpassingen verhinderen. 'IDENTIFICATIE' in hoofdletters en strak uitgelijnde tekst maken het onoverzichtelijk." },
+                        { f: "Vage labels", c: "Het label 'IDENTIFICATIE' is vaag en placeholders met jargon maken het moeilijk om te begrijpen welke informatie precies nodig is." },
+                        { f: "Slechte feedback", c: "De algemene foutmelding geeft niet aan welk veld fout is, en het formulier reset zonder duidelijke, blijvende bevestiging bij succes." }
                     ]},
                     good: { title: "Oplossingen", items: [
                         { f: "Statische en gecontroleerde inhoud", c: "Zorg dat promotionele inhoud statisch is. Laat gebruikers instructies op hun eigen tempo bedienen met knoppen en een voortgangsindicator." },
@@ -259,33 +278,39 @@
                     ]}
                 },
                 userTitle: "Wie wordt beïnvloed?", userList: [
-                    "**ADHD / Autisme:** Bewegende delen en willekeurig vetgedrukte tekst werken als grote afleiders, waardoor het erg moeilijk is om bij de les te blijven.",
-                    "**Dyslexie:** Krappe spatiëring en lettertypen waarbij letters op elkaar lijken, vormen ernstige barrières voor deze gebruikers.",
-                    "**Doven:** Mensen die gebarentaal als eerste taal gebruiken, kunnen een andere woordenschat hebben in geschreven tekst, waardoor complexe instructies lastiger zijn.",
-                    "**Cognitieve beperking:** Snelle carrousels en vage labels zorgen voor frustratie wanneer mensen de informatie niet op tijd kunnen verwerken."
+                    "**ADHD / Autisme :** Bewegende delen en willekeurig vetgedrukte tekst werken als grote afleiders, waardoor het erg moeilijk is om bij de les te blijven.",
+                    "**Dyslexie :** Krappe spatiëring en lettertypen waarbij letters op elkaar lijken, vormen ernstige barrières voor deze gebruikers.",
+                    "**Doven :** Mensen die gebarentaal als eerste taal gebruiken, kunnen een andere woordenschat hebben in geschreven tekst, waardoor complexe instructies lastiger zijn.",
+                    "**Cognitieve beperking :** Snelle carrousels en vage labels zorgen voor frustratie wanneer mensen de informatie niet op tijd kunnen verwerken."
                 ]
             },
             de: {
-                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Digitales Barrierefreiheits-Empathie-Labor", title: "Lese- und Verständnis-Erfahrung",
-                name: { bad: "Identifikator", good: "Vollständiger Name (erforderlich)" }, code: { bad: "CODE", good: "Aktionscode" }, 
+                inaccessible: "Nicht Barrierefrei", accessible: "Barrierefrei", labTitle: "Digitales Barrierefreiheits-Empathie-Labor", title: "Leseerfahrung",
+                name: { bad: "IDENTIFIKATOR", good: "Vollständiger Name (erforderlich)" }, code: { bad: "CODE", good: "Aktionscode" }, 
                 btn: { bad: "OK", good: "Antrag Absenden" }, promoPrefix: "JETZT BEWERBEN! 50% RABATT:",
                 namePlaceholder: "Geben Sie Ihren Identifikator ein", codePlaceholder: "S5bd1L",
                 instrTitle: "Anleitung", guideTitle: "Schritt-für-Schritt-Anleitung", prevAria: "Vorherige Folie", nextAria: "Nächste Folie",
-                indicator: "Folie {x} von {total}", tabTest: "Wie man testet", tabUser: "Betroffene Nutzer", tabIssues: "Probleme", tabRemediations: "Lösungen",
+                indicator: "Schritt {x} von {total}", tabTest: "Wie man testet", tabUser: "Betroffene Nutzer", tabIssues: "Probleme", tabRemediations: "Lösungen",
                 successMsg: "Ihr Antrag wurde erfolgreich übermittelt", failMsg: "Senden fehlgeschlagen", errReqName: "Vollständiger Name ist erforderlich",
-                instrSlides: [
-                    "Schritt 1: Füllen Sie das Formular mit der in der Anzeige angegebenen alphanumerischen Sequenz aus.",
-                    "Schritt 2: Sie erhalten eine automatisierte E-Mail mit der Bitte um sofortige Datenbestätigung.",
-                    "Schritt 3: Sie müssen den elektronischen Empfang dieser Nachricht bestätigen, um den Vorteil zu aktivieren.",
-                    "Schritt 4: Sie können das Produkt innerhalb von 15 Tagen zurückgeben, wenn Sie nicht zufrieden sind."
+                instrSlidesInacc: [
+                    "Schritt 1: Es ist zwingend erforderlich, dass der Nutzer die Interaktion erleichtert, indem er akribisch die alphanumerischen Felder mit der Sequenz aus dem oszillierenden Header füllt.",
+                    "Schritt 2: Nach der ersten Übermittlung wird ein automatisiertes Verifizierungsprotokoll eine Nachricht an Ihre E-Mail senden, um die Integrität der bereitgestellten Daten zu validieren.",
+                    "Schritt 3: Um den Prozess abzuschließen, ist der Nutzer verpflichtet, den Empfang der Validierungsnachricht förmlich zu bestätigen, um den Vorteil in der Datenbank zu aktivieren.",
+                    "Schritt 4: Im Falle von Unzufriedenheit wird eine Frist von genau fünfzehn Tagen für die Rückgabe gewährt, sofern alle Belege gemäß unserer Richtlinien vorliegen."
+                ],
+                instrSlidesAcc: [
+                    "Schritt 1: Füllen Sie das Formular mit dem Aktionscode aus der obigen Anzeige aus.",
+                    "Schritt 2: Wir senden Ihnen automatisch eine Bestätigungs-E-Mail zu.",
+                    "Schritt 3: Klicken Sie auf den Link in dieser E-Mail, um Ihre Daten zu bestätigen und den Rabatt zu aktivieren.",
+                    "Schritt 4: Sie haben 15 Tage Zeit, das Produkt zurückzugeben, wenn Sie mit Ihrem Kauf nicht zufrieden sind."
                 ],
                 testSteps: ["Anleitung lesen.", "Code suchen.", "Fehler prüfen.", "Ausfüllen.", "Modus wechseln."],
                 critiques: {
                     bad: { title: "Was ist falsch?", items: [
                         { f: "Bewegte Inhalte", c: "Der blinkende, scrollende Banner und automatisch wechselnde Anleitungen lenken ab und erschweren die Konzentration auf den Text." },
                         { f: "Unkontrolliertes Karussell", c: "Die Anleitung wechselt automatisch, ohne genug Zeit zum Lesen zu lassen. Es gibt keine manuelle Steuerung." },
-                        { f: "Unlesbare Formatierung", c: "Der Banner ist ein Bild, was Größenanpassungen verhindert. Zu viel Fettschrift und Blocksatz erzeugen eine schwer lesbare Textwüste." },
-                        { f: "Vage Beschriftungen", c: "Der Begriff 'Identifikator' ist vage, und redundante Platzhalter erschweren das Verständnis der benötigten Informationen." },
+                        { f: "Unlesbare Formatierung", c: "Der Banner nutzt geschützte Stile, die Anpassungen verhindern. 'IDENTIFIKATOR' in Großbuchstaben und enger Blocksatz erzeugen eine schwer lesbare Textwüste." },
+                        { f: "Vage Beschriftungen", c: "Der Begriff 'IDENTIFIKATOR' ist vage, und redundante Platzhalter erschweren das Verständnis der benötigten Informationen." },
                         { f: "Schlechtes Feedback", c: "Die Fehlermeldung nennt nicht das spezifische Feld, und das Formular wird bei Erfolg ohne dauerhafte Meldung zurückgesetzt." }
                     ]},
                     good: { title: "Lösungen", items: [
@@ -296,10 +321,10 @@
                     ]}
                 },
                 userTitle: "Wer ist betroffen?", userList: [
-                    "**ADHS / Autismus:** Bewegliche Teile und unnötige Fettschrift lenken massiv ab und erschweren das Dranbleiben an der Aufgabe.",
-                    "**Legasthenie:** Enge Abstände und Schriftarten, die ähnliche Buchstaben identisch aussehen lassen, schaffen schwere Barrieren.",
-                    "**Gehörlose Menschen:** Bei Menschen, die Gebärdensprache als Primärsprache nutzen, kann das Verständnis komplexer schriftsprachlicher Anweisungen mehr Zeit erfordern.",
-                    "**Kognitive Einschränkung:** Schnelle Karussells und vage Begriffe führen zu Frustration, wenn Informationen nicht rechtzeitig verarbeitet werden können."
+                    "**ADHS / Autismus :** Bewegliche Teile und unnötige Fettschrift stören die Konzentration massiv und erschweren das Dranbleiben an der Aufgabe.",
+                    "**Legasthenie :** Enge Abstände und Schriftarten, die ähnliche Buchstaben identisch aussehen lassen, schaffen schwere Barrieren.",
+                    "**Gehörlose Menschen :** Bei Menschen, die Gebärdensprache als Primärsprache nutzen, kann das Verständnis komplexer schriftsprachlicher Anweisungen mehr Zeit erfordern.",
+                    "**Kognitive Einschränkung :** Schnelle Karussells und vage Begriffe führen zu Frustration, wenn Informationen nicht rechtzeitig verarbeitet werden können."
                 ]
             }
         };
@@ -313,29 +338,70 @@
             const t = translations[currentLang];
             const display = document.getElementById('txt-instructions');
             const indicator = document.getElementById('slide-indicator');
-            let content = t.instrSlides[currentSlide];
+            
+            const slides = isAcc ? t.instrSlidesAcc : t.instrSlidesInacc;
+            let content = slides[currentSlide];
 
             if (!isAcc) {
-                // Random complex bolding for inaccessible carousel
                 const words = content.split(' ');
                 content = words.map((w, i) => i % 3 === 0 ? `<b>${w}</b>` : w).join(' ');
+                indicator.classList.add('hidden');
             } else {
-                indicator.innerText = t.indicator.replace('{x}', currentSlide + 1).replace('{total}', t.instrSlides.length);
+                indicator.innerText = t.indicator.replace('{x}', currentSlide + 1).replace('{total}', slides.length);
+                indicator.classList.remove('hidden');
             }
             
             display.innerHTML = content;
         }
 
         function nextSlide() {
+            const isAcc = document.getElementById('modeToggle').checked;
             const t = translations[currentLang];
-            currentSlide = (currentSlide + 1) % t.instrSlides.length;
+            const slides = isAcc ? t.instrSlidesAcc : t.instrSlidesInacc;
+            currentSlide = (currentSlide + 1) % slides.length;
             updateCarousel();
         }
 
         function prevSlide() {
+            const isAcc = document.getElementById('modeToggle').checked;
             const t = translations[currentLang];
-            currentSlide = (currentSlide - 1 + t.instrSlides.length) % t.instrSlides.length;
+            const slides = isAcc ? t.instrSlidesAcc : t.instrSlidesInacc;
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
             updateCarousel();
+        }
+
+        function createProtectedBanner(text, isMoving) {
+            const host = document.getElementById('banner-host');
+            host.innerHTML = '';
+            const shadow = host.attachShadow({mode: 'closed'});
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                .content {
+                    font-family: serif;
+                    font-style: italic;
+                    font-weight: 900;
+                    color: white;
+                    white-space: nowrap;
+                    font-size: 1.2rem;
+                    letter-spacing: -0.05em !important;
+                    word-spacing: -0.1em !important;
+                }
+                ${isMoving ? `
+                .moving {
+                    display: inline-block;
+                    animation: slide 4s linear infinite;
+                }
+                @keyframes slide { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+                ` : ''}
+            `;
+            
+            const wrapper = document.createElement('div');
+            wrapper.className = isMoving ? 'content moving' : 'content';
+            wrapper.textContent = text;
+            
+            shadow.appendChild(style);
+            shadow.appendChild(wrapper);
         }
 
         function setLanguage(lang) {
@@ -417,20 +483,18 @@
 
         function updateMode() {
             const isAcc = document.getElementById('modeToggle').checked;
-            const banner = document.getElementById('banner');
+            const host = document.getElementById('banner-host');
             const t = translations[currentLang] || translations['en'];
             const crit = isAcc ? t.critiques.good : t.critiques.bad;
             
             clearInterval(carouselInterval);
             if (!isAcc) {
-                banner.innerHTML = `<img src="https://placehold.co/600x60/dc2626/ffffff/png?text=APPLY+NOW!+50%25+OFF+PROMO+CODE:+S5bd1L&font=playfair-display" alt="Promotion" class="promo-text-img">`;
+                createProtectedBanner(`${t.promoPrefix} S5bd1L`, true);
                 carouselInterval = setInterval(nextSlide, 2000);
                 document.getElementById('carousel-controls').classList.add('hidden');
-                document.getElementById('slide-indicator').classList.add('hidden');
             } else {
-                banner.innerHTML = `<div class="text-white font-bold text-lg uppercase tracking-tight">${t.promoPrefix} REDUCE2026</div>`;
+                host.innerHTML = `<div class="text-white font-bold text-lg uppercase tracking-tight">${t.promoPrefix} REDUCE2026</div>`;
                 document.getElementById('carousel-controls').classList.remove('hidden');
-                document.getElementById('slide-indicator').classList.remove('hidden');
             }
 
             document.getElementById('bodyTag').className = isAcc ? "bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font accessible-mode" : "bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font inaccessible-mode";

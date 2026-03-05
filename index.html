@@ -157,8 +157,8 @@
                 name: { bad: "Identifier", good: "Full Name (required)" }, code: { bad: "CODE", good: "Promotional Code" }, 
                 btn: { bad: "OK", good: "Submit Application" }, promoPrefix: "APPLY NOW! 50% OFF PROMO CODE:",
                 namePlaceholder: "Type your identifier", codePlaceholder: "X-99-BETA",
-                instrTitle: "Instructions", guideTitle: "Step-by-step guide", prevAria: "Previous slide", nextAria: "Next slide",
-                indicator: "Slide {x} of {total}", tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "Remediations",
+                instrTitle: "Instructions", guideTitle: "Step-by-step guide", indicator: "Slide {x} of {total}",
+                tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "Remediations",
                 successMsg: "Your request was successfully submitted", failMsg: "Fail to submit form", errReqName: "Full Name is required",
                 instrSlidesBad: [
                     "Initiate Phase 1: You are strictly required to populate the designated input fields utilizing the unique, case-sensitive alphanumeric string containing precisely six characters located within the moving marquee element. Failure to input the exact sequence will result in a system-wide rejection of the application packet and necessitate a full manual override of the session parameters to restart the data entry sequence from the primary initialization point.",
@@ -167,10 +167,10 @@
                     "Satisfaction Clause & Restitution: In the event of non-satisfaction with the terminal product or service provided, the participant is entitled to a comprehensive restitution of resources provided the formal request occurs within the specific fifteen-day temporal window. Please be aware that the window begins at the precise millisecond of delivery and requires the submission of a secondary justification form to be processed by our compliance department."
                 ],
                 instrSlidesGood: [
-                    "Step 1: Fill in the form using the unique alphanumeric sequence provided in the banner.",
-                    "Step 2: You will receive an automated e-mail message requesting an immediate confirmation of the data.",
-                    "Step 3: You must acknowledge the electronic reception of said message to activate the benefit.",
-                    "Step 4: You can return the product if you are not fully satisfied within a 15-day window."
+                    "Step 1: Fill in the form with you Full Name and the unique promotional code provided in the banner (REDUCE2026).",
+                    "Step 2: You will receive an automated e-mail message requesting a confirmation of the data.",
+                    "Step 3: You can expect the delivery in 3-7 business days.",
+                    "Step 4: If you are not fully satisfied with your products, you can return them within a 15-day window."
                 ],
                 testSteps: [
                     "Read the 'Instructions' block and identify the required pieces of information.",
@@ -206,22 +206,28 @@
                 name: { bad: "Identifiant", good: "Nom complet (requis)" }, code: { bad: "CODE", good: "Code promotionnel" }, 
                 btn: { bad: "OK", good: "Soumettre ma demande" }, promoPrefix: "POSTULEZ ! -50% CODE :",
                 namePlaceholder: "Saisissez votre identifiant", codePlaceholder: "X-99-BETA",
-                instrTitle: "Instructions", guideTitle: "Guide étape par étape", prevAria: "Diapositive précédente", nextAria: "Diapositive suivante",
-                indicator: "Diapositive {x} sur {total}", tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
+                instrTitle: "Instructions", guideTitle: "Guide étape par étape", indicator: "Diapositive {x} sur {total}",
+                tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 successMsg: "Votre demande a été soumise avec succès", failMsg: "Échec de l'envoi du formulaire", errReqName: "Le nom complet est requis",
                 instrSlidesBad: [
                     "Initier la Phase 1 : Vous êtes strictement tenu de remplir les champs de saisie désignés en utilisant la chaîne alphanumérique unique et sensible à la casse contenant précisément six caractères situés dans l'élément de marquise mobile. Le fait de ne pas saisir la séquence exacte entraînera un rejet global du paquet de candidature et nécessitera une annulation manuelle complète des paramètres de session pour redémarrer la séquence de saisie des données à partir du point d'initialisation principal.",
-                    "Protocole Secondaire : Lors de la saisie réussie des paramètres promotionnels requis, le sous-système back-end interne déclenchera un mécanisme de livraison de courrier électronique automatisé à haute priorité conçu pour vérifier immédiatement l'intégrité et la provenance des points de données fournis. Il est conseillé aux utilisateurs de surveiller tous les répertoires entrants, y compris les sous-dossiers de filtrage, car la fenêtre temporelle pour une validation réussie est régie par une horloge de délai d'attente stricte côté serveur.",
-                    "Mandat de Validation : Il est impératif que l'utilisateur final effectue un accusé de réception asynchrone et multi-facteurs du paquet numérique via le lien hypertexte spécifique intégré pour finaliser l'activation administrative de la remise. Cette étape est une condition préalable non négociable pour la synchronisation du profil utilisateur avec la base de données promotionnelle, et le défaut d'accusé de réception dans le cycle rendra les saisies précédentes nulles et non avenues.",
-                    "Clause de Satisfaction et Restitution : En cas de non-satisfaction du produit ou du service final fourni, le participant a droit à une restitution complète des ressources à condition que la demande formelle intervienne dans la fenêtre temporelle spécifique de quinze jours. Veuillez noter que la fenêtre commence à la milliseconde précise de la livraison et nécessite la soumission d'un formulaire de justification secondaire pour être traitée par notre département de conformité."
+                    "Protocole Secondaire : Lors de la saisie réussie des paramètres promotionnels requis, le sous-système back-end interne déclenchera un mécanisme de livraison de courrier électronique automatisé à haute priorité conçu pour vérifier immédiatement l'intégrité et la provenance des points de données fournis.",
+                    "Mandat de Validation : Il est impératif que l'utilisateur final effectue un accusé de réception asynchrone et multi-facteurs du paquet numérique via le lien hypertexte spécifique intégré pour finaliser l'activation administrative de la remise.",
+                    "Clause de Satisfaction : En cas de non-satisfaction du produit ou du service final fourni, le participant a droit à une restitution complète des ressources à condition que la demande formelle intervienne dans la fenêtre temporelle spécifique de quinze jours."
                 ],
                 instrSlidesGood: [
-                    "Étape 1 : Remplissez le formulaire en utilisant la séquence alphanumérique unique fournie dans la bannière.",
-                    "Étape 2 : Vous recevrez un message électronique automatisé demandant une confirmation immédiate des données.",
-                    "Étape 3 : Vous devez accuser réception électronique dudit message pour activer l'avantage.",
-                    "Étape 4 : Vous pouvez retourner le produit si vous n'êtes pas entièrement satisfait dans un délai de 15 jours."
+                    "Étape 1 : Remplissez le formulaire avec votre nom complet et le code promotionnel unique fourni dans la bannière (REDUCE2026).",
+                    "Étape 2 : Vous recevrez un message électronique automatisé demandant une confirmation des données.",
+                    "Étape 3 : Vous pouvez prévoir la livraison dans un délai de 3 à 7 jours ouvrables.",
+                    "Étape 4 : Si vous n'êtes pas entièrement satisfait de vos produits, vous pouvez les retourner dans un délai de 15 jours."
                 ],
-                testSteps: ["Lisez les instructions.", "Cherchez le code.", "Testez les erreurs.", "Remplissez le formulaire.", "Comparez les modes."],
+                testSteps: [
+                    "Lisez le bloc 'Instructions' et identifiez les informations requises.",
+                    "Cherchez le code promotionnel dans la bannière.",
+                    "Essayez de remplir le formulaire sans saisir de données pour voir comment le système gère les erreurs.",
+                    "Remplissez le formulaire en utilisant les informations trouvées.",
+                    "Passez à la version accessible et comparez la clarté."
+                ],
                 critiques: {
                     bad: { title: "Quel est le problème ?", items: [
                         { f: "Contenu en mouvement", c: "La bannière défilante et clignotante ainsi que les instructions automatiques créent une distraction qui empêche de se concentrer sur la lecture." },
@@ -249,22 +255,28 @@
                 name: { bad: "Identificatie", good: "Volledige Naam (verplicht)" }, code: { bad: "CODE", good: "Promotiecode" }, 
                 btn: { bad: "OK", good: "Aanvraag Verzenden" }, promoPrefix: "NU AANMELDEN! 50% KORTING:",
                 namePlaceholder: "Typ uw identificatie", codePlaceholder: "X-99-BETA",
-                instrTitle: "Instructies", guideTitle: "Stappenplan", prevAria: "Vorige dia", nextAria: "Volgende dia",
-                indicator: "Dia {x} van {total}", tabTest: "Hoe te testen", tabUser: "Impact op gebruikers", tabIssues: "Problemen", tabRemediations: "Oplossingen",
+                instrTitle: "Instructies", guideTitle: "Stappenplan", indicator: "Dia {x} van {total}",
+                tabTest: "Hoe te testen", tabUser: "Impact op gebruikers", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 successMsg: "Uw aanvraag is succesvol verzonden", failMsg: "Formulier verzenden mislukt", errReqName: "Volledige naam is verplicht",
                 instrSlidesBad: [
-                    "Start Fase 1: U bent strikt verplicht om de aangewezen invoervelden in te vullen met behulp van de unieke, hoofdlettergevoelige alfanumerieke reeks die precies zes tekens bevat die zich in het bewegende marquee-element bevinden. Het niet invoeren van de exacte reeks zal resulteren in een systeembrede afwijzing van het aanvraagpakket en vereist een volledige handmatige overschrijving van de sessieparameters om de gegevensinvoerreeks opnieuw te starten vanaf het primaire initialisatiepunt.",
-                    "Secundair Protocol: Bij succesvolle invoer van de vereiste promotionele parameters zal het interne backend-subsysteem een geautomatiseerd, hoog-prioritair elektronisch e-mailbezorgmechanisme activeren dat is ontworpen om de integriteit en herkomst van de verstrekte gegevenspunten onmiddellijk te verifiëren. Gebruikers wordt geadviseerd om alle inkomende mappen te controleren, inclusief filterende submappen, aangezien het tijdsbestek voor succesvolle validatie wordt beheerst door een strikte server-side time-outklok.",
-                    "Validatiemandaat: Het is absoluut noodzakelijk dat de eindgebruiker een asynchrone, multi-factor bevestiging van de ontvangst van het digitale pakket uitvoert via de specifieke ingebedde hyperlink om de administratieve activering van de korting af te ronden. Deze stap is een niet-onderhandelbare voorwaarde voor de synchronisatie van het gebruikersprofiel met de promotionele database, en het niet bevestigen binnen de cyclus zal de vorige invoer ongeldig maken.",
-                    "Tevredenheidsclausule & Restitutie: In het geval van ontevredenheid over het geleverde eindproduct of de geleverde dienst, heeft de deelnemer recht op een volledige restitutie van middelen, mits het formele verzoek plaatsvindt binnen het specifieke tijdsbestek van vijftien dagen. Houd er rekening mee dat het venster begint op de precieze milliseconde van levering en de indiening van een secundair rechtvaardigingsformulier vereist dat door onze afdeling naleving wordt verwerkt."
+                    "Start Fase 1: U bent strikt verplicht om de aangewezen invoervelden in te vullen met behulp van de unieke, hoofdlettergevoelige alfanumerieke reeks die precies zes tekens bevat die zich in het bewegende marquee-element bevinden.",
+                    "Secundair Protocol: Bij succesvolle invoer van de vereiste promotionele parameters zal het interne backend-subsysteem een geautomatiseerd, hoog-prioritair elektronisch e-mailbezorgmechanisme activeren.",
+                    "Validatiemandaat: Het is absoluut noodzakelijk dat de eindgebruiker een asynchrone bevestiging van de ontvangst van het digitale pakket uitvoert via de specifieke ingebedde hyperlink.",
+                    "Tevredenheidsclausule : In het geval van ontevredenheid over het geleverde eindproduct of de geleverde dienst, heeft de deelnemer recht op een volledige restitutie van middelen mits het formele verzoek binnen vijftien dagen."
                 ],
                 instrSlidesGood: [
-                    "Stap 1: Vul het formulier in met de unieke alfanumerieke reeks die in de banner staat.",
-                    "Stap 2: U ontvangt een geautomatiseerd e-mailbericht met het verzoek om onmiddellijke bevestiging van de gegevens.",
-                    "Stap 3: U moet de elektronische ontvangst van dit bericht bevestigen om het voordeel te activeren.",
-                    "Stap 4: U kunt het product retourneren binnen 15 dagen als u niet volledig tevreden bent."
+                    "Stap 1: Vul het formulier in met uw volledige naam en de unieke promotiecode die in de banner staat (REDUCE2026).",
+                    "Stap 2: U ontvangt een geautomatiseerd e-mailbericht met het verzoek om bevestiging van de gegevens.",
+                    "Stap 3: U kunt de levering binnen 3-7 werkdagen verwachten.",
+                    "Stap 4: Als u niet volledig tevreden bent met uw producten, kunt u deze binnen 15 dagen retourneren."
                 ],
-                testSteps: ["Lees de instructies.", "Zoek de code.", "Test fouten.", "Vul in.", "Vergelijk."],
+                testSteps: [
+                    "Lees het blok 'Instructies' en identificeer de vereiste informatie.",
+                    "Zoek de promotiecode in de banner.",
+                    "Probeer het formulier in te vullen zonder gegevens in te voeren om te zien hoe het systeem omgaat met fouten.",
+                    "Vul het formulier in met de gevonden informatie.",
+                    "Schakel over naar de toegankelijke versie en vergelijk de duidelijkheid."
+                ],
                 critiques: {
                     bad: { title: "Wat is er mis?", items: [
                         { f: "Bewegende inhoud", c: "De knipperende, scrollende banner en automatisch verschuivende instructies leiden af, waardoor het moeilijk is om te focussen op het lezen." },
@@ -275,7 +287,7 @@
                     ]},
                     good: { title: "Oplossingen", items: [
                         { f: "Statische en gecontroleerde inhoud", c: "Zorg dat promotionele inhoud statisch is. Laat gebruikers instructies op hun eigen tempo bedienen met knoppen en een voortgangsindicator." },
-                        { f: "Standaard tekst en spatiëring", c: "Gebruik echte tekst in plaats van afbeeldingen. Zorg voor ruime regelafstand en gebruik alleen vetgedrukte tekst voor echte kernwoorden." },
+                        { f: "Standaard tekst en spatiëring", c: "Gebruik echte tekst in plaats van afbeeldingen. Zorg voor ruime regelafstand en gebruik alleen vetgedrukte tekst for echte kernwoorden." },
                         { f: "Beschrijvende labels", c: "Gebruik duidelijke labels zoals 'Volledige Naam' en verwijder verwarrende placeholder-tekst om de cognitieve inspanning te verminderen." },
                         { f: "Duidelijke fouthulp", c: "Wijs specifiek naar het veld dat correctie nodig heeft en toon een blijvende succesmelding wanneer de taak klaar is." }
                     ]}
@@ -292,22 +304,28 @@
                 name: { bad: "Identifikator", good: "Vollständiger Name (erforderlich)" }, code: { bad: "CODE", good: "Aktionscode" }, 
                 btn: { bad: "OK", good: "Antrag Absenden" }, promoPrefix: "JETZT BEWERBEN! 50% RABATT:",
                 namePlaceholder: "Geben Sie Ihren Identifikator ein", codePlaceholder: "X-99-BETA",
-                instrTitle: "Anleitung", guideTitle: "Schritt-für-Schritt-Anleitung", prevAria: "Vorherige Folie", nextAria: "Nächste Folie",
-                indicator: "Folie {x} von {total}", tabTest: "Wie man testet", tabUser: "Betroffene Nutzer", tabIssues: "Probleme", tabRemediations: "Lösungen",
+                instrTitle: "Anleitung", guideTitle: "Schritt-für-Schritt-Anleitung", indicator: "Folie {x} von {total}",
+                tabTest: "Wie man testet", tabUser: "Betroffene Nutzer", tabIssues: "Probleme", tabRemediations: "Lösungen",
                 successMsg: "Ihr Antrag wurde erfolgreich übermittelt", failMsg: "Senden fehlgeschlagen", errReqName: "Vollständiger Name ist erforderlich",
                 instrSlidesBad: [
-                    "Phase 1 einleiten: Sie sind strikt verpflichtet, die dafür vorgesehenen Eingabefelder unter Verwendung der eindeutigen, fallsensitiven alphanumerischen Zeichenfolge auszufüllen, die genau sechs Zeichen enthält und sich innerhalb des beweglichen Marquee-Elements befindet. Das Versäumnis, die exakte Sequenz einzugeben, führt zu einer systemweiten Ablehnung des Antragspakets und macht ein vollständiges manuelles Überschreiben der Sitzungsparameter erforderlich, um die Dateneingabesequenz vom primären Initialisierungspunkt an neu zu starten.",
-                    "Sekundärprotokoll: Bei erfolgreicher Eingabe der erforderlichen Aktionsparameter löst das interne Backend-Teilsystem einen automatisierten E-Mail-Zustellungsmechanismus mit hoher Priorität aus, um die Integrität und Herkunft der bereitgestellten Datenpunkte sofort zu verifizieren. Den Benutzern wird empfohlen, alle eingehenden Verzeichnisse, einschließlich Filter-Unterordner, zu überwachen, da das Zeitfenster für eine erfolgreiche Validierung durch eine strikte serverseitige Timeout-Uhr geregelt wird.",
-                    "Validierungsmandat: Es ist zwingend erforderlich, dass der Endbenutzer eine asynchrone Multi-Faktor-Bestätigung des digitalen Paketempfangs über den spezifischen eingebetteten Hyperlink durchführt, um die administrative Aktivierung des Rabatts abzuschließen. Dieser Schritt ist eine nicht verhandelbare Voraussetzung für die Synchronisierung des Benutzerprofils mit der Aktionsdatenbank, und ein Versäumnis der Bestätigung innerhalb des Zyklus macht die vorherigen Eingaben null und nichtig.",
-                    "Zufriedenheitsklausel & Rückerstattung: Im Falle der Unzufriedenheit mit dem bereitgestellten Endprodukt oder der Dienstleistung hat der Teilnehmer Anspruch auf eine umfassende Rückerstattung der Ressourcen, sofern der formelle Antrag innerhalb des spezifischen fünfzehntägigen Zeitfensters erfolgt. Bitte beachten Sie, dass das Fenster auf die Millisekunde genau bei der Lieferung beginnt und die Einreichung eines sekundären Begründungsformulars erfordert, das von unserer Compliance-Abteilung bearbeitet wird."
+                    "Phase 1 einleiten: Sie sind strikt verpflichtet, die dafür vorgesehenen Eingabefelder unter Verwendung der eindeutigen, fallsensitiven alphanumerischen Zeichenfolge auszufüllen.",
+                    "Sekundärprotokoll: Bei erfolgreicher Eingabe der erforderlichen Aktionsparameter löst das interne Backend-Teilsystem einen automatisierten E-Mail-Zustellungsmechanismus aus.",
+                    "Validierungsmandat: Es ist zwingend erforderlich, dass der Endbenutzer eine asynchrone Multi-Faktor-Bestätigung des digitalen Paketempfangs über den Hyperlink durchführt.",
+                    "Zufriedenheitsklausel : Im Falle der Unzufriedenheit hat der Teilnehmer Anspruch auf eine Rückerstattung der Ressourcen sofern der Antrag innerhalb von fünfzehn Tagen erfolgt."
                 ],
                 instrSlidesGood: [
-                    "Schritt 1: Füllen Sie das Formular mit der in der Anzeige angegebenen alphanumerischen Sequenz aus.",
-                    "Schritt 2: Sie erhalten eine automatisierte E-Mail mit der Bitte um sofortige Datenbestätigung.",
-                    "Schritt 3: Sie müssen den elektronischen Empfang dieser Nachricht bestätigen, um den Vorteil zu aktivieren.",
-                    "Schritt 4: Sie können das Produkt innerhalb von 15 Tagen zurückgeben, wenn Sie nicht zufrieden sind."
+                    "Schritt 1: Füllen Sie das Formular mit Ihrem vollständigen Namen und dem in der Anzeige angegebenen Aktionscode aus (REDUCE2026).",
+                    "Schritt 2: Sie erhalten eine automatisierte E-Mail mit der Bitte um Datenbestätigung.",
+                    "Schritt 3: Sie können die Lieferung innerhalb von 3-7 Werktagen erwarten.",
+                    "Schritt 4: Wenn Sie mit Ihren Produkten nicht zufrieden sind, können Sie diese innerhalb von 15 Tagen zurückgeben."
                 ],
-                testSteps: ["Anleitung lesen.", "Code suchen.", "Fehler prüfen.", "Ausfüllen.", "Modus wechseln."],
+                testSteps: [
+                    "Lesen Sie den Block 'Anleitung' und identifizieren Sie die erforderlichen Informationen.",
+                    "Suchen Sie nach dem Aktionscode im Banner.",
+                    "Versuchen Sie, das Formular ohne Dateneingabe auszufüllen, um zu sehen, wie das System Fehler behandelt.",
+                    "Füllen Sie das Formular mit den gefundenen Informationen aus.",
+                    "Wechseln Sie zur barrierefreien Version und vergleichen Sie die Klarheit."
+                ],
                 critiques: {
                     bad: { title: "Was ist falsch?", items: [
                         { f: "Bewegte Inhalte", c: "Der blinkende, scrollende Banner und automatisch wechselnde Anleitungen lenken ab und erschweren die Konzentration auf den Text." },
@@ -387,7 +405,10 @@
             document.getElementById('vague-error').innerText = t.failMsg;
             document.getElementById('txt-instr-title').innerText = t.instrTitle;
             document.getElementById('txt-guide-title').innerText = t.guideTitle;
+            
+            // Syncing Test Steps
             document.getElementById('txt-test-steps').innerHTML = (t.testSteps || []).map(s => `<li>${s}</li>`).join('');
+            
             document.getElementById('tab-test').innerText = t.tabTest;
             document.getElementById('tab-user').innerText = t.tabUser;
             document.getElementById('tab-feedback').innerText = isAcc ? t.tabRemediations : t.tabIssues;

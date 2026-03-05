@@ -18,11 +18,11 @@
         .tab-btn { font-family: ui-sans-serif, system-ui, sans-serif !important; }
         .tab-btn[aria-selected="true"] { background-color: #111827; color: #60a5fa; border-bottom: 2px solid #60a5fa; }
 
-        /* --- INACCESSIBLE MODE: MOVING BANNER (NO FLASH) --- */
+        /* --- INACCESSIBLE MODE: MOVING BANNER --- */
         .inaccessible-mode .promo-banner { 
             overflow: hidden;
             position: relative;
-            background-color: #dc2626; /* Static red */
+            background-color: #dc2626;
         }
         .inaccessible-mode .promo-text-img {
             white-space: nowrap;
@@ -31,7 +31,7 @@
         }
         @keyframes slide-banner { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* --- INACCESSIBLE INSTRUCTIONS --- */
+        /* --- INACCESSIBLE INSTRUCTIONS (Cramped Font) --- */
         .inaccessible-mode #txt-instr-title, 
         .inaccessible-mode #txt-instructions {
             font-family: 'Arial Narrow', sans-serif !important;
@@ -160,11 +160,17 @@
                 instrTitle: "Instructions", guideTitle: "Step-by-step guide", prevAria: "Previous slide", nextAria: "Next slide",
                 indicator: "Slide {x} of {total}", tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "Remediations",
                 successMsg: "Your request was successfully submitted", failMsg: "Fail to submit form", errReqName: "Full Name is required",
-                instrSlides: [
-                    "Initiate Phase 1: You are required to populate the designated input fields utilizing the unique alphanumeric string containing precisely six characters located within the moving marquee element.",
-                    "Secondary Protocol: Upon successful entry, the internal sub-system will trigger an automated electronic mail delivery mechanism to verify the integrity of the provided data points immediately.",
-                    "Validation Mandate: It is imperative that the end-user performs an asynchronous acknowledgement of the digital packet reception via the hyperlink to finalize the administrative activation.",
-                    "Satisfaction Clause: In the event of non-satisfaction, the participant is entitled to a restitution of resources provided the request occurs within the specific fifteen-day temporal window."
+                instrSlidesBad: [
+                    "Initiate Phase 1: You are strictly required to populate the designated input fields utilizing the unique, case-sensitive alphanumeric string containing precisely six characters located within the moving marquee element. Failure to input the exact sequence will result in a system-wide rejection of the application packet and necessitate a full manual override of the session parameters to restart the data entry sequence from the primary initialization point.",
+                    "Secondary Protocol: Upon successful entry of the requisite promotional parameters, the internal backend sub-system will trigger an automated, high-priority electronic mail delivery mechanism designed to verify the integrity and provenance of the provided data points immediately. Users are advised to monitor all incoming directories, including filtering sub-folders, as the temporal window for successful validation is governed by a strict server-side timeout clock.",
+                    "Validation Mandate: It is imperative that the end-user performs an asynchronous, multi-factor acknowledgement of the digital packet reception via the specific embedded hyperlink to finalize the administrative activation of the discount. This step is a non-negotiable prerequisite for the synchronization of the user profile with the promotional database, and failure to acknowledge within the cycle will render the previous inputs null and void.",
+                    "Satisfaction Clause & Restitution: In the event of non-satisfaction with the terminal product or service provided, the participant is entitled to a comprehensive restitution of resources provided the formal request occurs within the specific fifteen-day temporal window. Please be aware that the window begins at the precise millisecond of delivery and requires the submission of a secondary justification form to be processed by our compliance department."
+                ],
+                instrSlidesGood: [
+                    "Step 1: Fill in the form using the unique alphanumeric sequence provided in the banner.",
+                    "Step 2: You will receive an automated e-mail message requesting an immediate confirmation of the data.",
+                    "Step 3: You must acknowledge the electronic reception of said message to activate the benefit.",
+                    "Step 4: You can return the product if you are not fully satisfied within a 15-day window."
                 ],
                 testSteps: [
                     "Read the 'Instructions' block and identify the required pieces of information.",
@@ -203,11 +209,17 @@
                 instrTitle: "Instructions", guideTitle: "Guide étape par étape", prevAria: "Diapositive précédente", nextAria: "Diapositive suivante",
                 indicator: "Diapositive {x} sur {total}", tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 successMsg: "Votre demande a été soumise avec succès", failMsg: "Échec de l'envoi du formulaire", errReqName: "Le nom complet est requis",
-                instrSlides: [
-                    "Initier la Phase 1 : Vous devez remplir les champs de saisie désignés en utilisant la chaîne alphanumérique unique contenant précisément six caractères situés dans l'élément de marquise mobile.",
-                    "Protocole Secondaire : En cas de saisie réussie, le sous-système interne déclenchera un mécanisme de livraison de courrier électronique automatisé pour vérifier immédiatement l'intégrité des points de données fournis.",
-                    "Mandat de Validation : Il est impératif que l'utilisateur final effectue un accusé de réception asynchrone du paquet numérique via le lien hypertexte pour finaliser l'activation administrative.",
-                    "Clause de Satisfaction : En cas de non-satisfaction, le participant a droit à une restitution des ressources à condition que la demande intervienne dans la fenêtre temporelle spécifique de quinze jours."
+                instrSlidesBad: [
+                    "Initier la Phase 1 : Vous êtes strictement tenu de remplir les champs de saisie désignés en utilisant la chaîne alphanumérique unique et sensible à la casse contenant précisément six caractères situés dans l'élément de marquise mobile. Le fait de ne pas saisir la séquence exacte entraînera un rejet global du paquet de candidature et nécessitera une annulation manuelle complète des paramètres de session pour redémarrer la séquence de saisie des données à partir du point d'initialisation principal.",
+                    "Protocole Secondaire : Lors de la saisie réussie des paramètres promotionnels requis, le sous-système back-end interne déclenchera un mécanisme de livraison de courrier électronique automatisé à haute priorité conçu pour vérifier immédiatement l'intégrité et la provenance des points de données fournis. Il est conseillé aux utilisateurs de surveiller tous les répertoires entrants, y compris les sous-dossiers de filtrage, car la fenêtre temporelle pour une validation réussie est régie par une horloge de délai d'attente stricte côté serveur.",
+                    "Mandat de Validation : Il est impératif que l'utilisateur final effectue un accusé de réception asynchrone et multi-facteurs du paquet numérique via le lien hypertexte spécifique intégré pour finaliser l'activation administrative de la remise. Cette étape est une condition préalable non négociable pour la synchronisation du profil utilisateur avec la base de données promotionnelle, et le défaut d'accusé de réception dans le cycle rendra les saisies précédentes nulles et non avenues.",
+                    "Clause de Satisfaction et Restitution : En cas de non-satisfaction du produit ou du service final fourni, le participant a droit à une restitution complète des ressources à condition que la demande formelle intervienne dans la fenêtre temporelle spécifique de quinze jours. Veuillez noter que la fenêtre commence à la milliseconde précise de la livraison et nécessite la soumission d'un formulaire de justification secondaire pour être traitée par notre département de conformité."
+                ],
+                instrSlidesGood: [
+                    "Étape 1 : Remplissez le formulaire en utilisant la séquence alphanumérique unique fournie dans la bannière.",
+                    "Étape 2 : Vous recevrez un message électronique automatisé demandant une confirmation immédiate des données.",
+                    "Étape 3 : Vous devez accuser réception électronique dudit message pour activer l'avantage.",
+                    "Étape 4 : Vous pouvez retourner le produit si vous n'êtes pas entièrement satisfait dans un délai de 15 jours."
                 ],
                 testSteps: ["Lisez les instructions.", "Cherchez le code.", "Testez les erreurs.", "Remplissez le formulaire.", "Comparez les modes."],
                 critiques: {
@@ -240,11 +252,17 @@
                 instrTitle: "Instructies", guideTitle: "Stappenplan", prevAria: "Vorige dia", nextAria: "Volgende dia",
                 indicator: "Dia {x} van {total}", tabTest: "Hoe te testen", tabUser: "Impact op gebruikers", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 successMsg: "Uw aanvraag is succesvol verzonden", failMsg: "Formulier verzenden mislukt", errReqName: "Volledige naam is verplicht",
-                instrSlides: [
-                    "Start Fase 1: U dient de aangewezen invoervelden in te vullen met behulp van de unieke alfanumerieke reeks die precies zes tekens bevat die zich in het bewegende marquee-element bevinden.",
-                    "Secundair Protocol: Bij succesvolle invoer zal het interne subsysteem een geautomatiseerd elektronisch e-mailbezorgmechanisme activeren om de integriteit van de verstrekte gegevenspunten onmiddellijk te verifiëren.",
-                    "Validatiemandaat: Het is absoluut noodzakelijk dat de eindgebruiker een asynchrone bevestiging van de ontvangst van het digitale pakket uitvoert via de hyperlink om de administratieve activering te voltooien.",
-                    "Tevredenheidsclausule: In het geval van ontevredenheid heeft de deelnemer recht op teruggave van middelen, mits het verzoek binnen het specifieke tijdsbestek van vijftien dagen plaatsvindt."
+                instrSlidesBad: [
+                    "Start Fase 1: U bent strikt verplicht om de aangewezen invoervelden in te vullen met behulp van de unieke, hoofdlettergevoelige alfanumerieke reeks die precies zes tekens bevat die zich in het bewegende marquee-element bevinden. Het niet invoeren van de exacte reeks zal resulteren in een systeembrede afwijzing van het aanvraagpakket en vereist een volledige handmatige overschrijving van de sessieparameters om de gegevensinvoerreeks opnieuw te starten vanaf het primaire initialisatiepunt.",
+                    "Secundair Protocol: Bij succesvolle invoer van de vereiste promotionele parameters zal het interne backend-subsysteem een geautomatiseerd, hoog-prioritair elektronisch e-mailbezorgmechanisme activeren dat is ontworpen om de integriteit en herkomst van de verstrekte gegevenspunten onmiddellijk te verifiëren. Gebruikers wordt geadviseerd om alle inkomende mappen te controleren, inclusief filterende submappen, aangezien het tijdsbestek voor succesvolle validatie wordt beheerst door een strikte server-side time-outklok.",
+                    "Validatiemandaat: Het is absoluut noodzakelijk dat de eindgebruiker een asynchrone, multi-factor bevestiging van de ontvangst van het digitale pakket uitvoert via de specifieke ingebedde hyperlink om de administratieve activering van de korting af te ronden. Deze stap is een niet-onderhandelbare voorwaarde voor de synchronisatie van het gebruikersprofiel met de promotionele database, en het niet bevestigen binnen de cyclus zal de vorige invoer ongeldig maken.",
+                    "Tevredenheidsclausule & Restitutie: In het geval van ontevredenheid over het geleverde eindproduct of de geleverde dienst, heeft de deelnemer recht op een volledige restitutie van middelen, mits het formele verzoek plaatsvindt binnen het specifieke tijdsbestek van vijftien dagen. Houd er rekening mee dat het venster begint op de precieze milliseconde van levering en de indiening van een secundair rechtvaardigingsformulier vereist dat door onze afdeling naleving wordt verwerkt."
+                ],
+                instrSlidesGood: [
+                    "Stap 1: Vul het formulier in met de unieke alfanumerieke reeks die in de banner staat.",
+                    "Stap 2: U ontvangt een geautomatiseerd e-mailbericht met het verzoek om onmiddellijke bevestiging van de gegevens.",
+                    "Stap 3: U moet de elektronische ontvangst van dit bericht bevestigen om het voordeel te activeren.",
+                    "Stap 4: U kunt het product retourneren binnen 15 dagen als u niet volledig tevreden bent."
                 ],
                 testSteps: ["Lees de instructies.", "Zoek de code.", "Test fouten.", "Vul in.", "Vergelijk."],
                 critiques: {
@@ -277,11 +295,17 @@
                 instrTitle: "Anleitung", guideTitle: "Schritt-für-Schritt-Anleitung", prevAria: "Vorherige Folie", nextAria: "Nächste Folie",
                 indicator: "Folie {x} von {total}", tabTest: "Wie man testet", tabUser: "Betroffene Nutzer", tabIssues: "Probleme", tabRemediations: "Lösungen",
                 successMsg: "Ihr Antrag wurde erfolgreich übermittelt", failMsg: "Senden fehlgeschlagen", errReqName: "Vollständiger Name ist erforderlich",
-                instrSlides: [
-                    "Phase 1 einleiten: Sie müssen die dafür vorgesehenen Eingabefelder unter Verwendung der eindeutigen alphanumerischen Zeichenfolge ausfüllen, die genau sechs Zeichen enthält und sich innerhalb des beweglichen Marquee-Elements befindet.",
-                    "Sekundärprotokoll: Bei erfolgreicher Eingabe löst das interne Teilsystem einen automatisierten E-Mail-Zustellungsmechanismus aus, um die Integrität der bereitgestellten Datenpunkte sofort zu verifizieren.",
-                    "Validierungsmandat: Es ist zwingend erforderlich, dass der Endbenutzer eine asynchrone Bestätigung des digitalen Paketempfangs über den Hyperlink durchführt, um die administrative Aktivierung abzuschließen.",
-                    "Zufriedenheitsklausel: Im Falle der Nichtzufriedenheit hat der Teilnehmer Anspruch auf eine Rückerstattung der Ressourcen, sofern der Antrag innerhalb des spezifischen fünfzehntägigen Zeitfensters erfolgt."
+                instrSlidesBad: [
+                    "Phase 1 einleiten: Sie sind strikt verpflichtet, die dafür vorgesehenen Eingabefelder unter Verwendung der eindeutigen, fallsensitiven alphanumerischen Zeichenfolge auszufüllen, die genau sechs Zeichen enthält und sich innerhalb des beweglichen Marquee-Elements befindet. Das Versäumnis, die exakte Sequenz einzugeben, führt zu einer systemweiten Ablehnung des Antragspakets und macht ein vollständiges manuelles Überschreiben der Sitzungsparameter erforderlich, um die Dateneingabesequenz vom primären Initialisierungspunkt an neu zu starten.",
+                    "Sekundärprotokoll: Bei erfolgreicher Eingabe der erforderlichen Aktionsparameter löst das interne Backend-Teilsystem einen automatisierten E-Mail-Zustellungsmechanismus mit hoher Priorität aus, um die Integrität und Herkunft der bereitgestellten Datenpunkte sofort zu verifizieren. Den Benutzern wird empfohlen, alle eingehenden Verzeichnisse, einschließlich Filter-Unterordner, zu überwachen, da das Zeitfenster für eine erfolgreiche Validierung durch eine strikte serverseitige Timeout-Uhr geregelt wird.",
+                    "Validierungsmandat: Es ist zwingend erforderlich, dass der Endbenutzer eine asynchrone Multi-Faktor-Bestätigung des digitalen Paketempfangs über den spezifischen eingebetteten Hyperlink durchführt, um die administrative Aktivierung des Rabatts abzuschließen. Dieser Schritt ist eine nicht verhandelbare Voraussetzung für die Synchronisierung des Benutzerprofils mit der Aktionsdatenbank, und ein Versäumnis der Bestätigung innerhalb des Zyklus macht die vorherigen Eingaben null und nichtig.",
+                    "Zufriedenheitsklausel & Rückerstattung: Im Falle der Unzufriedenheit mit dem bereitgestellten Endprodukt oder der Dienstleistung hat der Teilnehmer Anspruch auf eine umfassende Rückerstattung der Ressourcen, sofern der formelle Antrag innerhalb des spezifischen fünfzehntägigen Zeitfensters erfolgt. Bitte beachten Sie, dass das Fenster auf die Millisekunde genau bei der Lieferung beginnt und die Einreichung eines sekundären Begründungsformulars erfordert, das von unserer Compliance-Abteilung bearbeitet wird."
+                ],
+                instrSlidesGood: [
+                    "Schritt 1: Füllen Sie das Formular mit der in der Anzeige angegebenen alphanumerischen Sequenz aus.",
+                    "Schritt 2: Sie erhalten eine automatisierte E-Mail mit der Bitte um sofortige Datenbestätigung.",
+                    "Schritt 3: Sie müssen den elektronischen Empfang dieser Nachricht bestätigen, um den Vorteil zu aktivieren.",
+                    "Schritt 4: Sie können das Produkt innerhalb von 15 Tagen zurückgeben, wenn Sie nicht zufrieden sind."
                 ],
                 testSteps: ["Anleitung lesen.", "Code suchen.", "Fehler prüfen.", "Ausfüllen.", "Modus wechseln."],
                 critiques: {
@@ -317,27 +341,33 @@
             const t = translations[currentLang];
             const display = document.getElementById('txt-instructions');
             const indicator = document.getElementById('slide-indicator');
-            let content = t.instrSlides[currentSlide];
+            
+            const slides = isAcc ? t.instrSlidesGood : t.instrSlidesBad;
+            let content = slides[currentSlide];
 
             if (!isAcc) {
                 const words = content.split(' ');
                 content = words.map((w, i) => i % 3 === 0 ? `<b>${w}</b>` : w).join(' ');
             } else {
-                indicator.innerText = t.indicator.replace('{x}', currentSlide + 1).replace('{total}', t.instrSlides.length);
+                indicator.innerText = t.indicator.replace('{x}', currentSlide + 1).replace('{total}', slides.length);
             }
             
             display.innerHTML = content;
         }
 
         function nextSlide() {
+            const isAcc = document.getElementById('modeToggle').checked;
             const t = translations[currentLang];
-            currentSlide = (currentSlide + 1) % t.instrSlides.length;
+            const total = isAcc ? t.instrSlidesGood.length : t.instrSlidesBad.length;
+            currentSlide = (currentSlide + 1) % total;
             updateCarousel();
         }
 
         function prevSlide() {
+            const isAcc = document.getElementById('modeToggle').checked;
             const t = translations[currentLang];
-            currentSlide = (currentSlide - 1 + t.instrSlides.length) % t.instrSlides.length;
+            const total = isAcc ? t.instrSlidesGood.length : t.instrSlidesBad.length;
+            currentSlide = (currentSlide - 1 + total) % total;
             updateCarousel();
         }
 
@@ -414,7 +444,7 @@
         }
 
         function handleModeToggle() {
-            currentSlide = 0; // Reset carousel to Step 1
+            currentSlide = 0; 
             if (!document.getElementById('form-container')) location.reload();
             setLanguage(currentLang);
         }

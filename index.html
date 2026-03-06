@@ -6,7 +6,6 @@
     <title>Reading and Understanding Experience - Digital Accessibility Empathy Lab</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- CONSTANT LAB UI STYLES --- */
         .lab-ui-font { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif !important; }
         .info-panel-container { min-height: 550px !important; display: flex; flex-direction: column; }
         .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
@@ -18,33 +17,18 @@
         .tab-btn { font-family: ui-sans-serif, system-ui, sans-serif !important; }
         .tab-btn[aria-selected="true"] { background-color: #111827; color: #60a5fa; border-bottom: 2px solid #60a5fa; }
 
-        /* --- INACCESSIBLE MODE: MOVING BANNER (Slowed to 5s) --- */
-        .inaccessible-mode .promo-banner { 
-            overflow: hidden;
-            position: relative;
-            background-color: #dc2626;
-        }
-        .inaccessible-mode .promo-text-img {
-            white-space: nowrap;
-            animation: slide-banner 5s linear infinite;
-            height: 40px;
-        }
+        /* Slowed to 5s for the banner */
+        .inaccessible-mode .promo-banner { overflow: hidden; position: relative; background-color: #dc2626; }
+        .inaccessible-mode .promo-text-img { white-space: nowrap; animation: slide-banner 5s linear infinite; height: 40px; }
         @keyframes slide-banner { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* --- INACCESSIBLE INSTRUCTIONS --- */
         .inaccessible-mode #txt-instr-title, 
         .inaccessible-mode #txt-instructions {
             font-family: 'Arial Narrow', sans-serif !important;
             letter-spacing: -0.05em !important;
             font-size: 13px !important;
         }
-        .inaccessible-mode #txt-instructions {
-            text-align: justify;
-            line-height: 0.95 !important;
-            display: block;
-        }
-
-        /* --- ACCESSIBLE MODE --- */
+        .inaccessible-mode #txt-instructions { text-align: justify; line-height: 0.95 !important; display: block; }
         .accessible-mode .promo-banner { background-color: #1e40af; animation: none; margin-bottom: 24px; }
         .accessible-mode #txt-instructions { text-align: left; line-height: 1.8; font-size: 14px; }
 
@@ -54,10 +38,6 @@
             border-radius: 6px; background: white; color: #1e40af;
             transition: all 0.2s; cursor: pointer;
         }
-        .carousel-btn:hover { background: #f3f4f6; }
-
-        .input-error { border: 2px solid #ef4444 !important; }
-        .error-msg { color: #ef4444; font-size: 12px; font-weight: bold; margin-top: 4px; display: block; }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font" id="bodyTag">
@@ -95,7 +75,6 @@
                 <div class="lg:col-span-2 reading-content flex flex-col" id="exercise-column">
                     <div id="form-container" class="contents">
                         <div class="promo-banner rounded-lg h-[60px] flex items-center justify-center" id="banner"></div>
-                        
                         <div id="vague-error" class="hidden bg-red-100 text-red-700 p-3 rounded-lg text-sm font-bold mt-4" role="alert">Fail to submit form</div>
                         
                         <div class="bg-blue-50 p-5 rounded-xl border border-blue-100 mt-4">
@@ -106,7 +85,7 @@
                                     <button onclick="nextSlide()" class="carousel-btn" id="btn-next">❯</button>
                                 </div>
                             </div>
-                            <div id="txt-instructions" class="min-h-[140px]"></div>
+                            <div id="txt-instructions" class="min-h-[160px]"></div>
                             <div id="slide-indicator" class="text-[10px] font-bold text-blue-400 mt-2 hidden"></div>
                         </div>
 
@@ -114,7 +93,7 @@
                             <div>
                                 <label id="txt-label-name" class="block mb-1 text-sm font-bold">Name</label>
                                 <input type="text" id="inp-name" class="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-sm">
-                                <span id="err-name" class="error-msg hidden" role="alert"></span>
+                                <span id="err-name" class="hidden text-red-600 text-xs font-bold mt-1" role="alert"></span>
                             </div>
                             <div>
                                 <label id="txt-label-code" class="block mb-1 text-sm font-bold">CODE</label>
@@ -159,14 +138,12 @@
                 instrTitle: "Instructions", guideTitle: "Step-by-step guide", indicator: "Slide {x} of {total}",
                 tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "Remediations",
                 successMsg: "Your request was successfully submitted", failMsg: "Fail to submit form", errReqName: "Full Name is required",
-                // Inaccessible: Excessive, random bolding on complex jargon
                 instrSlidesBad: [
-                    "Phase 1 Initialization: It is **mandatory for the** end-user to **populate the designated** alphanumeric input matrices with the **legal nomenclature of the** registrant and the six-character promotional identifier currently sequestered within the kinetic marquee display.",
-                    "Logistical Transit Protocol: Upon **successful verification of the** aforementioned credentials, the **backend dispatch architecture** will initiate the logistics chain. Users should note that the physical manifestation will be routed to **primary geographical coordinates**.",
-                    "Temporal Distribution Window: The anticipated duration for the **physical delivery of the** procured items is subject to a temporal window spanning **no fewer than three** and no more than seven **standard industrial business cycles**.",
-                    "Restitution and Satisfaction Mandate: Should the terminal state of the **delivered resources fail to** meet expectations, a **formal request for resource** reclamation may be filed within **fifteen diurnal cycles**."
+                    "Phase 1 Initialization Protocol: It is strictly **mandatory for the designated** end-user to populate the required alphanumeric input matrices with the **legal nomenclature of the** registrant and the six-character promotional identifier currently **sequestered within the kinetic** marquee display. Failure to synchronize the data input will result in a **system-wide rejection** and terminate the application progress.",
+                    "Secondary Verification Mechanism: Upon successful verification of the aforementioned credentials, the **automated backend dispatch** architecture will initiate an electronic mail delivery designed to confirm the **integrity and provenance** of the provided metadata points. Users are advised to monitor all incoming directories as the **temporal window for validation** is governed by a strict server-side timeout clock.",
+                    "Logistical Transit and Metadata Sync: Users should note that the physical manifestation of the requested order will be **routed to the primary** geographical coordinates currently residing in the **historical metadata of the** user's digital profile. The anticipated duration for delivery is subject to a temporal window spanning **no fewer than three** and no more than seven standard **industrial business cycles**.",
+                    "Restitution and Satisfaction Mandate: Should the terminal state of the **delivered resources fail to** meet the subjective expectations of the recipient, a **formal request for resource** reclamation and fiscal restitution may be filed. This administrative action is **strictly limited to a** temporal duration of fifteen diurnal cycles beginning at the verified timestamp of package reception."
                 ],
-                // Accessible: Clean, helpful bolding on key data points
                 instrSlidesGood: [
                     "Step 1: Fill in the form with your full name and the unique promotional code provided in the banner (**REDUCE2026**).",
                     "Step 2: You will receive an automated e-mail message requesting a confirmation of the data.",
@@ -184,25 +161,25 @@
                     bad: { title: "What is wrong?", items: [
                         { f: "Moving Content", c: "The flashing, scrolling banner and auto-sliding instructions create a distraction that makes it hard to focus on reading." },
                         { f: "Uncontrolled Carousel", c: "The instructions change automatically without giving enough time to read, and there is no way to stop or go back manually." },
-                        { f: "Unreadable Formatting", c: "The banner uses an image of text which prevents resizing. Overuse of bolding and tight justified text creates a 'wall of text'." },
-                        { f: "Confusing Labels", c: "The label 'Identifier' is vague, and redundant jargon placeholders make it difficult to understand exactly what is needed." }
+                        { f: "Unreadable Formatting", c: "Overuse of bolding and tight justified text creates a 'wall of text' that is hard to scan." },
+                        { f: "Confusing Labels", c: "Vague labels and redundant jargon make it difficult to understand what is needed." }
                     ]},
                     good: { title: "Remediations", items: [
-                        { f: "Static Content", c: "Ensure promotional content is static. Allow users to navigate instructions at their own pace with manual buttons." },
-                        { f: "Standard Text", c: "Use real text instead of images. Provide generous line spacing and only use bolding for actual key terms." },
+                        { f: "Static Content", c: "Ensure promotional content is static. Allow users to navigate at their own pace with manual buttons." },
+                        { f: "Standard Text", c: "Use real text, generous spacing, and only use bolding for actual key terms." },
                         { f: "Descriptive Labels", c: "Use clear labels like 'Full Name' and remove distracting placeholder text." },
-                        { f: "Clear Error Guidance", c: "Point specifically to the field that needs fixing and provide a permanent success message." }
+                        { f: "Clear Error Guidance", c: "Point specifically to the field that needs fixing." }
                     ]}
                 },
                 userTitle: "Who is impacted?", userList: [
-                    "**ADHD / Autisme:** Moving parts act as significant distractions, making it very difficult to stay on task.",
+                    "**ADHD / Autism:** Moving parts act as significant distractions, making it very difficult to stay on task.",
                     "**Dyslexia:** Tight spacing and fonts that make similar letters look identical create severe reading barriers.",
-                    "**Deaf people:** Some people who use sign language as their primary language may find complex jargon harder to process in written form.",
-                    "**Cognitive Impairment:** Fast-moving carousels cause frustration when people cannot process information in time."
+                    "**Deaf people:** Some people who use sign language may find complex jargon harder to process in written form.",
+                    "**Cognitive Impairment:** Fast-moving carousels cause frustration when people cannot process information."
                 ]
             },
             fr: {
-                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Laboratoire d'empathie sur l'accessibilité numérique", title: "Expérience de lecture et compréhension",
+                inaccessible: "Inaccessible", accessible: "Accessible", labTitle: "Digital Accessibility Empathy Lab", title: "Expérience de lecture et compréhension",
                 name: { bad: "Identifiant", good: "Nom complet (requis)" }, code: { bad: "CODE", good: "Code promotionnel" }, 
                 btn: { bad: "OK", good: "Soumettre ma demande" }, promoPrefix: "POSTULEZ ! -50% CODE :",
                 namePlaceholder: "Saisissez votre identifiant", codePlaceholder: "X-99-BETA",
@@ -210,10 +187,10 @@
                 tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 successMsg: "Votre demande a été soumise avec succès", failMsg: "Échec de l'envoi du formulaire", errReqName: "Le nom complet est requis",
                 instrSlidesBad: [
-                    "Initialisation de la phase 1 : Il est **impératif que l'utilisateur** final remplisse les **matrices de saisie alphanumériques** désignées avec la **nomenclature légale du déclarant** et l'identifiant promotionnel.",
-                    "Protocole de transit logistique : Après **vérification réussie des informations**, l'architecture **d'expédition principale lancera** la chaîne logistique. Notez que la manifestation physique sera routée vers les **coordonnées géographiques**.",
-                    "Fenêtre de distribution temporelle : La durée prévue pour la **livraison physique des articles** est soumise à une fenêtre temporelle ne couvrant **pas moins de trois** et pas plus de sept cycles d'affaires.",
-                    "Mandat de restitution et de satisfaction : Si l'état terminal des **ressources livrées ne répond** pas aux attentes, une **demande formelle de réclamation** peut être déposée dans les **quinze cycles diurnes**."
+                    "Protocole d'initialisation de la phase 1 : Il est **strictement obligatoire pour** l'utilisateur final de remplir les **matrices de saisie alphanumériques** avec la **nomenclature légale du** déclarant et l'identifiant promotionnel **séquestré dans la marquise** cinétique. L'échec de la synchronisation entraînera un **rejet global du système**.",
+                    "Mécanisme de vérification secondaire : Après vérification réussie, l'architecture **d'expédition automatisée en arrière-plan** lancera un courrier électronique conçu pour confirmer **l'intégrité et la provenance** des métadonnées. La **fenêtre temporelle de validation** est régie par une horloge stricte.",
+                    "Transit logistique et synchronisation : La manifestation physique de la commande sera **routée vers les coordonnées** géographiques résidant dans les **métadonnées historiques du** profil numérique de l'utilisateur. La durée prévue est sujette à une fenêtre de **pas moins de trois** cycles industriels.",
+                    "Mandat de restitution : Si l'état terminal des **ressources livrées ne répond** pas aux attentes, une **demande formelle de réclamation** peut être déposée dans les **quinze cycles diurnes** suivant la réception."
                 ],
                 instrSlidesGood: [
                     "Étape 1 : Remplissez le formulaire avec votre nom complet et le code promotionnel unique fourni dans la bannière (**REDUCE2026**).",
@@ -258,13 +235,13 @@
                 tabTest: "Hoe te testen", tabUser: "Impact op gebruikers", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 successMsg: "Uw aanvraag is succesvol verzonden", failMsg: "Formulier verzenden mislukt", errReqName: "Volledige naam is verplicht",
                 instrSlidesBad: [
-                    "Fase 1 Initialisatie: Het is **verplicht voor de** eindgebruiker om de **aangewezen alfanumerieke invoermatrices** in te vullen met de **wettelijke nomenclatuur van de** registrant.",
-                    "Logistiek Transitprotocol: Na **succesvolle verificatie van de** inloggegevens, zal de **backend-verzendarchitectuur de** logistieke keten initiëren. De fysieke manifestatie wordt naar de **geografische coördinaten** gestuurd.",
-                    "Temporeel Distributievenster: De verwachte duur voor de **fysieke levering van de** items is onderworpen aan een venster van **niet minder dan drie** en niet meer dan zeven **standaard bedrijfscycli**.",
-                    "Restitutie en Tevredenheidsmandaat: Mocht de **eindtoestand van de middelen** niet voldoen, dan kan een **formeel verzoek om reclamatie** worden ingediend binnen **vijftien dagelijkse cycli**."
+                    "Fase 1 Initialisatieprotocol: Het is strikt **verplicht voor de aangewezen** eindgebruiker om de vereiste alfanumerieke invoermatrices in te vullen met de **wettelijke nomenclatuur van de** registrant en de promotionele identificatie **gesekwestreerd in de kinetische** marquee. Een fout resulteert in een **systeembrede afwijzing**.",
+                    "Secundair Verificatiemechanisme: Na succesvolle verificatie zal de **geautomatiseerde backend-architectuur** een e-mail verzenden om de **integriteit en herkomst** van de metadata te bevestigen. Het **tijdsvenster voor validatie** wordt beheerd door een strikte timeout.",
+                    "Logistieke Transit en Metadata Sync: De fysieke manifestatie van de bestelling wordt **gerouteerd naar de primaire** geografische coördinaten die momenteel in de **historische metadata van het** digitale profiel staan. De verwachte duur is **niet minder dan drie** standaard bedrijfscycli.",
+                    "Restitutie en Tevredenheidsmandaat: Mocht de **eindtoestand van de middelen** niet voldoen aan de verwachtingen, dan kan een **formeel verzoek om reclamatie** worden ingediend binnen **vijftien dagelijkse cycli** na ontvangst."
                 ],
                 instrSlidesGood: [
-                    "Stap 1: Vul het formulier in met uw volledige naam en de unieke promotiecode die in de banner staat (**REDUCE2026**).",
+                    "Stap 1: Vul het formulier in met uw volledige naam en the unieke promotiecode die in de banner staat (**REDUCE2026**).",
                     "Stap 2: U ontvangt een geautomatiseerd e-mailbericht met het verzoek om bevestiging van de gegevens.",
                     "Stap 3: U kunt verwachten dat uw levering binnen **3-7 werkdagen** aankomt op het adres dat op uw account is geregistreerd.",
                     "Stap 4: Als u niet volledig tevreden bent met uw producten, kunt u deze binnen **15 dagen** retourneren."
@@ -306,10 +283,10 @@
                 tabTest: "Wie man testet", tabUser: "Betroffene Nutzer", tabIssues: "Probleme", tabRemediations: "Lösungen",
                 successMsg: "Ihr Antrag wurde erfolgreich übermittelt", failMsg: "Senden fehlgeschlagen", errReqName: "Vollständiger Name ist erforderlich",
                 instrSlidesBad: [
-                    "Phase-1-Initialisierung: Es ist **obligatorisch für den** Endbenutzer, die **vorgesehenen alphanumerischen Eingabematrizen** mit der **gesetzlichen Nomenklatur des** Registranten auszufüllen.",
-                    "Logistik-Transit-Protokoll: Nach **erfolgreicher Verifizierung der** Anmeldedaten wird die **Backend-Versandarchitektur die** Logistikkette einleiten. Die Manifestation wird an die **geografischen Koordinaten** geleitet.",
-                    "Zeitliches Verteilungsfenster: Die Dauer für die **physische Lieferung der** Artikel unterliegt einem Fenster von **nicht weniger als drei** und nicht mehr als sieben **Standard-Geschäftszyklen**.",
-                    "Restitutions- und Zufriedenheitsmandat: Sollte der **Endzustand der Ressourcen** nicht entsprechen, kann ein **formeller Antrag auf Reklamation** innerhalb von **fünfzehn täglichen Zyklen** gestellt werden."
+                    "Phase-1-Initialisierungsprotokoll: Es ist strikt **obligatorisch für den vorgesehenen** Endbenutzer, die erforderlichen Eingabematrizen mit der **gesetzlichen Nomenklatur des** Registranten und der Kennung **innerhalb der kinetischen** Anzeige auszufüllen. Ein Fehler führt zur **systemweiten Ablehnung**.",
+                    "Sekundärer Verifizierungsmechanismus: Nach erfolgreicher Verifizierung wird die **automatisierte Backend-Architektur** eine E-Mail senden, um die **Integrität und Provenienz** der Metadaten zu bestätigen. Das **zeitliche Validierungsfenster** unterliegt einem strikten Timeout.",
+                    "Logistischer Transit und Metadaten-Sync: Die physische Manifestation der Bestellung wird **zu den primären** geografischen Koordinaten geleitet, die in den **historischen Metadaten des** digitalen Profils residieren. Die Dauer beträgt **nicht weniger als drei** industrielle Geschäftszyklen.",
+                    "Restitutions- und Zufriedenheitsmandat: Sollte der **Endzustand der Ressourcen** nicht entsprechen, kann ein **formeller Antrag auf Reklamation** innerhalb von **fünfzehn täglichen Zyklen** ab dem Zeitstempel des Empfangs gestellt werden."
                 ],
                 instrSlidesGood: [
                     "Schritt 1: Füllen Sie das Formular mit Ihrem vollständigen Namen und dem im Banner angegebenen Aktionscode aus (**REDUCE2026**).",
@@ -356,18 +333,12 @@
             const t = translations[currentLang];
             const display = document.getElementById('txt-instructions');
             const indicator = document.getElementById('slide-indicator');
-            
             const slides = isAcc ? t.instrSlidesGood : t.instrSlidesBad;
-            let content = slides[currentSlide];
-
-            // For inaccessible mode, we use the pre-formatted bolding in the strings
-            // No additional formatting logic needed here, content is already tagged.
             
             if (isAcc) {
                 indicator.innerText = t.indicator.replace('{x}', currentSlide + 1).replace('{total}', slides.length);
             }
-            
-            display.innerHTML = content.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+            display.innerHTML = slides[currentSlide].replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
         }
 
         function nextSlide() {
@@ -391,7 +362,6 @@
             const t = translations[lang] || translations['en'];
             const isAcc = document.getElementById('modeToggle').checked;
             document.documentElement.lang = lang;
-
             document.getElementById('txt-lab-title').innerText = t.labTitle;
             document.getElementById('txt-title').innerText = t.title;
             document.getElementById('txt-inaccessible').innerText = t.inaccessible;
@@ -402,30 +372,15 @@
             document.getElementById('vague-error').innerText = t.failMsg;
             document.getElementById('txt-instr-title').innerText = t.instrTitle;
             document.getElementById('txt-guide-title').innerText = t.guideTitle;
-            
             document.getElementById('txt-test-steps').innerHTML = (t.testSteps || []).map(s => `<li>${s}</li>`).join('');
-            
             document.getElementById('tab-test').innerText = t.tabTest;
             document.getElementById('tab-user').innerText = t.tabUser;
             document.getElementById('tab-feedback').innerText = isAcc ? t.tabRemediations : t.tabIssues;
-
-            const inpName = document.getElementById('inp-name');
-            const inpCode = document.getElementById('inp-code');
-            if (!isAcc) {
-                inpName.placeholder = t.namePlaceholder;
-                inpCode.placeholder = t.codePlaceholder;
-            } else {
-                inpName.placeholder = "";
-                inpCode.placeholder = "";
-            }
-
             document.getElementById('txt-user-content').innerHTML = `
                 <h3 class="text-blue-400 font-bold uppercase mb-4 text-xs">${t.userTitle}</h3>
                 <ul class="list-disc pl-5 space-y-3">${(t.userList||[]).map(li => `<li>${li.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</li>`).join('')}</ul>
             `;
-
             updateMode();
-            
             document.querySelectorAll('.lang-btn').forEach(b => {
                 b.classList.remove('bg-blue-600', 'text-white', 'bg-gray-200', 'text-gray-700');
                 if (b.id === 'btn-' + lang) b.classList.add('bg-blue-600', 'text-white');
@@ -438,43 +393,28 @@
             const nameVal = document.getElementById('inp-name').value.trim();
             const codeVal = document.getElementById('inp-code').value.trim();
             const t = translations[currentLang];
-            document.getElementById('vague-error').classList.add('hidden');
-            document.getElementById('inp-name').classList.remove('input-error');
-            document.getElementById('err-name').classList.add('hidden');
-
             if (isAcc) {
                 if (!nameVal) {
-                    document.getElementById('inp-name').classList.add('input-error');
                     document.getElementById('err-name').innerText = t.errReqName;
                     document.getElementById('err-name').classList.remove('hidden');
                     return;
                 }
-                document.getElementById('form-container').innerHTML = `<div class="bg-green-100 text-green-800 p-8 rounded-2xl border-2 border-green-200 text-center font-bold text-lg" role="status">${t.successMsg}</div>`;
+                document.getElementById('form-container').innerHTML = `<div class="bg-green-100 text-green-800 p-8 rounded-2xl border-2 border-green-200 text-center font-bold text-lg">${t.successMsg}</div>`;
             } else {
-                if (!nameVal || codeVal !== 'S5bd1L') {
-                    document.getElementById('vague-error').classList.remove('hidden');
-                } else {
-                    document.getElementById('inp-name').value = '';
-                    document.getElementById('inp-code').value = '';
-                }
+                if (!nameVal || codeVal !== 'S5bd1L') document.getElementById('vague-error').classList.remove('hidden');
             }
         }
 
-        function handleModeToggle() {
-            currentSlide = 0; 
-            setLanguage(currentLang);
-        }
+        function handleModeToggle() { currentSlide = 0; setLanguage(currentLang); }
 
         function updateMode() {
             const isAcc = document.getElementById('modeToggle').checked;
             const banner = document.getElementById('banner');
-            const t = translations[currentLang] || translations['en'];
+            const t = translations[currentLang];
             const crit = isAcc ? t.critiques.good : t.critiques.bad;
-            
             clearInterval(carouselInterval);
             if (!isAcc) {
                 banner.innerHTML = `<img src="https://placehold.co/600x60/dc2626/ffffff/png?text=APPLY+NOW!+50%25+OFF+PROMO+CODE:+S5bd1L&font=playfair-display" alt="Promotion" class="promo-text-img">`;
-                // Inaccessible carousel slowed down to 3s (1s slower than typical 2s)
                 carouselInterval = setInterval(nextSlide, 3000);
                 document.getElementById('carousel-controls').classList.add('hidden');
                 document.getElementById('slide-indicator').classList.add('hidden');
@@ -483,7 +423,6 @@
                 document.getElementById('carousel-controls').classList.remove('hidden');
                 document.getElementById('slide-indicator').classList.remove('hidden');
             }
-
             document.getElementById('bodyTag').className = isAcc ? "bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font accessible-mode" : "bg-gray-100 min-h-screen p-4 md:p-8 transition-colors duration-500 lab-ui-font inaccessible-mode";
             document.getElementById('txt-feedback-title').innerText = crit.title;
             document.getElementById('critiqueContent').innerHTML = (crit.items || []).map(i => `<div><span class="text-blue-400 font-bold block mb-1 uppercase text-[11px]">${i.f}</span><p class="text-white opacity-90">${i.c}</p></div>`).join('');
@@ -492,15 +431,12 @@
 
         function switchTab(tabId) {
             ['test', 'feedback', 'user'].forEach(id => {
-                const el = document.getElementById('panel-' + id);
-                if (el) el.classList.toggle('hidden', id !== tabId);
-                const tab = document.getElementById('tab-' + id);
-                if (tab) tab.setAttribute('aria-selected', id === tabId);
+                document.getElementById('panel-' + id).classList.toggle('hidden', id !== tabId);
+                document.getElementById('tab-' + id).setAttribute('aria-selected', id === tabId);
             });
         }
 
         setLanguage('en');
-        switchTab('test');
     </script>
 </body>
 </html>

@@ -18,7 +18,7 @@
         .tab-btn { font-family: ui-sans-serif, system-ui, sans-serif !important; }
         .tab-btn[aria-selected="true"] { background-color: #111827; color: #60a5fa; border-bottom: 2px solid #60a5fa; }
 
-        /* --- INACCESSIBLE MODE: MOVING BANNER --- */
+        /* --- INACCESSIBLE MODE: MOVING BANNER (Slowed to 5s) --- */
         .inaccessible-mode .promo-banner { 
             overflow: hidden;
             position: relative;
@@ -26,7 +26,7 @@
         }
         .inaccessible-mode .promo-text-img {
             white-space: nowrap;
-            animation: slide-banner 4s linear infinite;
+            animation: slide-banner 5s linear infinite;
             height: 40px;
         }
         @keyframes slide-banner { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
@@ -159,17 +159,19 @@
                 instrTitle: "Instructions", guideTitle: "Step-by-step guide", indicator: "Slide {x} of {total}",
                 tabTest: "How to test", tabUser: "Impacted users", tabIssues: "Issues", tabRemediations: "Remediations",
                 successMsg: "Your request was successfully submitted", failMsg: "Fail to submit form", errReqName: "Full Name is required",
+                // Inaccessible: Excessive, random bolding on complex jargon
                 instrSlidesBad: [
-                    "Phase 1 Initialization: It is mandatory for the end-user to populate the designated alphanumeric input matrices with the legal nomenclature of the registrant and the six-character promotional identifier currently sequestered within the kinetic marquee display. Failure to synchronize the data input with the exact string presented in the visual stream will negate the validity of the session and terminate the application progress.",
-                    "Logistical Transit Protocol: Upon successful verification of the aforementioned credentials, the backend dispatch architecture will initiate the logistics chain. Users should note that the physical manifestation of the order will be routed to the primary geographical coordinates currently residing in the historical metadata of the user's digital profile through a standard logistical courier network.",
-                    "Temporal Distribution Window: The anticipated duration for the physical delivery of the procured items is subject to a temporal window spanning no fewer than three and no more than seven standard industrial business cycles. This duration is an estimate governed by external courier fluctuations and does not account for localized administrative delays or secondary customs inspections.",
-                    "Restitution and Satisfaction Mandate: Should the terminal state of the delivered resources fail to meet the subjective expectations of the recipient, a formal request for resource reclamation and fiscal restitution may be filed. This administrative action is strictly limited to a temporal duration of fifteen diurnal cycles beginning at the verified timestamp of package reception by the authorized party."
+                    "Phase 1 Initialization: It is **mandatory for the** end-user to **populate the designated** alphanumeric input matrices with the **legal nomenclature of the** registrant and the six-character promotional identifier currently sequestered within the kinetic marquee display.",
+                    "Logistical Transit Protocol: Upon **successful verification of the** aforementioned credentials, the **backend dispatch architecture** will initiate the logistics chain. Users should note that the physical manifestation will be routed to **primary geographical coordinates**.",
+                    "Temporal Distribution Window: The anticipated duration for the **physical delivery of the** procured items is subject to a temporal window spanning **no fewer than three** and no more than seven **standard industrial business cycles**.",
+                    "Restitution and Satisfaction Mandate: Should the terminal state of the **delivered resources fail to** meet expectations, a **formal request for resource** reclamation may be filed within **fifteen diurnal cycles**."
                 ],
+                // Accessible: Clean, helpful bolding on key data points
                 instrSlidesGood: [
-                    "Step 1: Fill in the form with your full name and the unique promotional code provided in the banner (REDUCE2026).",
+                    "Step 1: Fill in the form with your full name and the unique promotional code provided in the banner (**REDUCE2026**).",
                     "Step 2: You will receive an automated e-mail message requesting a confirmation of the data.",
-                    "Step 3: You can expect your delivery to arrive on the address registered on your account in 3-7 business days.",
-                    "Step 4: If you are not fully satisfied with your products, you can return them within a 15-day window."
+                    "Step 3: You can expect your delivery to arrive on the address registered on your account in **3-7 business days**.",
+                    "Step 4: If you are not fully satisfied with your products, you can return them within a **15-day** window."
                 ],
                 testSteps: [
                     "Read the 'Instructions' block and identify the required pieces of information.",
@@ -193,7 +195,7 @@
                     ]}
                 },
                 userTitle: "Who is impacted?", userList: [
-                    "**ADHD / Autism:** Moving parts act as significant distractions, making it very difficult to stay on task.",
+                    "**ADHD / Autisme:** Moving parts act as significant distractions, making it very difficult to stay on task.",
                     "**Dyslexia:** Tight spacing and fonts that make similar letters look identical create severe reading barriers.",
                     "**Deaf people:** Some people who use sign language as their primary language may find complex jargon harder to process in written form.",
                     "**Cognitive Impairment:** Fast-moving carousels cause frustration when people cannot process information in time."
@@ -208,16 +210,16 @@
                 tabTest: "Comment tester", tabUser: "Utilisateurs impactés", tabIssues: "Problèmes", tabRemediations: "Corrections",
                 successMsg: "Votre demande a été soumise avec succès", failMsg: "Échec de l'envoi du formulaire", errReqName: "Le nom complet est requis",
                 instrSlidesBad: [
-                    "Initialisation de la phase 1 : Il est impératif que l'utilisateur final remplisse les matrices de saisie alphanumériques désignées avec la nomenclature légale du déclarant et l'identifiant promotionnel à six caractères actuellement séquestré dans l'affichage de la marquise cinétique.",
-                    "Protocole de transit logistique : Après vérification réussie des informations d'identification susmentionnées, l'architecture d'expédition principale lancera la chaîne logistique.",
-                    "Fenêtre de distribution temporelle : La durée prévue pour la livraison physique des articles procurés est soumise à une fenêtre temporelle ne couvrant pas moins de trois et pas plus de sept cycles d'affaires industriels standard.",
-                    "Mandat de restitution et de satisfaction : Si l'état terminal des ressources livrées ne répond pas aux attentes subjectives du destinataire, une demande formelle de réclamation de ressources peut être déposée."
+                    "Initialisation de la phase 1 : Il est **impératif que l'utilisateur** final remplisse les **matrices de saisie alphanumériques** désignées avec la **nomenclature légale du déclarant** et l'identifiant promotionnel.",
+                    "Protocole de transit logistique : Après **vérification réussie des informations**, l'architecture **d'expédition principale lancera** la chaîne logistique. Notez que la manifestation physique sera routée vers les **coordonnées géographiques**.",
+                    "Fenêtre de distribution temporelle : La durée prévue pour la **livraison physique des articles** est soumise à une fenêtre temporelle ne couvrant **pas moins de trois** et pas plus de sept cycles d'affaires.",
+                    "Mandat de restitution et de satisfaction : Si l'état terminal des **ressources livrées ne répond** pas aux attentes, une **demande formelle de réclamation** peut être déposée dans les **quinze cycles diurnes**."
                 ],
                 instrSlidesGood: [
-                    "Étape 1 : Remplissez le formulaire avec votre nom complet et le code promotionnel unique fourni dans la bannière (REDUCE2026).",
+                    "Étape 1 : Remplissez le formulaire avec votre nom complet et le code promotionnel unique fourni dans la bannière (**REDUCE2026**).",
                     "Étape 2 : Vous recevrez un message électronique automatisé demandant une confirmation des données.",
-                    "Étape 3 : Vous pouvez prévoir que votre livraison arrive à l'adresse enregistrée sur votre compte dans un délai de 3 à 7 jours ouvrables.",
-                    "Étape 4 : Si vous n'êtes pas entièrement satisfait de vos produits, vous pouvez les retourner dans un délai de 15 jours."
+                    "Étape 3 : Vous pouvez prévoir que votre livraison arrive à l'adresse enregistrée sur votre compte dans un délai de **3 à 7 jours ouvrables**.",
+                    "Étape 4 : Si vous n'êtes pas entièrement satisfait de vos produits, vous pouvez les retourner dans un délai de **15 jours**."
                 ],
                 testSteps: [
                     "Lisez le bloc 'Instructions' et identifiez les informations requises.",
@@ -256,16 +258,16 @@
                 tabTest: "Hoe te testen", tabUser: "Impact op gebruikers", tabIssues: "Problemen", tabRemediations: "Oplossingen",
                 successMsg: "Uw aanvraag is succesvol verzonden", failMsg: "Formulier verzenden mislukt", errReqName: "Volledige naam is verplicht",
                 instrSlidesBad: [
-                    "Fase 1 Initialisatie: Het is verplicht voor de eindgebruiker om de aangewezen alfanumerieke invoermatrices in te vullen met de wettelijke nomenclatuur van de registrant en de zescijferige promotionele identificatie die momenteel is gesekwestreerd in de kinetische marquee-display.",
-                    "Logistiek Transitprotocol: Na succesvolle verificatie van de bovengenoemde inloggegevens, zal de backend-verzendarchitectuur de logistieke keten initiëren.",
-                    "Temporeel Distributievenster: De verwachte duur voor de fysieke levering van de verkregen items is onderworpen aan een temporeel venster van niet minder dan drie en niet meer dan zeven standaard industriële bedrijfscycli.",
-                    "Restitutie en Tevredenheidsmandaat: Mocht de eindtoestand van de geleverde middelen niet voldoen aan de subjectieve verwachtingen van de ontvanger, dan kan een formeel verzoek om middelenreclamatie worden ingediend."
+                    "Fase 1 Initialisatie: Het is **verplicht voor de** eindgebruiker om de **aangewezen alfanumerieke invoermatrices** in te vullen met de **wettelijke nomenclatuur van de** registrant.",
+                    "Logistiek Transitprotocol: Na **succesvolle verificatie van de** inloggegevens, zal de **backend-verzendarchitectuur de** logistieke keten initiëren. De fysieke manifestatie wordt naar de **geografische coördinaten** gestuurd.",
+                    "Temporeel Distributievenster: De verwachte duur voor de **fysieke levering van de** items is onderworpen aan een venster van **niet minder dan drie** en niet meer dan zeven **standaard bedrijfscycli**.",
+                    "Restitutie en Tevredenheidsmandaat: Mocht de **eindtoestand van de middelen** niet voldoen, dan kan een **formeel verzoek om reclamatie** worden ingediend binnen **vijftien dagelijkse cycli**."
                 ],
                 instrSlidesGood: [
-                    "Stap 1: Vul het formulier in met uw volledige naam en de unieke promotiecode die in de banner staat (REDUCE2026).",
+                    "Stap 1: Vul het formulier in met uw volledige naam en de unieke promotiecode die in de banner staat (**REDUCE2026**).",
                     "Stap 2: U ontvangt een geautomatiseerd e-mailbericht met het verzoek om bevestiging van de gegevens.",
-                    "Stap 3: U kunt verwachten dat uw levering binnen 3-7 werkdagen aankomt op het adres dat op uw account is geregistreerd.",
-                    "Stap 4: Als u niet volledig tevreden bent met uw producten, kunt u deze binnen 15 dagen retourneren."
+                    "Stap 3: U kunt verwachten dat uw levering binnen **3-7 werkdagen** aankomt op het adres dat op uw account is geregistreerd.",
+                    "Stap 4: Als u niet volledig tevreden bent met uw producten, kunt u deze binnen **15 dagen** retourneren."
                 ],
                 testSteps: [
                     "Lees het blok 'Instructies' en identificeer de vereiste informatie.",
@@ -304,16 +306,16 @@
                 tabTest: "Wie man testet", tabUser: "Betroffene Nutzer", tabIssues: "Probleme", tabRemediations: "Lösungen",
                 successMsg: "Ihr Antrag wurde erfolgreich übermittelt", failMsg: "Senden fehlgeschlagen", errReqName: "Vollständiger Name ist erforderlich",
                 instrSlidesBad: [
-                    "Phase-1-Initialisierung: Es ist für den Endbenutzer obligatorisch, die vorgesehenen alphanumerischen Eingabematrizen mit der gesetzlichen Nomenklatur des Registranten und der sechsstelligen Aktionskennung auszufüllen.",
-                    "Logistik-Transit-Protokoll: Nach erfolgreicher Verifizierung der oben genannten Anmeldedaten wird die Backend-Versandarchitektur die Logistikkette einleiten.",
-                    "Zeitliches Verteilungsfenster: Die voraussichtliche Dauer für die physische Lieferung der beschafften Artikel unterliegt einem zeitlichen Fenster von nicht weniger als drei und nicht mehr als sieben Standard-Geschäftszyklen.",
-                    "Restitutions- und Zufriedenheitsmandat: Sollte der Endzustand der gelieferten Ressourcen nicht den subjektiven Erwartungen des Empfängers entsprechen, kann ein formeller Antrag auf Ressourcenreklamation gestellt werden."
+                    "Phase-1-Initialisierung: Es ist **obligatorisch für den** Endbenutzer, die **vorgesehenen alphanumerischen Eingabematrizen** mit der **gesetzlichen Nomenklatur des** Registranten auszufüllen.",
+                    "Logistik-Transit-Protokoll: Nach **erfolgreicher Verifizierung der** Anmeldedaten wird die **Backend-Versandarchitektur die** Logistikkette einleiten. Die Manifestation wird an die **geografischen Koordinaten** geleitet.",
+                    "Zeitliches Verteilungsfenster: Die Dauer für die **physische Lieferung der** Artikel unterliegt einem Fenster von **nicht weniger als drei** und nicht mehr als sieben **Standard-Geschäftszyklen**.",
+                    "Restitutions- und Zufriedenheitsmandat: Sollte der **Endzustand der Ressourcen** nicht entsprechen, kann ein **formeller Antrag auf Reklamation** innerhalb von **fünfzehn täglichen Zyklen** gestellt werden."
                 ],
                 instrSlidesGood: [
-                    "Schritt 1: Füllen Sie das Formular mit Ihrem vollständigen Namen und dem im Banner angegebenen Aktionscode aus (REDUCE2026).",
+                    "Schritt 1: Füllen Sie das Formular mit Ihrem vollständigen Namen und dem im Banner angegebenen Aktionscode aus (**REDUCE2026**).",
                     "Schritt 2: Sie erhalten eine automatisierte E-Mail mit der Bitte um Datenbestätigung.",
-                    "Schritt 3: Sie können erwarten, dass Ihre Lieferung innerhalb von 3-7 Werktagen an der in Ihrem Konto registrierten Adresse eintrifft.",
-                    "Schritt 4: Wenn Sie mit Ihren Produkten nicht zufrieden sind, können Sie diese innerhalb von 15 Tagen zurückgeben."
+                    "Schritt 3: Sie können erwarten, dass Ihre Lieferung innerhalb von **3-7 Werktagen** an der in Ihrem Konto registrierten Adresse eintrifft.",
+                    "Schritt 4: Wenn Sie mit Ihren Produkten nicht zufrieden sind, können Sie diese innerhalb von **15 Tagen** zurückgeben."
                 ],
                 testSteps: [
                     "Lesen Sie den Block 'Anleitung' und identifizieren Sie die erforderlichen Informationen.",
@@ -358,14 +360,14 @@
             const slides = isAcc ? t.instrSlidesGood : t.instrSlidesBad;
             let content = slides[currentSlide];
 
-            if (!isAcc) {
-                const words = content.split(' ');
-                content = words.map((w, i) => i % 3 === 0 ? `<b>${w}</b>` : w).join(' ');
-            } else {
+            // For inaccessible mode, we use the pre-formatted bolding in the strings
+            // No additional formatting logic needed here, content is already tagged.
+            
+            if (isAcc) {
                 indicator.innerText = t.indicator.replace('{x}', currentSlide + 1).replace('{total}', slides.length);
             }
             
-            display.innerHTML = content;
+            display.innerHTML = content.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
         }
 
         function nextSlide() {
@@ -472,7 +474,8 @@
             clearInterval(carouselInterval);
             if (!isAcc) {
                 banner.innerHTML = `<img src="https://placehold.co/600x60/dc2626/ffffff/png?text=APPLY+NOW!+50%25+OFF+PROMO+CODE:+S5bd1L&font=playfair-display" alt="Promotion" class="promo-text-img">`;
-                carouselInterval = setInterval(nextSlide, 2000);
+                // Inaccessible carousel slowed down to 3s (1s slower than typical 2s)
+                carouselInterval = setInterval(nextSlide, 3000);
                 document.getElementById('carousel-controls').classList.add('hidden');
                 document.getElementById('slide-indicator').classList.add('hidden');
             } else {
